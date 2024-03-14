@@ -10,8 +10,6 @@ import random
 import sys
 import os
 
-print(os.listdir())
-
 def create_donation_thermometer(goal, current_donation, image_width=400, image_height=700):
     # Create a blank image with RGBA color mode (4 channels including Alpha)
     image = Image.new("RGBA", (image_width, image_height), (0, 0, 0, 0))
@@ -82,6 +80,9 @@ def get_donation_count_fm():
     goal_amount = int(str(donation_target).split("€")[1].split("<")[0].replace(",",""))
     thermometer_image = create_donation_thermometer(goal_amount, current_donation_amount)
     thermometer_image.save("./mps_site/static/donation_thermometer.png")
+    cropped_image = Image.open("./mps_site/static/donation_thermometer.png")
+    cropped_image = cropped_image.crop((0, 110, 400, 700))
+    cropped_image.save("./mps_site/static/donation_thermometer.png")
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"Donation Count Updated ({current_time}): €{current_donation_amount} out of €{goal_amount}")
 

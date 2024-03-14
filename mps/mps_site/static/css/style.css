@@ -222,6 +222,19 @@ h3, h5 {
       height: 50%; /* Adjust the height as needed */
     }
 
+    .other-member {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .other-member img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5%;
+      /* margin-bottom: 30px; */
+      padding: 4px;
+    }
+
     .committee-member {
       text-align: center;
       margin-bottom: 40px;

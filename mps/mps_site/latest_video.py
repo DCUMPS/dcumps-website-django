@@ -16,4 +16,3 @@ def get_latest_video_id(channel_url):
 # Example usage:
 channel_url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw"
 latest_video_id = get_latest_video_id(channel_url)
-print("Latest video ID:", latest_video_id)

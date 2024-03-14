@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <meta name='keywords' content='dcu, dcumps, mps, dcufm, dcutv, thecollegeview, mediaproduction, ireland'>
+  <meta name='og:url' content='https://www.dcumps.ie'>
+  <meta name='og:image' content='https://i.imgur.com/hDXLm0K.png'>
+  <meta name='og:site_name' content='{{ page_name }} | DCUMPS'>
+  <meta name='og:description' content='DCU Media Production Society is home to DCUtv, DCUfm & The College View. We take pride in producing Ireland’s best student-media! Love Media? Love MPS!'>
+  <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'>
+  <script defer data-domain="dcumps.ie" src="https://plausible.jakefarrell.ie/js/script.js"></script>
+  <title>{{ page_name }} | DCU MPS</title>
+  <favicon>
+    <link rel="icon" href="{% static 'assets/img/other/favicon.png' %}" type="image/png" sizes="16x16">
+  </favicon>
+  <style>
+    body {
+      background-color: #202E4E !important;
+      margin: 0;
+    }
+    .title-text h1 {
+      font-weight: normal;
+      font-size: 35px;
+      position: relative;
+      margin: 40px 0;
+    }
+    .event-container {
+            display: none;
+        }
+    .title-text h1::before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 4px;
+      background-color: #9791FF;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: animate 4s linear infinite;
+    }
+    @keyframes animate {
+      0% {
+        width: 100px;
+      }
+      50% {
+        width: 875px;
+      }
+      100% {
+        width: 100px;
+      } 
+    }
+    .webmaster-element body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    cursor: pointer;
+    }
+    .webmaster-element {
+      margin: auto;
+      border-radius: 10px;
+      transform-style: preserve-3d;
+      transition: all .1s;
+}
+.webmaster-element img:hover {
+      transform: scale(1.1, 1.1);
+    }
+    @keyframes animate {
+      0% {
+        width: 100px;
+      }
+      50% {
+        width: 315px;
+      }
+      100% {
+        width: 100px;
+      } 
+    }  
+    
+  </style>
+</head>
+<body>
+  <header class="header" style="top: 0; z-index: 500;">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <img id="clickImage" src="static/assets/img/other/MPS_WideLogo_WHT.png" onclick="checkClicks()" width="200" height="75" class="d-inline-block align-top" alt="" style="margin-left: 15px; cursor: pointer;">
+        <audio id="clickSound" src="static/assets/ping.mp3"></audio>
+        <audio id="clickSound2" src="static/assets/secret.mp3"></audio>
+        <button class="navbar-toggler" style="margin-right:5px !important; border-color: #ffffff !important;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+        <div class="collapse navbar-collapse top_nav" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto ">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <!--<li class="nav-item">
+                <a class="nav-link" href="/merch">Merch</a>
+              </li>-->
+              <li class="nav-item">
+                <a class="nav-link" href="/dcufm">DCUfm</a>
+              </li> 
+              <!--<li class="nav-item">
+                <a class="nav-link" href="/blog">Blog</a>
+              </li>-->
+              <li class="nav-item">
+                <a class="nav-link" href="/dcutv">DCUtv</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://thecollegeview.ie" target="_blank">The College View<!--<i class="fa fa-external-link" aria-hidden="true"></i>--></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/gallery">Gallery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/committee">Committee</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://dcuclubsandsocs.ie/society/media-production" target="_blank">Join Us<!--<i class="fa fa-external-link" aria-hidden="true"></i>--></a>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="footer-line"></div>
+</header>
+		{% block content %}
+    {% endblock %}
+  
+	  <footer>
+      <div class="footer">
+        <div class="footer-line"></div>
+        <ul>
+          <li><a href="http://facebook.com/dcumps" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+          <li><a href="http://twitter.com/dcumps" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+          <li><a href="http://instagram.com/dcumps" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+          <!--<li><a href="https://chat.whatsapp.com/EBupVbTpWX01uJvBp5r24D" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>-->
+          <li><a href="http://youtube.com/dcumps" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+          <li><a href="https://www.tiktok.com/@dcumps" target="_blank"><i class="fa-brands fa-tiktok"></i></a></li>
+        </ul>
+        <p style="margin-top: 30px;">© 2024 by DCU MPS. Designed and maintained by <a href="https://www.jakefarrell.ie" target="_blank">Jake Farrell</a></p>
+      </div>
+      </footer>
+      <script src="static/js/carousel-homepage.js"></script>
+      <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+      <script src="static/js/twitch-dcufm.js"></script>
+      <script src="static/js/button.js"></script>
+      <script src="static/js/finn.js"></script>
+      <script src="static/js/navbar-text-change.js"></script>
+      <script src="static/assets/js/webmaster.js"></script>
+      <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+      <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha384-xmliZz/M9lsd33PvLcPh1t+OyAvG4vT5K1eY4BIq7YUVoEdKv5B9g6r7FV7iKV6-8" crossorigin="anonymous"></script>
+    </body>
+</html> 

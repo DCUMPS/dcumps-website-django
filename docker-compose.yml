@@ -1,0 +1,32 @@
+services:
+  mps-django-prod: 
+    container_name: mps-django-prod
+    hostname: mps-django-prod
+    restart: unless-stopped
+    build:
+      context: mps
+      target: builder
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mps-comingsoon-nginx.entrypoints=web"
+      - "traefik.http.routers.mps-comingsoon-nginx.rule=Host(`www.dcumps.ie`)"
+      - "traefik.http.routers.mps-comingsoon-nginx-base-url.entrypoints=web"
+      - "traefik.http.routers.mps-comingsoon-nginx-base-url.rule=Host(`dcumps.ie`)"
+
+  mps-static-nginx:
+    image: nginx:latest
+    container_name: mps-static-nginx
+    hostname: mps-static-nginx
+    restart: unless-stopped
+    volumes:
+      - ./mps/mps_site/static:/usr/share/nginx/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mps-static-nginx.entrypoints=web"
+      - "traefik.http.routers.mps-static-nginx.rule=Host(`cdn.dcumps.ie`)"
+
+
+networks:
+  default:
+    external:
+      name: $DEFAULT_NETWORK

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://dcumps.ie/static/sitemap.xml

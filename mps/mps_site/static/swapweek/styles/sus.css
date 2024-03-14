@@ -1,0 +1,36 @@
+#📀.🦴 {
+    content: url("../assets/MPS_Icon_YELLOW.png");
+}
+
+.😁 .🌀 div {
+    background: url("../assets/MPS_Icon_PNK.png");
+}
+
+#🔪 {
+    height: 30rem;
+    content: url("../assets/MPS_Icon_RED.png");
+    animation:  infinite linear 1s 🔪,
+                infinite linear 3s 🔪🌈;
+}
+
+@keyframes 🔪 {
+    from {
+        transform: rotate3d(0, 0, 0, 0);
+    } to {
+        transform: rotate3d(0.7, 3, -0.7, 360deg);
+    }
+}
+
+@keyframes 🔪🌈 {
+    from {
+        filter: hue-rotate(0);
+    } to {
+        filter: hue-rotate(360deg);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #🔪 {
+        height: 20rem; /* Adjust the height for smaller screens */
+    }
+}

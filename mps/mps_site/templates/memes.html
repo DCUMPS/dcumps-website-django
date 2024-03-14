@@ -1,0 +1,31 @@
+{% load static %}
+<head>
+  <title>STOP DOING PHOTOGRAPHY</title>
+  <meta property="og:title" content="STOP DOING PHOTOGRAPHY">
+  <meta property="og:url" content="https://dcumps.ie">
+  <meta property="og:image" content="https://dcumps.ie/assets/img/other/stop.png">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="STOP DOING PHOTOGRAPHY">
+</head>
+<body>
+<img class="background" src="{% static 'assets/img/other/stop.png' %}">
+</body>
+
+<style>
+body {
+  margin: 0;
+}
+
+img {
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.background {
+  width: 100%;
+  background-image: url("{% static 'assets/img/other/stop.png' %}");
+  background-size: 100% 100%;
+}
+</style>

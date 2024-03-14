@@ -1,0 +1,11 @@
+django
+bs4
+requests
+html5lib
+feedparser
+yt_dlp
+datetime
+pandas
+django-embed-video
+whitenoise
+pillow

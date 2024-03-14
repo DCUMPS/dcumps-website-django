@@ -5,7 +5,7 @@ EXPOSE 8000
 WORKDIR /app 
 #COPY requirements.txt /app
 #RUN pip3 install -r requirements.txt --no-cache-dir
-RUN pip3 install -r django bs4 requests html5lib feedparser yt_dlp datetime pandas django-embed-video whitenoise pillow --no-cache-dir
+RUN pip3 install django bs4 requests html5lib feedparser yt_dlp datetime pandas django-embed-video whitenoise pillow --no-cache-dir
 COPY . /app 
 ENTRYPOINT ["python3"] 
 WORKDIR /app

@@ -11,3 +11,8 @@ class About(models.Model):
     about_title = models.CharField(max_length=100)
     about_description = models.TextField()
     about_ending = models.CharField(max_length=100, default="")
+
+class DCUfmFamilyTree(models.Model):
+    id = models.AutoField(primary_key=True)
+    year = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)

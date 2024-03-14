@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <div class="title-text2">
@@ -58,6 +59,64 @@
   </div>
   </div>
 </div>
+<div id="dcufm-12hour">
+  <div class="container">
+    <h1>The 12-Hour Broadcast</h1>
+    <h5><i>DCUfm's biggest event of the year!</h5></i>
+    <div class="row justify-content-center" style="text-align: center;">
+  
+      <div class="col-md-12 custom-box">
+        <h1>Time Until the Broadcast</h1>
+        <h2 id="fm-countdown"></h2>
+        <!--<img src="static/assets/fm/aware_logo.png" alt="12 Hour Broadcast" style="width: 30%;" />-->
+        <div id="12hour-description" style="background-color: #202E4E; border-radius: 15px; padding:20px; margin-left: 70px; margin-right: 70px;">
+          <p style="margin-bottom: 10px;">IT’S THE 12 HOUR BROADCAST!! 💛
+            <br>
+            Get your mics on, your headphones in and get ready to go live!!
+            <br>
+            This year DCUfm’s 12 hour broadcast is all in aid of @awareireland
+            <br>
+            Aware Ireland is a national organisation providing free support, education and information services to people impacted by anxiety, depression, bipolar disorder and related mood conditions.
+            <br>
+            Mental health and wellbeing is something that is so so important to everyone here at DCUfm, we really want to raise awareness and work on destigmatising the battles that so many people fight in their head every day as well as raise as much money as we can for such a great charity!! 🌅💛
+            <br>
+            See you all there on March 28th from 9am-9pm… show forms out soon 😏
+          </p>
+        </div>
+        <div class="center-contents" > <!--style="padding-bottom: 500px;"-->
+          <div class="container mt-4">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
+                  <img src="{% static 'assets/fm/12HR_1.jpeg' %}" alt="12 Hour Broadcast" style="width: 100%;" />
+                </div>
+              </div>
+            <div class="col-md-4">
+              <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
+                <img src="{% static 'donation_thermometer.png' %}" alt="12 Hour Broadcast" style="width: 58%;" />
+              </div>
+            </div>
+            <div class="col-md-4">
+        <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
+          <img src="{% static 'assets/fm/12HR_2.jpeg' %}" alt="12 Hour Broadcast" style="width: 100%;" />
+        </div>
+    
+      </div>
+      
+      </div>
+      <a class="btn btn-primary" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: #FFE085;" href="{% url 'donate' %}">Donate to Aware</a>  
+      </div>
+      </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 <div class="container">
   <h1 class="text-center">Meet The FM Managers</h1>
   <h5 class="text-center"><i>The team behind everything radio!</i></h5>
@@ -243,6 +302,42 @@
       </div>
       </div>
       </div>
+      <div id="dcufm-subcommittee">
+        <div class="container">
+          <h1>Meet The FM Sub-Committee</h1>
+          <div class="row justify-content-center" style="text-align: center;">
+        
+            <div class="col-md-12 custom-box">
+              <div class="center-contents" > <!--style="padding-bottom: 500px;"-->
+                <div class="container mt-4">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
+                        <img src="{% static 'assets/fm/SA.png' %}" alt="FM Sub-Committee" />
+                        <h3>Sophie Alexander</h3>
+                        <h5><i>Events Manager</i></h5>
+                      </div>
+                    </div>
+                  <div class="col-md-4">
+                    <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
+                      <img src="{% static 'assets/fm/AN.png' %}" alt="FM Sub-Committee"/>
+                      <h3>Abbie Nolan</h3>
+                      <h5><i>Flagship Captain</i></h5>
+                    </div>
+                  </div>  
+            </div>
+            </div>
+            </div>
+              </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
       <div class="container">
         <h1>Our Flagships</h1>
         <h5><i>Get to know our flagship fm shows!</h5></i>
@@ -289,6 +384,30 @@
                   </ul>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      <div id="dcufm-history">
+        <div class="container">
+          <h1>DCUfm Station Family Tree</h1>
+          <h5><i>Check out all the members who have worked in DCUfm</h5></i>
+          <div class="row justify-content-center" style="text-align: center;">
+            <div class="col-md-12 custom-box">
+              <div class="center-contents" > <!--style="padding-bottom: 500px;"-->
+                <div class="container mt-4">
+                  <div class="row">
+                    {% for member in family_tree %}
+                    <div class="col-md-4">
+                      <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:10px">
+                        <p><strong>{{ member.year }}</strong></p>
+                        <p></p>{{ member.name }}</p>
+                      </div>
+                    </div>
+                    {% endfor %}
             </div>
           </div>
         </div>

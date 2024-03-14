@@ -4,6 +4,7 @@ from .models import *
 from .fm_time import get_date_time
 from .event_data import get_event_data
 from .latest_video import get_latest_video_id
+from .main_single import get_donation_count_fm
 import json
 import pandas as pd
 from django.utils.safestring import mark_safe
@@ -188,7 +189,8 @@ def memes(request):
 
 def dcufm(request):
     previous, current, next_show = get_date_time()
-    return render(request, 'dcufm.html', {'page_name': 'DCUfm', 'previous_show': previous, 'current_show': current, 'next_show': next_show})
+    get_donation_count_fm()
+    return render(request, 'dcufm.html', {'page_name': 'DCUfm', 'previous_show': previous, 'current_show': current, 'next_show': next_show, 'family_tree': DCUfmFamilyTree.objects.all()})
 
 
 def donate(request):

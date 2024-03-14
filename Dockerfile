@@ -9,7 +9,7 @@ RUN pip3 install django bs4 requests html5lib feedparser yt_dlp datetime pandas 
 COPY . /app 
 ENTRYPOINT ["python3"] 
 WORKDIR /app
-RUN python3 manage.py collectstatic -v 2 --noinput
+RUN python3 ./mps/manage.py collectstatic -v 2 --noinput
 COPY . /app
 CMD ["manage.py", "runserver", "0.0.0.0:8000"]
 

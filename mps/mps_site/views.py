@@ -11,6 +11,7 @@ from django.utils.safestring import mark_safe
 def index(request):
         channel_url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw"
         video = get_latest_video_id(channel_url)
+        awards = Award.objects.all()
         previous, current, next_show = get_date_time()
         get_event_data()
         with open('mps_site/event-data.json', 'r') as file:
@@ -100,6 +101,8 @@ def index(request):
                                             'event_1_image': event_1_image,
                                             'event_2_image': event_2_image,
                                             'event_3_image': event_3_image,
+                                            'awards': awards,
+                                            'about': About.objects.all().first(),
                                           })
 
 def committee(request):

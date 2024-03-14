@@ -37,7 +37,7 @@
 
   <div class="container">
     <h1>About Us</h1>
-    <h5><i>A few words from our Chairperson: Sarah Ó Tuama</h5></i>
+    <h5><i>{{ about.about_title }}</h5></i>
   <div class="row justify-content-center">
 
     <div class="col-md-12 custom-box">
@@ -56,7 +56,7 @@
             The College View is DCU’s student newspaper. TCV offers members a way to enhance their writing skills and explore different types of journalism - from hard news to wacky satire, from the latest sports scores to reviewing what’s in the cinema. Stories are published online on www.thecollegeview.ie. There’s opportunities to attend and cover events across campus and outside DCU - with the Editorial Team always looking for writers to give their own edge on what’s going on in the University.<br><br> 
             After 39 years, thousands of members, (and not to mention a global pandemic), MPS continues to grow in numbers and talent year on year. This year, our passionate and dedicated Committee aims to see MPS succeed and function at the highest possible level, with weekly events, workshops and activities for all of our members. MPS seeks to present exciting opportunities to our members, both creatively and socially, and foster the immense potential within DCU students. We hope to continue to do so as we move forward in years to come. 
             </p>
-            <h4 style="text-align: center;"><i>Chairperson: Sarah Ó Tuama</i></h4>
+            <h4 style="text-align: center;"><i>{{about.about_ending}}</i></h4>
           </div>
       </div>
     </div>
@@ -380,19 +380,9 @@
           <div class="center-contents" style="background-color: #202E4E; border-radius: 15px; padding-top: 10px; padding-bottom: 10px;"> 
                   <h4 style="font-size: 30px; font-weight: bold; padding-left: 10px; padding-right: 10px;">Awards History</h4>
                   <ul style="padding-left: 10px; padding-right: 10px; list-style: none; text-align: left;">
-                    <li>• Winner - Best Society Promotional Video, 2023 Board of Irish College Society Awards 2023</li>
-                    <li>• Winner - Best Society Publicity Campaign - DCUtv 24hr Broadcast, DCU Society Awards 2023</li>
-                    <li>• Winner - Best Society Promotional Video - Welcome to MPS '22/23, DCU Society Awards 2023</li>
-                    <li>• Winner - Individual Contribution to Society Life - Jack Collier, DCU Society Awards 2023</li>
-                    <li>• Winner - Best Charitable Contribution - (society), DCU Society Awards 2021</li>
-                    <li>• Winner - Best Society Poster - DCUfm 12hr Broadcast, DCU Society Awards 2021</li>
-                    <li>• Winner - Individual Contribution to Society Life - Ciara Breslin, DCU Society Awards 2021</li>
-                    <li>• Winner - Best Society in Ireland - Board of Irish College Society Awards 2015</li>
-                    <li>• Winner - Best Society Event - DCUtv 24hr Broadcast , DCU Society Awards 2014</li>
-                    <li>• Winner - Best Society, DCU Society Awards 2013</li>
-                    <li>• Winner - Best Online Presence 2012, The Board of Irish College Society Awards 2012</li>
-                    <li>• Winner - Best Communication & Marketing 2012, DCU Society Awards 2012</li>
-                    <li>• Winner - Best College Society in Ireland 2011, The Board of Irish College Society Awards 2011</li>
+                    {% for award in awards %}
+                    <li>{{ award.award_description }}</li>
+                    {% endfor %}
                   <ul></ul>
               </div>
           </div>

@@ -23,7 +23,7 @@ urlpatterns = [
     path('gallery', views.gallery, name="gallery"),
     #path('blog', views.blog, name="blog"),
     #path('merch', views.merch, name="merch"),
-    #path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls),
     #path("comingsoon", views.comingsoon, name="comingsoon"),
     path("swapweek", views.swapweek, name="swapweek"),
     path("memes", views.memes, name="memes"),

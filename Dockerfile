@@ -11,7 +11,7 @@ ENTRYPOINT ["python3"]
 WORKDIR /app
 RUN python3 ./mps/manage.py collectstatic -v 2 --noinput
 COPY . /app
-CMD ["manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["./mps/manage.py", "runserver", "0.0.0.0:8000"]
 
 FROM builder as dev-envs
 RUN <<EOF
@@ -25,4 +25,4 @@ adduser -S --shell /bin/bash --ingroup docker vscode
 EOF
 # install Docker tools (cli, buildx, compose)
 COPY --from=gloursdocker/docker / /
-CMD ["manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["./mps/manage.py", "runserver", "0.0.0.0:8000"]

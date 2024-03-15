@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+#❤️ {
+    font-family: Pacifico, Comic Sans MS, cursive;
+    font-size: 13rem;
+    text-align: center;
+}
+
+
+/*#❤️::after {
+    content: "";
+    display: inline-block;
+    width: 5rem;
+    height: 10rem;
+    background-image: url("../assets/tail.d2891ea75add.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: ease-in-out alternate-reverse infinite 4s 🐈;
+    transform-origin: bottom left;
+}*/
+
+#❤️::first-letter {
+  letter-spacing: -0.25rem;
+}
+
+@keyframes 🐈 {
+    0% {
+        transform: translate(-2.2rem, -2rem) rotate(40deg);
+    }
+    50% {
+        transform: translate(-2.2rem, -2rem) rotate(30deg);
+    }
+    100% {
+        transform: translate(-2.2rem, -2rem) rotate(20deg);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #❤️ {
+        font-size: 7rem;
+    }
+
+    /* Adjustments for the tail */
+    /* #❤️::after {
+        width: 3rem;
+        height: 6rem;
+    } */
+}

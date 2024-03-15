@@ -4,16 +4,18 @@ services:
     hostname: dcumps-website-django
     restart: unless-stopped
     build:
-      context: mps
+      context: .
       target: builder
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.dcumps-website-django.entrypoints=web"
-      - "traefik.http.routers.dcumps-website-django.rule=Host(`www.dcumps.ie`)"
-      - "traefik.http.routers.dcumps-website-django-base-url.entrypoints=web"
-      - "traefik.http.routers.dcumps-website-django-base-url.rule=Host(`dcumps.ie`)"
-
-networks:
-  default:
-    external:
-      name: traefik_net
+    ports:
+      - "8000:8000"
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.dcumps-website-django.entrypoints=web"
+#      - "traefik.http.routers.dcumps-website-django.rule=Host(`www.dcumps.ie`)"
+#      - "traefik.http.routers.dcumps-website-django-base-url.entrypoints=web"
+#      - "traefik.http.routers.dcumps-website-django-base-url.rule=Host(`dcumps.ie`)"
+#
+#networks:
+#  default:
+#    external:
+#      name: traefik_net

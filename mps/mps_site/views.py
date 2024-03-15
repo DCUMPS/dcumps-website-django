@@ -15,6 +15,7 @@ def index(request):
         awards = Award.objects.all()
         previous, current, next_show = get_date_time()
         get_event_data()
+        about = About.objects.all().first()
         with open('mps_site/event-data.json', 'r') as file:
             data = json.load(file)
             event_count = data['event_count']
@@ -103,7 +104,7 @@ def index(request):
                                             'event_2_image': event_2_image,
                                             'event_3_image': event_3_image,
                                             'awards': awards,
-                                            'about': About.objects.all().first(),
+                                            'about': about,
                                           })
 
 def committee(request):
@@ -190,7 +191,8 @@ def memes(request):
 def dcufm(request):
     previous, current, next_show = get_date_time()
     get_donation_count_fm()
-    return render(request, 'dcufm.html', {'page_name': 'DCUfm', 'previous_show': previous, 'current_show': current, 'next_show': next_show, 'family_tree': DCUfmFamilyTree.objects.all()})
+    family_tree = DCUfmFamilyTree.objects.all()
+    return render(request, 'dcufm.html', {'page_name': 'DCUfm', 'previous_show': previous, 'current_show': current, 'next_show': next_show, 'family_tree': family_tree})
 
 
 def donate(request):

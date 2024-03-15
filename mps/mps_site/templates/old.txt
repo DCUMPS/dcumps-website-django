@@ -55,3 +55,39 @@
     .info-paragraph {
       margin-bottom: 20px;
     }
+
+    TV OLD
+
+    <!--<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12 custom-box" style="text-align: center;">
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+      <div class="carousel-item active">
+          <img src="TCV.png" class="w-50" alt="Image 1">
+      </div>
+      <div class="carousel-item">
+          <img src="TCV.png" class="w-50" alt="Image 2">
+      </div>
+      <div class="carousel-item">
+          <img src="TCV.png" class="w-50" alt="Image 3">
+      </div>
+  </div>
+</div> 
+</div>
+</div>
+</div> 
+<div class="container">
+  <div class="row justify-content-center">
+    <h1>The 12 Hour Broadcast</h1>
+    <div class="col-md-12 custom-box" >
+      <div class="info-section">
+      <img src="static/assets/img/other/FM_Transparent.webp" alt="Your Image" width="50px" class="info-image">
+      <h2 class="info-subheading" id="demo" style="text-align: center;"></h4>
+      <p class="info-paragraph" style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet augue vel mauris malesuada efficitur. Integer et elit vel odio imperdiet cursus vel ut dui. Proin auctor gravida quam, ac posuere tortor vestibulum non.</p>
+    </div>
+    <div class="col-md-6 stacked-images">
+      <img src="static/assets/img/other/FM_Transparent.webp" alt="Image 1" width="300px">
+      <img src="static/assets/img/other/FM_Transparent.webp" alt="Image 2" width="300px">
+    </div>
+  </div>-->

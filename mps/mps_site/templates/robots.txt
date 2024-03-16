@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://dcumps.ie/static/sitemap.xml
+Sitemap: https://dcumps.ie/sitemap.xml

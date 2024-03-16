@@ -42,8 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mps_site',
-    'embed_video',
-    'django.contrib.sitemaps',
 ]
 
 if ADMIN_ENABLED is True:

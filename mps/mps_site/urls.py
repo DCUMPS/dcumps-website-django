@@ -2,17 +2,12 @@ from django.contrib import admin
 from django.urls import include, path
 from . import views
 from .views import *
-from django.contrib.sitemaps.views import sitemap
-from .sitemaps import StaticViewSitemap
 from django.views.generic.base import TemplateView
-
-sitemaps = {
-    "static": StaticViewSitemap,
-}
-
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('', views.index, name="index"),
+    path("admin/", admin.site.urls),
     path('links', views.links, name="links"),
     path('linksdcutv', views.links_tv, name="links_tv"),
     path('linkstcv', views.links_tcv, name="links_tcv"),
@@ -21,28 +16,25 @@ urlpatterns = [
     path('contact', views.contact, name="contact"),
     path('dcutv', views.dcutv, name="dcutv"),
     path('gallery', views.gallery, name="gallery"),
-    #path('blog', views.blog, name="blog"),
-    #path('merch', views.merch, name="merch"),
-    path("admin/", admin.site.urls),
-    #path("comingsoon", views.comingsoon, name="comingsoon"),
     path("swapweek", views.swapweek, name="swapweek"),
     path("memes", views.memes, name="memes"),
     path("dcufm", views.dcufm, name="dcufm"),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    path(
-        "robots.txt",
-        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
-    ),
-    path('donate', views.donate, name="donate"),
-    path('lounge', views.lounge, name="lounge"),
-    path('join', views.join, name="join"),
-    path('thinktank', views.thinktank, name="thinktank"),
-    path('tcv', views.tcv, name="tcv"),
-    path('youtube', views.youtube, name="youtube"),
-    path('tiktok', views.tiktok, name="tiktok"),
-    path('instagram', views.instagram, name="instagram"),
-    path('facebook', views.facebook, name="facebook"),
-    path('twitter', views.twitter, name="twitter"),
-    path('twitch', views.twitch, name="twitch"),
-    path('broadcast', views.broadcast, name="broadcast"),
+    path('sitemap.xml', TemplateView.as_view(template_name="sitemap.xml", content_type="application/xml"), ),
+    path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain"), ),
+    path("favicon.ico", TemplateView.as_view(template_name="favicon.ico", content_type="image/x-icon"), ),
+    path('donate', RedirectView.as_view(url="https://www.idonate.ie/fundraiser/MediaProductionSociety11"), name="donate"),
+    path('lounge', RedirectView.as_view(url="https://lounge.live/lounges/kr53i9b6"), name="lounge"),
+    path('join', RedirectView.as_view(url="https://dcuclubsandsocs.ie/society/media-production"), name="join"),
+    path('thinktank', RedirectView.as_view(url="https://chat.whatsapp.com/EBupVbTpWX01uJvBp5r24D"), name="thinktank"),
+    path('tcv', RedirectView.as_view(url="https://www.thecollegeview.ie"), name="tcv"),
+    path('youtube', RedirectView.as_view(url="https://youtube.com/dcumps"), name="youtube"),
+    path('tiktok', RedirectView.as_view(url="https://www.tiktok.com/@dcumps"), name="tiktok"),
+    path('instagram', RedirectView.as_view(url="https://instagram.com/dcumps"), name="instagram"),
+    path('facebook', RedirectView.as_view(url="https://facebook.com/dcumps"), name="facebook"),
+    path('twitter', RedirectView.as_view(url="https://twitter.com/dcumps"), name="twitter"),
+    path('twitch', RedirectView.as_view(url="https://twitch.tv/dcufm"), name="twitch"),
+    path('broadcast', RedirectView.as_view(url="https://youtube.com/dcumps"), name="broadcast"),
+    #path("comingsoon", views.comingsoon, name="comingsoon"),
+    #path('blog', views.blog, name="blog"),
+    #path('merch', views.merch, name="merch"),
 ]

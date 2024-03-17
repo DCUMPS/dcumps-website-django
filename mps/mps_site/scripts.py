@@ -112,6 +112,17 @@ def get_latest_video_id(channel_url):
         return video_id
     else:
         return None
+    
+def get_latest_video_ids(channel_url):
+    feed = feedparser.parse(channel_url)
+    video_ids = []
+
+    for entry in feed.entries[:9]:  # Loop through the top 9 entries
+        video_url = entry.link
+        video_id = video_url.split('=')[-1]
+        video_ids.append(video_id)
+
+    return video_ids
 
 def get_most_popular_video_ids(channel_url, n=9):
     ydl_opts = {

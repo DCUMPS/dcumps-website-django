@@ -4,6 +4,8 @@ from . import views
 from .views import *
 from django.views.generic.base import TemplateView
 from django.views.generic import RedirectView
+import re
+from django.conf import settings
 
 urlpatterns = [
     path('', views.index, name="index"),
@@ -20,8 +22,8 @@ urlpatterns = [
     path("memes", views.memes, name="memes"),
     path("dcufm", views.dcufm, name="dcufm"),
     path('sitemap.xml', TemplateView.as_view(template_name="sitemap.xml", content_type="application/xml"), ),
-    path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain"), ),
-    path("favicon.ico", TemplateView.as_view(template_name="favicon.ico", content_type="image/x-icon"), ),
+    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
+    path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'assets/img/other/favicon.ico')),
     path('donate', RedirectView.as_view(url="https://www.idonate.ie/fundraiser/MediaProductionSociety11"), name="donate"),
     path('lounge', RedirectView.as_view(url="https://lounge.live/lounges/kr53i9b6"), name="lounge"),
     path('join', RedirectView.as_view(url="https://dcuclubsandsocs.ie/society/media-production"), name="join"),

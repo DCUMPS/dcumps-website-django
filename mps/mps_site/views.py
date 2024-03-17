@@ -112,7 +112,8 @@ def contact(request):
 def dcutv(request):
     channel_url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw"
     video = get_latest_video_id(channel_url)
-    return render(request, 'dcutv.html', {'page_name': 'DCUtv', 'tv_thursday' : 'RON9_ByY190', 'latest_video_id' : video})
+    most_recent_videos = get_latest_video_ids(channel_url)
+    return render(request, 'dcutv.html', {'page_name': 'DCUtv', 'tv_thursday' : 'RON9_ByY190', 'latest_video_id' : video, 'most_recent_videos': most_recent_videos})
 
 def gallery(request):
     return render(request, 'gallery.html', {'page_name': 'Gallery'})

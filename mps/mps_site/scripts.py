@@ -139,7 +139,7 @@ def get_most_popular_video_ids(channel_url, n=9):
         video_ids = [entry['id'] for entry in info['entries']]
         return video_ids
     
-def create_donation_thermometer(goal, current_donation, image_width=400, image_height=700):
+"""def create_donation_thermometer(goal, current_donation, image_width=400, image_height=700):
     # Create a blank image with RGBA color mode (4 channels including Alpha)
     image = Image.new("RGBA", (image_width, image_height), (0, 0, 0, 0))
     draw = ImageDraw.Draw(image)
@@ -189,7 +189,7 @@ def create_donation_thermometer(goal, current_donation, image_width=400, image_h
     text_width, text_height = draw.textsize(text, font)
     draw.text(((image_width - text_width) // 2, fixed_image_height - 600), text, font=font, fill=(255, 255, 255))
 
-    return image
+    return image"""
 
 # Example usage
 #goal_amount = 10000
@@ -207,11 +207,12 @@ def get_donation_count_fm():
     donation_target = soup.find('div', attrs = {'class':'support-cause'}) 
     current_donation_amount = int(str(current_donation).split()[3].split("€")[1].split("<")[0].replace(",",""))
     goal_amount = int(str(donation_target).split("€")[1].split("<")[0].replace(",",""))
-    thermometer_image = create_donation_thermometer(goal_amount, current_donation_amount)
-    thermometer_image.save("./mps_site/static/donation_thermometer.png")
-    cropped_image = Image.open("./mps_site/static/donation_thermometer.png")
-    cropped_image = cropped_image.crop((0, 110, 400, 700))
-    cropped_image.save("./mps_site/static/donation_thermometer.png")
+    return current_donation_amount, goal_amount
+    #thermometer_image = create_donation_thermometer(goal_amount, current_donation_amount)
+    #thermometer_image.save("./mps_site/templates/donation_thermometer.png")
+    #cropped_image = Image.open("./mps_site/templates/donation_thermometer.png")
+    #cropped_image = cropped_image.crop((0, 110, 400, 700))
+    #cropped_image.save("./mps_site/templates/donation_thermometer.png")
     current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def get_event_data():

@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # Collect static files
-RUN python ./mps/manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
 
 # Expose port 8000 to the outside world
 EXPOSE 8000

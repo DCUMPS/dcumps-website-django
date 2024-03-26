@@ -103,6 +103,50 @@ def get_date_time():
 
     return previous_show, current_show, next_show
 
+def get_date_time_12_hour():
+    date = datetime.datetime.now()
+    hour = date.hour
+    minute = date.minute
+    weekday = date.weekday()
+
+    messages = {
+        9: "Intro & Interview",
+        9.5: "The Smelly Show(nose plugs advised) X The UnOriginal Sin",
+        10: "Guess Who DCU",
+        10.5: "Is This It?",
+        11: "Unqualified X OffTopic",
+        11.5: "Carpool Karaoke FM Edition",
+        12: "What Not To Do In Prague",
+        12.5: "Sorting Out Your Lore",
+        13: "Action Replay X The Dugout",
+        13.5: "Newswire",
+        14: "Soundwaves: Blind Ranking",
+        14.5: "Sea Week",
+        15: "The Practice Pod X For The Plot",
+        15.5: "Shitty In The City",
+        16: "Pop The Champagne",
+        16.5: "Committea",
+        17: "The Lunch Table",
+        17.5: "Lawless Podcast",
+        18: "TV V FM",
+        18.5: "Deep Dive",
+        19: "Balikbayan Unbox: Pinoy Henyo",
+        19.5: "My Next Guest X Out Of The Woods X The Shane O'Loughlin Podcast",
+        20: "DIBS Boys Broadcast Special",
+        20.5: "Auction X Wax World"
+    }
+    if 9 <= hour < 21 and date.weekday() == 4:
+        # Adjust hour if minutes fall within the second half of the hour
+        if minute >= 30:
+            hour += 0.5
+        current_show = messages.get(hour, "No shows on at the moment")
+        previous_show = messages.get(hour - 0.5, "No shows on at the moment")
+        next_show = messages.get(hour + 0.5, "No shows on at the moment")
+    else:
+        previous_show = current_show = next_show = "No shows on at the moment"
+
+    return previous_show, current_show, next_show
+
 def get_latest_video_id(channel_url):
     feed = feedparser.parse(channel_url)
 

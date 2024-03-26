@@ -1,0 +1,35 @@
+#📀
+{
+    --size: 13rem;
+    z-index: 1;
+    user-select: none;
+    display: block;
+    position: absolute;
+    height: var(--size);
+    content: url("../assets/MPS_Icon_PNK.25c7525ec952.png");
+    animation:  👈👉 5.2s linear 0s infinite alternate,
+                👆👇 2.2s linear 0s infinite alternate,
+                  🌀 1s linear 0s infinite;
+}
+
+@keyframes 👈👉 {
+    from {
+        left: 0;
+    } to {
+        left: calc(100% - var(--size));
+    }
+}
+
+@keyframes 👆👇 {
+    from {
+        top: 0;
+    } to {
+        top: calc(100% - var(--size));
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #📀 {
+        --size: 7rem; /* Adjust the size for smaller screens */
+    }
+}

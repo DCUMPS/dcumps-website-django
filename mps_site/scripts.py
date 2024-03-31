@@ -4,7 +4,7 @@ import feedparser
 import yt_dlp as youtube_dl
 import requests 
 from bs4 import BeautifulSoup 
-from PIL import Image, ImageDraw, ImageFont
+#from PIL import Image, ImageDraw, ImageFont
 import random
 import sys
 import os 
@@ -135,7 +135,7 @@ def get_date_time_12_hour():
         20: "DIBS Boys Broadcast Special",
         20.5: "Auction X Wax World"
     }
-    if 9 <= hour < 21 and date.weekday() == 4:
+    if 9 <= hour < 21:
         # Adjust hour if minutes fall within the second half of the hour
         if minute >= 30:
             hour += 0.5

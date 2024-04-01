@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-p!5tiu7vn@58ig(za!ssagkwqskxe0zv&@_yk00+h9(seqn0k7
 DEBUG = False
 #DEBUG = True
 
-ADMIN_ENABLED = False
+ADMIN_ENABLED = True
 
 SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
 

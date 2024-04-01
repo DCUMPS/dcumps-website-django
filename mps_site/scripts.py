@@ -1,13 +1,8 @@
 import datetime
-import time
 import feedparser
 import yt_dlp as youtube_dl
 import requests 
-from bs4 import BeautifulSoup 
-#from PIL import Image, ImageDraw, ImageFont
-import random
-import sys
-import os 
+from bs4 import BeautifulSoup
 import json
 import pandas as pd
 
@@ -136,7 +131,6 @@ def get_date_time_12_hour():
         20.5: "Auction X Wax World"
     }
     if 9 <= hour < 21:
-        # Adjust hour if minutes fall within the second half of the hour
         if minute >= 30:
             hour += 0.5
         current_show = messages.get(hour, "No shows on at the moment")
@@ -161,7 +155,7 @@ def get_latest_video_ids(channel_url):
     feed = feedparser.parse(channel_url)
     video_ids = []
 
-    for entry in feed.entries[:9]:  # Loop through the top 9 entries
+    for entry in feed.entries[:9]:
         video_url = entry.link
         video_id = video_url.split('=')[-1]
         video_ids.append(video_id)
@@ -183,65 +177,6 @@ def get_most_popular_video_ids(channel_url, n=9):
         video_ids = [entry['id'] for entry in info['entries']]
         return video_ids
     
-"""def create_donation_thermometer(goal, current_donation, image_width=400, image_height=700):
-    # Create a blank image with RGBA color mode (4 channels including Alpha)
-    image = Image.new("RGBA", (image_width, image_height), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(image)
-
-    # Set font and size
-    font_path = "./mps_site/static/GaretHeavy.ttf"
-    font = ImageFont.truetype(font_path, size=50)
-    #font = ImageFont.load_default()
-
-    # Define colors
-    border_color = (255, 255, 255)
-    #mercury_color = (166, 229, 228) - TV
-    mercury_color = (149, 239, 185) # - FM
-    #mercury_color = (166, 229, 228, 128)  # Set alpha to 128 for semi-transparency
-
-    # Draw border
-    #draw.rectangle([(0, 0), (image_width - 1, image_height - 1)], outline=border_color)
-
-    # Draw thermometer outline
-    border_width = 10
-    fixed_image_height = 700
-    thermometer_width = 90
-    draw.rectangle([(image_width // 2 - thermometer_width // 2, 250), (image_width // 2 + thermometer_width // 2, fixed_image_height - 100)], outline=border_color, width=border_width)
-
-    # Calculate mercury height based on current donation and goal
-    max_thermometer_height = image_height
-    bar_height = current_donation
-    if current_donation >= goal:
-        bar_height = goal
-    #print("350")
-    mercury_height = (int((bar_height / goal) * max_thermometer_height)) / 2
-    #print(mercury_height)
-
-    # Draw mercury
-    mercury_top = fixed_image_height - 95 - mercury_height + border_width
-    mercury_bottom = fixed_image_height - 105 - border_width  # Adjust the offset as needed
-    mercury_left = image_width // 2 - thermometer_width // 2 + 5 + border_width
-    mercury_right = image_width // 2 + thermometer_width // 2 - 5 - border_width
-    draw.rectangle([(mercury_left, mercury_top), (mercury_right, mercury_bottom)], fill=mercury_color)
-
-    # Draw text
-    #text = f"Donation Progress: ${current_donation} / ${goal}"
-    text = f"{current_donation} / {goal}"
-    text_width, text_height = draw.textsize(text, font)
-    draw.text(((image_width - text_width) // 2, fixed_image_height - 70), text, font=font, fill=(255, 255, 255))
-    text = f"DONATION\nPROGRESS"
-    text_width, text_height = draw.textsize(text, font)
-    draw.text(((image_width - text_width) // 2, fixed_image_height - 600), text, font=font, fill=(255, 255, 255))
-
-    return image"""
-
-# Example usage
-#goal_amount = 10000
-#current_donation_amount = int(input("Enter the current donation amount, Example: 1234 (No Decimals): "))
-#current_donation_amount = 1000
-# thermometer_image = create_donation_thermometer(goal_amount, current_donation_amount)
-# thermometer_image.save("donation_thermometer.png")
-# every 5-10 minutes
 def get_donation_count_fm():
     URL = "https://www.idonate.ie/fundraiser/MediaProductionSociety11"
     headers = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"} 
@@ -252,12 +187,6 @@ def get_donation_count_fm():
     current_donation_amount = int(str(current_donation).split()[3].split("€")[1].split("<")[0].replace(",",""))
     goal_amount = int(str(donation_target).split("€")[1].split("<")[0].replace(",",""))
     return current_donation_amount, goal_amount
-    #thermometer_image = create_donation_thermometer(goal_amount, current_donation_amount)
-    #thermometer_image.save("./mps_site/templates/donation_thermometer.png")
-    #cropped_image = Image.open("./mps_site/templates/donation_thermometer.png")
-    #cropped_image = cropped_image.crop((0, 110, 400, 700))
-    #cropped_image.save("./mps_site/templates/donation_thermometer.png")
-    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def get_event_data():
 
@@ -349,9 +278,7 @@ def get_event_data():
     data['event_3_description'] = descriptions[2]
 
   json_file_path = "mps_site/static/event-data.json"
-  #json_file_path = "event-data.json"
 
-  # Write the data to the JSON file
   with open(json_file_path, 'w') as json_file:
       json.dump(data, json_file, indent=4)
   

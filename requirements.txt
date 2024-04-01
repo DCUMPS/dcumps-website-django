@@ -1,9 +1,9 @@
 django
 bs4
-requests
+requests 
 html5lib
 feedparser
 yt_dlp
-datetime
+datetime 
 pandas
 whitenoise

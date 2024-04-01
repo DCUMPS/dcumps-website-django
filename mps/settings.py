@@ -30,7 +30,7 @@ ADMIN_ENABLED = True
 
 SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'dcumps.ie', 'test.dcumps.ie', 'www.dcumps.ie']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'dcumps.ie', 'test.dcumps.ie', 'www.dcumps.ie', 'mps.rb.dcu.ie']
 
 
 # Application definition

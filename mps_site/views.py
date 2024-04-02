@@ -10,7 +10,6 @@ def index(request):
         video = get_latest_video_id(channel_url)
         awards = Award.objects.all()
         previous, current, next_show = get_date_time()
-        previous_show_12, current_show_12, next_show_12 = get_date_time_12_hour()
         get_event_data()
         donation_amount, donation_goal = get_donation_count_fm()
         about = About.objects.all().first()
@@ -81,9 +80,6 @@ def index(request):
                                           'previous_show': previous, 
                                           'current_show': current, 
                                           'next_show': next_show,
-                                        'previous_show_12': previous_show_12,
-                                        'current_show_12': current_show_12,
-                                        'next_show_12': next_show_12,
                                           'event_count': event_count,
                                           'event_1_name': event_1_name,
                                           'event_1_start': event_1_start,

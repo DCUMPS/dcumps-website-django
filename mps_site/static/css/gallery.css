@@ -141,7 +141,8 @@ justify-content: center;
   transition: .5s;
 }
 #check2:checked ~ .container .photo-gallery .p2022,
-#check2:checked ~ .container .photo-gallery .p2007 {
+#check2:checked ~ .container .photo-gallery .p2019,
+#check2:checked ~ .container .photo-gallery .p2006 {
   opacity: 0;
   transform: scale(0);
   position: absolute;
@@ -154,20 +155,38 @@ justify-content: center;
   transition: .5s;
 }
 #check3:checked ~ .container .photo-gallery .p2023,
-#check3:checked ~ .container .photo-gallery .p2007 {
+#check3:checked ~ .container .photo-gallery .p2019,
+#check3:checked ~ .container .photo-gallery .p2006 {
   opacity: 0;
   transform: scale(0);
   position: absolute;
   transition: 0s;
 }
-#check4:checked ~ .container .photo-gallery .p2007 {
+#check4:checked ~ .container .photo-gallery .p2019 {
   transform: scale(1);
   opacity: 1;
   position: relative;
   transition: .5s;
 }
 #check4:checked ~ .container .photo-gallery .p2022,
+#check4:checked ~ .container .photo-gallery .p2006,
 #check4:checked ~ .container .photo-gallery .p2023 {
+  opacity: 0;
+  transform: scale(0);
+  position: absolute;
+  transition: 0s;
+}
+
+#check5:checked ~ .container .photo-gallery .p2006 {
+  transform: scale(1);
+  opacity: 1;
+  position: relative;
+  transition: .5s;
+}
+
+#check5:checked ~ .container .photo-gallery .p2022,
+#check5:checked ~ .container .photo-gallery .p2023,
+#check5:checked ~ .container .photo-gallery .p2019 {
   opacity: 0;
   transform: scale(0);
   position: absolute;

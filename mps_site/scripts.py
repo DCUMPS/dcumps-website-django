@@ -98,7 +98,7 @@ def get_date_time():
 
     return previous_show, current_show, next_show
 
-def get_date_time_12_hour():
+"""def get_date_time_12_hour():
     date = datetime.datetime.now()
     hour = date.hour
     minute = date.minute
@@ -139,7 +139,7 @@ def get_date_time_12_hour():
     else:
         previous_show = current_show = next_show = "No shows on at the moment"
 
-    return previous_show, current_show, next_show
+    return previous_show, current_show, next_show"""
 
 def get_latest_video_id(channel_url):
     feed = feedparser.parse(channel_url)

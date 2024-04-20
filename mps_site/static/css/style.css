@@ -10,6 +10,15 @@ h2, h4, h6 {
   font-family: 'Rob', sans-serif;
   /* Add other styles as needed */
 }
+.header {
+  top: 0; 
+  z-index: 500;
+}
+
+.navbar-toggler {
+  margin-right:5px !important; 
+  border-color: #ffffff !important;
+}
 
 h1 {
   text-align: center; 
@@ -213,6 +222,10 @@ h3, h5 {
       color: #FFE085;
 
     }
+    .footer p {
+      margin-top: 20px; 
+      font-size: 20px;
+    }
     .col a:hover {
       color: #FFE085;
 
@@ -271,7 +284,6 @@ h3, h5 {
       max-width: 100%;
       height: auto;
       border-radius: 5%;
-      margin-bottom: 30px;
       padding: 4px;
     }
 

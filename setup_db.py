@@ -7,6 +7,10 @@ django.setup()
 from mps_site.models import *
 
 awards_list = [
+    "Winner - Best Society in a Cultural/Academic/Social Field, DCU Society Awards 2024",
+    "Winner - Society Personality - Shane O'Loughlin, DCU Society Awards 2024",
+    "Winner - Individual Contribution to Society Life - Shane O'Loughlin, DCU Society Awards 2024",
+    "Winner - Individual Contribution to Society Life - Sarah Ó Tuama, DCU Society Awards 2024",
     "Winner - Best Society Promotional Video, 2023 Board of Irish College Society Awards 2023",
     "Winner - Best Society Publicity Campaign - DCUtv 24hr Broadcast, DCU Society Awards 2023",
     "Winner - Best Society Promotional Video - Welcome to MPS '22/23, DCU Society Awards 2023",

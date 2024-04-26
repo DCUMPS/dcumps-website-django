@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="title-text2">
-  <h1 style="font-size: 60px; margin-bottom: 50px; padding-top: 80px;"><b>DCUtv</b></h1>
+<div class="title-large">
+  <h1>DCUtv</h1>
+  <h3><i>Home of the DCUtv 24 Hour Broadcast</i></h3>
 </div>
-<h3 style="font-size: 20px; padding: 20px;"><i>Home of the DCUtv 24 Hour Broadcast</i></h3>
+
 <div id="carousel-title-page" class="carousel slide" data-ride="carousel" style="margin-left: 10%; margin-right: 10%; margin-top: 2%;">
   <div class="carousel-inner" style="border-radius: 25px;">
     <div class="carousel-item active">
@@ -86,7 +87,7 @@
 </div>
 <div class="container">
   <h1>Check out the latest upload on the YouTube channel</h1>
-  <h5><i>You know you want to!</h5></i>
+  <h5><i>You know you want to!</i></h5>
   <div class="container">
     <div class="row justify-content-center" style="padding-top: 20px; padding-bottom: 20px;">
       <div class="col-md-12">
@@ -96,8 +97,6 @@
               <p><iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none; border-radius: 25px;" src="https://www.youtube.com/embed/{{ latest_video_id }}" width="560" height="315" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
             </div>
           </div>
-          
-          
         </div>
       </div>
     </div>
@@ -199,7 +198,7 @@
     <h5><i>Check out the recent content DCUtv are creating!</h5></i>
     <div class="row justify-content-center" style="text-align: center;">
       <div class="col-md-12 custom-box">
-        <div class="center-contents" > <!--style="padding-bottom: 500px;"-->
+        <div class="center-contents">
           <div class="container mt-4">
             <div class="row">
               {% for id in most_recent_videos %}

@@ -161,3 +161,6 @@ def dcufm(request):
 
 def merch(request):
     return render(request, 'merch.html', {'page_name': 'Merch'})"""
+
+def page_not_found(request):
+    return render(request, '404.html', {'page_name': '404'})

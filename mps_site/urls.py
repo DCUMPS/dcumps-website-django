@@ -36,6 +36,7 @@ urlpatterns = [
     path('twitter', RedirectView.as_view(url="https://twitter.com/dcumps"), name="twitter"),
     path('twitch', RedirectView.as_view(url="https://twitch.tv/dcufm"), name="twitch"),
     path('broadcast', RedirectView.as_view(url="https://youtube.com/dcumps"), name="broadcast"),
+    path('page-not-found', views.page_not_found, name="404"),
     #path("comingsoon", views.comingsoon, name="comingsoon"),
     #path('blog', views.blog, name="blog"),
     #path('merch', views.merch, name="merch"),

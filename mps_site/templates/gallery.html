@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+
 {% block content %}
+
 <link rel="stylesheet" type="text/css" href="static/css/gallery.css">
 <input type="radio" name="Photos" id="check1" checked style="display: none;">
 <input type="radio" name="Photos" id="check2" style="display: none;">
@@ -7,9 +9,12 @@
 <input type="radio" name="Photos" id="check4" style="display: none;">
 <input type="radio" name="Photos" id="check5" style="display: none;">
 
+<div class="title-small">
+  <h1>MPS Gallery</h1>
+  <h5><i>MPS Alumni / Members: Please send on photos & videos to <a href="mailto:webmaster@dcumps.ie">webmaster@dcumps.ie</a> for the gallery!</i></h5>
+</div>
+
 <div class="container">
-  <h1 style="margin-top: 70px; margin-bottom: 30px;">MPS Gallery</h1>
-  <h5><i>MPS Alumni / Members: Please send on photos & videos to <a href="mailto:webmaster@dcumps.ie">webmaster@dcumps.ie</a> for the gallery!</h5></i>
   <div class="row justify-content-center">
     <div class="col-md-7 custom-box">
     <label for="check1">All Photos</label>
@@ -18,9 +23,8 @@
     <label for="check4">2019-2020</label>
     <label for="check5">2006-2007</label>
   </div>
- 
-  </div>
-  <div class="photo-gallery" style="margin-bottom: 20px;">
+</div>
+  <div class="photo-gallery">
     <div class="pic p2023">
       <a href="https://drive.google.com/drive/folders/1SnMHVEvgr9zSmZwecuiijTf6nHrr62n4?usp=sharing" target="_blank"><img src="static/gallery/2023/broadcast-march-28.jpeg"></a>
     </div>
@@ -70,8 +74,10 @@
 </div>
 
 {% endblock %}
+
 {% block footer %}
 
 {% endblock %}
+
 </body>
 </html>

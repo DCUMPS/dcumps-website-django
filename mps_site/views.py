@@ -156,10 +156,10 @@ def dcufm(request):
 """def comingsoon(request):
     return render(request, 'comingsoon.html', {'page_name': 'Coming Soon'})"""
 
-"""def blog(request):
+def blog(request):
     return render(request, 'blog.html', {'page_name': 'Blog'})
 
-def merch(request):
+"""def merch(request):
     return render(request, 'merch.html', {'page_name': 'Merch'})"""
 
 def page_not_found(request):

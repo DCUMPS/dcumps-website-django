@@ -5,6 +5,10 @@
   --hover-color: #FFE085;
 }
 
+.secondary-gradient {
+  background-color: linear-gradient(135deg, #9791FF 0%, #6A60FF 100%);
+}
+
 html {
   scroll-behavior: smooth;
 }

@@ -27,10 +27,11 @@
     <link rel="shortcut icon" href="{% static 'assets/img/other/favicon.png' %}" type="image/png" sizes="512x512">
   </favicon>
   <style>
-    body {
-      background-color: #202E4E !important;
-      margin: 0;
-    }
+body {
+  background-image: linear-gradient(to right, #202E4E, rgb(20, 37, 59)) !important;
+  margin: 0;
+}
+
     .title-small h1 {
       font-weight: normal;
       font-size: 35px;
@@ -80,7 +81,7 @@
   </head>
   <body>
     <header class="header">
-      <nav class="navbar navbar-expand-lg navbar-light">
+      <nav class="navbar navbar-expand-xl navbar-light">
         <div class="container-fluid">
           <img id="clickImage" src="static/assets/img/other/MPS_WideLogo_WHT.png" onclick="checkClicks()" width="200" height="75" class="d-inline-block align-top" alt="" style="margin-left: 15px; cursor: pointer;">
           <audio id="clickSound" src="static/assets/ping.mp3"></audio>

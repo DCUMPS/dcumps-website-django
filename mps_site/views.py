@@ -5,6 +5,65 @@ from .scripts import *
 import json
 from django.utils.safestring import mark_safe
 
+def blog_index(request):
+    posts = Post.objects.all().order_by("-created_on")
+    context = {
+        "posts": posts,
+        "page_name": "Blog"
+    }
+
+    return render(request, "blog/index.html", context)
+
+def blog_category(request, category):
+
+    posts = Post.objects.filter(
+
+        categories__name__contains=category
+
+    ).order_by("-created_on")
+
+    context = {
+
+        "category": category,
+        "page_name": category,
+        "posts": posts,
+
+    }
+
+    return render(request, "blog/category.html", context)
+
+# blog/views.py
+
+# ...
+
+def blog_detail(request, pk):
+    post = Post.objects.get(pk=pk)
+    comments = Comment.objects.filter(post=post)
+    context = {
+        "post": post,
+        "page_name": post.title,
+        "comments": comments,
+    }
+
+    return render(request, "blog/detail.html", context)
+
+def blog_author(request, author):
+    posts = Post.objects.filter(
+
+        author__author_slug__contains=author
+
+    ).order_by("-created_on")
+
+    context = {
+
+        "author": author,
+        "page_name": posts,
+        "posts": posts,
+
+    }
+
+    return render(request, "blog/author.html", context)
+
 def index(request):
         channel_url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw"
         video = get_latest_video_id(channel_url)

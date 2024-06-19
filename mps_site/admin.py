@@ -4,3 +4,8 @@ from .models import *
 admin.site.register(Award)
 admin.site.register(About)
 admin.site.register(DCUfmFamilyTree)
+
+admin.site.register(Category)
+admin.site.register(Author)
+admin.site.register(Post)
+admin.site.register(Comment)

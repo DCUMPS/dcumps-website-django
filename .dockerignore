@@ -2,3 +2,10 @@
 migrations/
 .git/
 .github/
+__pycache__/
+old/
+.dockerignore
+Dockerfile
+setup_db.py
+README.md
+.gitignore

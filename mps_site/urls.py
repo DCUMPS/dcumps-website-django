@@ -38,7 +38,7 @@ urlpatterns = [
     path('broadcast', RedirectView.as_view(url="https://youtube.com/dcumps"), name="broadcast"),
     path('page-not-found', views.page_not_found, name="404"),
     path("blog", views.blog_index, name="blog_index"),
-    path("blog/post/<int:pk>/", views.blog_detail, name="blog_detail"),
+    path('blog/post/<slug:slug>/', blog_detail, name='blog_detail'),
     path("blog/category/<category>/", views.blog_category, name="blog_category"),
     path("blog/author/<author>/", views.blog_author, name="blog_author"),
 ]

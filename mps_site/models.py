@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 class Award(models.Model):
     id = models.AutoField(primary_key=True)
@@ -53,7 +54,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     post_slug = models.SlugField(max_length=255, blank=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    preview_image = models.CharField(max_length=255, default="assets/img/other/blank_event.png")
+    preview_image = models.CharField(max_length=255, default="images/committee/WEBMASTER.png")
     body = models.TextField()
     created_on = models.DateTimeField(default=timezone.now)
     last_modified = models.DateTimeField(auto_now=True)
@@ -61,6 +62,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('blog_detail', kwargs={'slug': self.post_slug})
     
 @receiver(pre_save, sender=Post)
 def create_post_slug(sender, instance, **kwargs):
@@ -75,3 +79,35 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.created_on} on '{self.post}'"
+
+
+class CommitteeMember(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
+    image = models.CharField(max_length=100, default="assets/img/other/blank_event.png")
+    social_link_1_url = models.CharField(max_length=100, default="")
+    social_link_1_icon = models.CharField(max_length=100, default="")
+    social_link_2_url = models.CharField(max_length=100, default="")
+    social_link_2_icon = models.CharField(max_length=100, default="")
+    social_link_3_url = models.CharField(max_length=100, default="")
+    social_link_3_icon = models.CharField(max_length=100, default="")
+
+
+    def __str__(self):
+        return self.name + " - " + self.position
+    
+class CommitteePage(models.Model):
+    page_title = models.CharField(max_length=100)
+    page_subtitle = models.CharField(max_length=100)
+    committee_video_link = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "Committee Page Information"
+    
+class GalleryPage(models.Model):
+    page_title = models.CharField(max_length=100)
+    page_subtitle = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "Gallery Page Information"

@@ -16,9 +16,6 @@
       <div class="col-md-12 custom-box shadow-lg bg-body">
         <div class="center-contents">
           <div class="container mt-4">
-    <small>
-        
-    </small>
     <div class="mx-3 px-3 py-3" style="font-size: 20px; text-align: left; background-color: #202E4E; border-radius: 15px;">
     <p>{{ post.body | linebreaks }}</p>
 </div>
@@ -28,6 +25,30 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <h1>Share This Blog</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-7 custom-box shadow-lg bg-body">
+        <div class="center-contents">
+          <div class="container mt-4">
+    <div class="mx-3 px-3 py-3" style="font-size: 20px; text-align: left; background-color: #202E4E; border-radius: 15px;">
+        <div class="social-icons">
+            <ul>
+                <li><a href="https://api.whatsapp.com/send?text={{ post.title }}%20{{ link }}" target="_blank"><i class="fa-brands fa-whatsapp hvr-bounce-in"></i></a></li>
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ link }}" target="_blank"><i class="fa-brands fa-facebook hvr-bounce-in"></i></a></li>
+                <li><a href="https://twitter.com/intent/tweet?via=dcumps&text={{ post.title }}&url={{ link }}" target="_blank"><i class="fa-brands fa-x-twitter hvr-bounce-in"></i></a></li>
+                <li><a href="https://www.linkedin.com/sharing/share-offsite/?url={{ link }}" target="_blank"><i class="fa-brands fa-linkedin hvr-bounce-in"></i></a></li>
+                <li><a href="mailto:?subject={{ post.title }}&body={{ link }}" target="_blank"><i class="fa fa-envelope hvr-bounce-in" aria-hidden="true"></i></a></li>
+            </ul>
+          </div>
+</div>
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
+
 {% endblock page_content %}
 
 {% endblock %}

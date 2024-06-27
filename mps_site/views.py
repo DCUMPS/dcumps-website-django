@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import *
 from .scripts import *
@@ -36,15 +36,15 @@ def blog_category(request, category):
 
 # ...
 
-def blog_detail(request, pk):
-    post = Post.objects.get(pk=pk)
+def blog_detail(request, slug):
+    post = get_object_or_404(Post, post_slug=slug)
     comments = Comment.objects.filter(post=post)
     context = {
         "post": post,
         "page_name": post.title,
         "comments": comments,
+        'link': request.build_absolute_uri(post.get_absolute_url()),
     }
-
     return render(request, "blog/detail.html", context)
 
 def blog_author(request, author):
@@ -166,7 +166,9 @@ def index(request):
                                           })
 
 def committee(request):
-    return render(request, 'committee.html', {'page_name': 'Committee'})
+    committee_members = CommitteeMember.objects.all()
+    committee_page_info = CommitteePage.objects.all().first()
+    return render(request, 'committee.html', {'page_name': 'Committee', 'committee_members': committee_members, 'committee_page_info': committee_page_info})
 
 def contact(request):
     return render(request, 'contact.html', {'page_name': 'Contact'})
@@ -178,7 +180,8 @@ def dcutv(request):
     return render(request, 'dcutv.html', {'page_name': 'DCUtv', 'tv_thursday' : 'RON9_ByY190', 'latest_video_id' : video, 'most_recent_videos': most_recent_videos})
 
 def gallery(request):
-    return render(request, 'gallery.html', {'page_name': 'Gallery'})
+    gallery_page_info = GalleryPage.objects.all().first()
+    return render(request, 'gallery.html', {'page_name': 'Gallery', 'gallery_page_info': gallery_page_info})
 
 def links(request):
     sheet_url = "https://docs.google.com/spreadsheets/d/1FdtqA7a0sJcs24NIYWQnOOxrUiNLf1YvwUsWhZ1feLw/edit?usp=sharing"

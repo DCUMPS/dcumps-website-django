@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
   
   
 <div class="title-small">
-  <h1>Meet the Committee</h1>
-  <h5><i>Meet the team who make the MPS magic possible!</i></h5>
+  <h1>{{ committee_page_info.page_title }}</h1>
+  <h5><i>{{ committee_page_info.page_subtitle }}</i></h5>
 </div>
 <div class="container">
   <div class="row justify-content-center" style="padding-top: 20px; padding-bottom: 20px;">
@@ -12,225 +13,46 @@
       <div class="center-contents">
         <div style="width: 100%; min-width: 200px; max-width: 800px; margin: 0 auto;">
           <div style="position: relative; width: 100%; overflow: hidden; padding-top: 56.25%;">
-            <p><iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none; border-radius: 25px;" src="https://www.youtube.com/embed/TqaiFaxgg0g" width="560" height="315" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
+            <p><iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none; border-radius: 25px;" src="{{ committee_page_info.committee_video_link }}" width="560" height="315" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-md-12 custom-box">
+<div class="row justify-content-center">
+  <div class="col-md-12 custom-box">
       <div class="center-contents">
-        <div class="container mt-4">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="committee-member" >
-                <img src="static/assets/img/committee-graphics/CHAIRPERSON.png" alt="Committee Member">
-                <div class="mx-4 pt-2 hvr-bounce-in" style="background-color: #202E4E; border-radius: 15px;">
-                <h3>Sarah Ó Tuama</h3>
-                <h5><i>Chairperson</i></h5>
-                <div class="social-icons">
-                  <ul>
-                    <li><a href="https://www.instagram.com/sarahotuama" target="_blank"><i class="fa-brands fa-instagram hvr-bounce-in" aria-hidden="true"></i></a></li>
-                    <li><a href="https://www.tiktok.com/@sarahotuama?_t=8gmjEAPmXaL&_r=1" target="_blank"><i class="fa-brands fa-tiktok hvr-bounce-in" aria-hidden="true"></i></a></li>
-                    <li><a href="mailto:chair@dcumps.ie" target="_blank"><i class="fa fa-envelope hvr-bounce-in" aria-hidden="true"></i></a></li>
-                  </ul>
-                </div>
+          <div class="container mt-4">
+              <div class="row">
+                  {% for member in committee_members %}
+                  <div class="col-md-4">
+                      <div class="committee-member">
+                          <img src="{% static member.image %}" alt="Committee Member">
+                          <div class="mx-4 pt-2 hvr-bounce-in" style="background-color: #202E4E; border-radius: 15px;">
+                              <h3>{{ member.name }}</h3>
+                              <h5><i>{{ member.position }}</i></h5>
+                              <div class="social-icons">
+                                <ul>
+                                  <li><a href="{{ member.social_link_1_url }}" target="_blank"><i class="{{ member.social_link_1_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
+                                  <li><a href="{{ member.social_link_2_url }}" target="_blank"><i class="{{ member.social_link_2_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
+                                  <li><a href="{{ member.social_link_3_url }}" target="_blank"><i class="{{ member.social_link_3_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
+                                </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  {% endfor %}
               </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="committee-member">
-                <img src="static/assets/img/committee-graphics/VICE-CHAIR.png" alt="Committee Member">
-                <h3>Jack Shannon-Nolan</h3>
-                <h5><i>Vice-Chairperson</i></h5>
-                <div class="social-icons">
-                  <ul>
-                    <li><a href="https://www.instagram.com/jack_sn12?igsh=ajZ4d2RoZnNrYTF2&utm_source=qr" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jack-shannon-nolan-02338829b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-                    <li><a href="mailto:vicechair@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-                  
-      <div class="col-md-4">
-        <div class="committee-member">
-          <img src="static/assets/img/committee-graphics/SECRETARY.png" alt="Committee Member">
-          <h3>Kate Byrne</h3>
-          <h5><i>Secretary</i></h5>
-          <div class="social-icons">
-            <ul>
-              <li><a href="https://www.instagram.com/k8_byrne11?igsh=anZvNnQ1ZXZtZWpr" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.linkedin.com/in/kate-byrne-52362a258?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-              <li><a href="mailto:secretary@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-            </ul>
           </div>
-        </div>
       </div>
-    </div>
-  </div>
-    <div class="row"> 
-      <div class="col-md-4">
-        <div class="committee-member">
-          <img src="static/assets/img/committee-graphics/TREASURER.png" alt="Committee Member">
-          <h3>Lauren Joyce</h3>
-          <h5><i>Treasurer</i></h5>
-          <div class="social-icons">
-            <ul>
-              <li><a href="https://www.instagram.com/laurenjoyce03?igsh=cjJxZnA4eGhtd3Ny&utm_source=qr" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.tiktok.com/@laurenjoyce03?_t=8iyHXdJs2ue&_r=1" target="_blank"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a></li>
-              <li><a href="mailto:treasurer@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="committee-member">
-          <img src="static/assets/img/committee-graphics/PRO.png" alt="Committee Member">
-          <h3>Éabha Kelly</h3>
-          <h5><i>Public Relations Officer</i></h5>
-          <div class="social-icons">
-            <ul>
-              <li><a href="https://www.instagram.com/eabhakkelly?igsh=YzAwZjE1ZTI0Zg%3D%3D&utm_source=qr" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.linkedin.com/in/%C3%A9abha-kelly-781435204?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-              <li><a href="mailto:pro@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="committee-member">
-          <img src="static/assets/img/committee-graphics/BDO.png" alt="Committee Member">
-          <h3>Liam O'Keeffe</h3>
-          <h5><i>Brand Design Officer</i></h5>
-          <div class="social-icons">
-            <ul>
-              <li><a href="https://www.instagram.com/liamokeeffe_" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.linkedin.com/in/liam-o-keeffe-556a43242/" target="_blank"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-              <li><a href="mailto:bdo@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-  </div>
-  <div class="row mx-auto">
-    <div class="col-md-4">
-      <div class="committee-member">
-        <img src="static/assets/img/committee-graphics/EDITOR IN CHIEF.png" alt="Committee Member">
-        <h3>Hannah Giron Daygo</h3>
-        <h5><i>Editor in Chief</i></h5>
-        <div class="social-icons">
-          <ul>
-            <li><a href="https://www.instagram.com/hnnhdyg" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/hannah-giron-daygo-404158220?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-            <li><a href="mailto:editor@thecollegeview.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="committee-member">
-        <img src="static/assets/img/committee-graphics/EVENTS MANAGER S.png" alt="Committee Member">
-        <h3>Sadhbh O Grady Keeley</h3>
-        <h5><i>Events Manager</i></h5>
-        <div class="social-icons">
-          <ul>
-            <li><a href="https://www.instagram.com/sadhbhofxckinggrady" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.tiktok.com/@sadhbhogrady" target="_blank"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a></li>
-            <li><a href="mailto:events@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="committee-member">
-        <img src="static/assets/img/committee-graphics/EVENTS MANAGER L.png" alt="Committee Member">
-        <h3>Laoise O Donnell Allen</h3>
-        <h5><i>Events Manager</i></h5>
-        <div class="social-icons">
-          <ul>
-            <li><a href="https://www.instagram.com/Laoiseallen" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.tiktok.com/@Laoiseallen2" target="_blank"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a></li>
-            <li><a href="mailto:events@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-</div>
-<div class="row mx-auto">
-  <div class="col-md-4">
-    <div class="committee-member">
-      <img src="static/assets/img/committee-graphics/FM MANAGER C.png" alt="Committee Member">
-      <h3>Caoimhe Woods</h3>
-      <h5><i>FM Manager</i></h5>
-      <div class="social-icons">
-        <ul>
-          <li><a href="https://www.instagram.com/caoimhewoodss/" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-          <li><a href="https://www.linkedin.com/in/caoimhe-woods-22ba9b262/" target="_blank"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-          <li><a href="mailto:fm@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="committee-member">
-      <img src="static/assets/img/committee-graphics/FM MANAGER M.png" alt="Committee Member">
-      <h3>Matthew Willis</h3>
-      <h5><i>FM Manager</i></h5>
-      <div class="social-icons">
-        <ul>
-          <li><a href="https://www.instagram.com/matt_double.u?igsh=MTI4MHhtcHVjcTkwbg==" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-          <li><a href="https://www.linkedin.com/in/matthew-willis-64a9712a1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-          <li><a href="mailto:fm@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="committee-member">
-      <img src="static/assets/img/committee-graphics/SPONSORSHIP OFFICER.png" alt="Committee Member">
-      <h3>Adam Mulligan</h3>
-      <h5><i>Sponsorship Officer</i></h5>
-      <div class="social-icons">
-        <ul>
-          <li><a href="https://www.instagram.com/adammulligan__/" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-          <li><a href="https://ie.linkedin.com/in/adam-mulligan-61485b265" target="_blank"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-          <li><a href="mailto:sponsorship@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-        </ul>
-      </div>
-    </div>
   </div>
 </div>
-<div class="row mx-auto">
-  <div class="col-md-4">
-    <div class="committee-member">
-      <img src="static/assets/img/committee-graphics/TV MANAGER D.png" alt="Committee Member">
-      <h3>Donal Mc Evoy</h3>
-      <h5><i>TV Manager</i></h5>
-      <div class="social-icons">
-        <ul>
-          <li><a href="https://www.instagram.com/donalmcevoyyy/" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-          <li><a href="https://www.linkedin.com/in/donal-mcevoy-b2a145237/" target="_blank"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-          <li><a href="mailto:tv@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="committee-member">
-      <img src="static/assets/img/committee-graphics/TV MANAGER S.png" alt="Committee Member">
-      <h3>Shane O Loughlin</h3>
-      <h5><i>TV Manager</i></h5>
-      <div class="social-icons">
-        <ul>
-          <li><a href="https://www.instagram.com/shaneolough?igsh=MWpzNzl0cjllaDZ3eg%3D%3D&utm_source=qr" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-          <li><a href="https://www.tiktok.com/@shane_oloughlin?_t=8jpL5J1cb9U&_r=1" target="_blank"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a></li>
-          <li><a href="mailto:tv@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+</div>
+<!-- 
+
+    
+
+
   <div class="col-md-4">
     <div class="committee-member">
       <img src="static/assets/img/committee-graphics/WEBMASTER.png" alt="Committee Member">
@@ -246,7 +68,7 @@
     </div>
   </div>
   </div>
-</div>
+</div>-->
 </div>
 </div>
 </div>

@@ -72,6 +72,8 @@ dcufm_family_tree = [
     {"year": "2022/23 FM Manager", "name": "Kitty Leydon"},
     {"year": "2023/24 FM Manager", "name": "Caoimhe Woods"},
     {"year": "2023/24 FM Manager", "name": "Matthew Willis"},
+    {"year": "2024/25 FM Manager", "name": "Lauren Joyce"},
+    {"year": "2024/25 FM Manager", "name": "Eoin O'Sullivan"},
 ]
 
 for award in awards_list:

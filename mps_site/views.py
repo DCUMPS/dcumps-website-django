@@ -4,6 +4,7 @@ from .models import *
 from .scripts import *
 import json
 from django.utils.safestring import mark_safe
+from datetime import datetime
 
 def blog_index(request):
     posts = Post.objects.all().order_by("-created_on")
@@ -66,6 +67,24 @@ def blog_author(request, author):
 
 def index(request):
         channel_url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw"
+        tcv_url = "https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date"
+        response = requests.get(tcv_url)
+        posts = response.json()
+        for post in posts:
+            soup = BeautifulSoup(post['content']['rendered'], 'html.parser')
+            post['content_plain'] = soup.get_text()
+
+            first_image = soup.find('img')
+            post['first_image'] = first_image['src'] if first_image else None
+
+            post['formatted_date'] = datetime.strptime(post['date'], '%Y-%m-%dT%H:%M:%S').strftime('%B %d, %Y')
+
+            author_url = f"https://thecollegeview.ie/wp-json/wp/v2/users/{post['author']}"
+            author_response = requests.get(author_url)
+            author_data = author_response.json()
+            post['author_name'] = author_data['name']
+            post['author_slug'] = author_data['slug']
+
         video = get_latest_video_id(channel_url)
         awards = Award.objects.all()
         previous, current, next_show = get_date_time()
@@ -163,6 +182,7 @@ def index(request):
                                             'about': about,
                                             'donation_amount': donation_amount,
                                             'donation_goal': donation_goal,
+                                            'posts': posts
                                           })
 
 def committee(request):

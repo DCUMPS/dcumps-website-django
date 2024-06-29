@@ -18,7 +18,7 @@
             <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px;">
               
               <a href="{% url 'blog_detail' post.post_slug %}"><img class="my-4" src="{% static post.preview_image %}" width="300px" height="300px" alt="MPS Sub-Group" style="aspect-ratio: 1 / 1; overflow: hidden;"></a>
-              <h3><a href="{% url 'blog_detail' post.post_slug %}">{{ post.title }}</a></h3>
+              <h3 class="mx-2"><a href="{% url 'blog_detail' post.post_slug %}">{{ post.title }}</a></h3>
               <ul class="mx-2" style="text-align: left; list-style: none;">
                 <li>📅 Posted: {{ post.created_on.date }}</li>
                 <li>📝 Author: <a href="{% url 'blog_author' post.author.author_slug %}">{{ post.author }}</a></li>

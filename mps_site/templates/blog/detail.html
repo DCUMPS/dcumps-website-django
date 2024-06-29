@@ -19,7 +19,7 @@
     <div class="mx-3 px-3 py-3" style="font-size: 20px; text-align: left; background-color: #202E4E; border-radius: 15px;">
     <p>{{ post.body | linebreaks }}</p>
 </div>
-    <button class="btn btn-primary" style="margin-top: 10px; margin-bottom: 10px;"><a href="{% url 'blog_index' %}" style="color: white;">Back to Blog</a></button>
+    <a class="btn btn-primary mt-4" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;" href="{% url 'blog_index' %}">Back to Blog Homepage</a>  
           </div>
         </div>
         </div>
@@ -31,7 +31,6 @@
     <div class="row justify-content-center">
       <div class="col-md-7 custom-box shadow-lg bg-body">
         <div class="center-contents">
-          <div class="container mt-4">
     <div class="mx-3 px-3 py-3" style="font-size: 20px; text-align: left; background-color: #202E4E; border-radius: 15px;">
         <div class="social-icons">
             <ul>
@@ -39,11 +38,12 @@
                 <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ link }}" target="_blank"><i class="fa-brands fa-facebook hvr-bounce-in"></i></a></li>
                 <li><a href="https://twitter.com/intent/tweet?via=dcumps&text={{ post.title }}&url={{ link }}" target="_blank"><i class="fa-brands fa-x-twitter hvr-bounce-in"></i></a></li>
                 <li><a href="https://www.linkedin.com/sharing/share-offsite/?url={{ link }}" target="_blank"><i class="fa-brands fa-linkedin hvr-bounce-in"></i></a></li>
+                <li><a href="https://www.reddit.com/submit?url={{ link }}&title={{ post.title }}" target="_blank"><i class="fa-brands fa-reddit hvr-bounce-in"></i></a></li>
+                <li><a href="https://pinterest.com/pin/create/button/?url={{ link }}&description={{ post.title }}" target="_blank"><i class="fa-brands fa-pinterest hvr-bounce-in"></i></a></li>
                 <li><a href="mailto:?subject={{ post.title }}&body={{ link }}" target="_blank"><i class="fa fa-envelope hvr-bounce-in" aria-hidden="true"></i></a></li>
             </ul>
           </div>
 </div>
-          </div>
         </div>
         </div>
     </div>

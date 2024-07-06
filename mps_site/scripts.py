@@ -1,10 +1,29 @@
-import datetime
+from datetime import datetime
 import feedparser
 import yt_dlp as youtube_dl
 import requests 
 from bs4 import BeautifulSoup
 import json
 import pandas as pd
+
+def tcv_posts(tcv_url):
+    response = requests.get(tcv_url)
+    posts = response.json()
+    for post in posts:
+            soup = BeautifulSoup(post['content']['rendered'], 'html.parser')
+            post['content_plain'] = soup.get_text()
+
+            first_image = soup.find('img')
+            post['first_image'] = first_image['src'] if first_image else None
+
+            post['formatted_date'] = datetime.strptime(post['date'], '%Y-%m-%dT%H:%M:%S').strftime('%B %d, %Y')
+
+            author_url = f"https://thecollegeview.ie/wp-json/wp/v2/users/{post['author']}"
+            author_response = requests.get(author_url)
+            author_data = author_response.json()
+            post['author_name'] = author_data['name']
+            post['author_slug'] = author_data['slug']
+    return posts
 
 def process_linktree_data(sheet_url):
     url_1 = sheet_url.replace('/edit', '/export?format=csv&')
@@ -16,7 +35,7 @@ def process_linktree_data(sheet_url):
     return linktree
 
 def get_date_time():
-    date = datetime.datetime.now()
+    date = datetime.now()
     day_of_week = date.weekday() + 1
     hour = date.hour
 

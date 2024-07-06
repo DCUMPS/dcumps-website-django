@@ -5,9 +5,26 @@ from .scripts import *
 import json
 from django.utils.safestring import mark_safe
 from datetime import datetime
+import markdown
+from .utils import *
 
 def blog_index(request):
     posts = Post.objects.all().order_by("-created_on")
+    md = markdown.Markdown(extensions=["fenced_code"])
+    for post in posts:
+        post.body = md.convert(post.body)
+        soup = BeautifulSoup(post.body, 'html.parser')
+        all_p_tags = soup.find_all('p')
+        final = ""
+        for p_tag in all_p_tags:
+            final += str(p_tag.text) + " "
+
+        final = final.replace("> ", "")
+            
+        post.body = final
+
+        
+        post.title = md.convert(post.title)
     context = {
         "posts": posts,
         "page_name": "Blog"
@@ -39,6 +56,9 @@ def blog_category(request, category):
 
 def blog_detail(request, slug):
     post = get_object_or_404(Post, post_slug=slug)
+    md = markdown.Markdown(extensions=["fenced_code"])
+    post.body = render_markdown(post.body)
+    post.title = render_markdown(post.title)  # If necessary, render Markdown for title
     comments = Comment.objects.filter(post=post)
     context = {
         "post": post,
@@ -66,88 +86,17 @@ def blog_author(request, author):
     return render(request, "blog/author.html", context)
 
 def index(request):
-        channel_url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw"
-        tcv_url = "https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date"
-        response = requests.get(tcv_url)
-        posts = response.json()
-        for post in posts:
-            soup = BeautifulSoup(post['content']['rendered'], 'html.parser')
-            post['content_plain'] = soup.get_text()
-
-            first_image = soup.find('img')
-            post['first_image'] = first_image['src'] if first_image else None
-
-            post['formatted_date'] = datetime.strptime(post['date'], '%Y-%m-%dT%H:%M:%S').strftime('%B %d, %Y')
-
-            author_url = f"https://thecollegeview.ie/wp-json/wp/v2/users/{post['author']}"
-            author_response = requests.get(author_url)
-            author_data = author_response.json()
-            post['author_name'] = author_data['name']
-            post['author_slug'] = author_data['slug']
-
-        video = get_latest_video_id(channel_url)
+        video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
+        posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date")
         awards = Award.objects.all()
         previous, current, next_show = get_date_time()
-        get_event_data()
-        donation_amount, donation_goal = get_donation_count_fm()
+        #get_event_data()
+        #donation_amount, donation_goal = get_donation_count_fm()
         about = About.objects.all().first()
-        with open('mps_site/static/event-data.json', 'r') as file:
-            data = json.load(file)
-            event_count = data['event_count']
-            event_1_name = ""
-            event_1_start = ""
-            event_1_end = ""
-            event_1_location = ""
-            event_1_description = ""
-            event_2_name = ""
-            event_2_start = ""
-            event_2_end = ""
-            event_2_location = ""
-            event_2_description = ""
-            event_3_name = ""
-            event_3_start = ""
-            event_3_end = ""
-            event_3_location = ""
-            event_3_description = ""
-            event_status = ""
-            event_1_image = ""
-            event_2_image = ""
-            event_3_image = ""
-            if event_count == 0:
-                row_1_display = "display: none;"
-                row_2_display = "display: none;"
-                row_3_display = "display: none;"
-                event_status = "No events at the moment, check back later!"
-            if event_count >= 1:
-                row_1_display = ""
-                row_2_display = "display: none;"
-                row_3_display = "display: none;"
-                event_1_name = data['event_1_name']
-                event_1_start = data['event_1_start']
-                event_1_end = data['event_1_end']
-                event_1_location = data['event_1_location']
-                event_1_description = data['event_1_description']
-                event_1_image = data['event_1_image']
-            if event_count >= 2:
-                row_1_display = ""
-                row_2_display = ""
-                row_3_display = "display: none;"
-                event_2_name = data['event_2_name']
-                event_2_start = data['event_2_start']
-                event_2_end = data['event_2_end']
-                event_2_location = data['event_2_location']
-                event_2_description = data['event_2_description']
-                event_2_image = data['event_2_image']
-            if event_count >= 3:
-                row_1_display = ""
-                row_2_display = ""
-                row_3_display = ""
-                event_3_name = data['event_3_name']
-                event_3_start = data['event_3_start']
-                event_3_end = data['event_3_end']
-                event_3_location = data['event_3_location']
-                event_3_description = data['event_3_description']
-                event_3_image = data['event_3_image']
+        row_1_display = "display: none;"
+        row_2_display = "display: none;"
+        row_3_display = "display: none;"
+        event_status = "No events at the moment, check back later!"
 
             
         return render(request, 'index.html', {'row_1_display': row_1_display, 
@@ -158,30 +107,9 @@ def index(request):
                                           'previous_show': previous, 
                                           'current_show': current, 
                                           'next_show': next_show,
-                                          'event_count': event_count,
-                                          'event_1_name': event_1_name,
-                                          'event_1_start': event_1_start,
-                                          'event_1_end': event_1_end,
-                                          'event_1_location': event_1_location,
-                                          'event_1_description': mark_safe(event_1_description),
-                                          'event_2_name': event_2_name,
-                                            'event_2_start': event_2_start,
-                                            'event_2_end': event_2_end,
-                                            'event_2_location': event_2_location,
-                                            'event_2_description': mark_safe(event_2_description),
-                                            'event_3_name': event_3_name,
-                                            'event_3_start': event_3_start,
-                                            'event_3_end': event_3_end,
-                                            'event_3_location': event_3_location,
-                                            'event_3_description': mark_safe(event_3_description),
                                             'event_status': event_status,
-                                            'event_1_image': event_1_image,
-                                            'event_2_image': event_2_image,
-                                            'event_3_image': event_3_image,
                                             'awards': awards,
                                             'about': about,
-                                            'donation_amount': donation_amount,
-                                            'donation_goal': donation_goal,
                                             'posts': posts
                                           })
 
@@ -234,15 +162,6 @@ def dcufm(request):
     donation_amount, donation_goal = get_donation_count_fm()
     family_tree = DCUfmFamilyTree.objects.all()
     return render(request, 'dcufm.html', {'page_name': 'DCUfm', 'previous_show': previous, 'current_show': current, 'next_show': next_show, 'family_tree': family_tree, 'donation_amount': donation_amount, 'donation_goal': donation_goal})
-
-"""def comingsoon(request):
-    return render(request, 'comingsoon.html', {'page_name': 'Coming Soon'})"""
-
-def blog(request):
-    return render(request, 'blog.html', {'page_name': 'Blog'})
-
-"""def merch(request):
-    return render(request, 'merch.html', {'page_name': 'Merch'})"""
 
 def page_not_found(request):
     return render(request, '404.html', {'page_name': '404'})

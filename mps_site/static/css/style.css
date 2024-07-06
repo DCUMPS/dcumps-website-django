@@ -117,7 +117,8 @@ a:hover {
 }
 
 .submitbutton input[type="submit"] {
-  color: black;
+  color: var(--text-color);
+  width: 30%;
 }
 
 .custom-box {

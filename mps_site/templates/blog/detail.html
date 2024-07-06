@@ -5,7 +5,7 @@
 
 {% block page_content %}
 <div class="container">
-    <h1 class="my-4">{{ post.title }}</h1>
+    <h1 class="my-4">{{ post.title | safe }}</h1>
     <h5><i>{{ post.created_on.date }} | <a href="{% url 'blog_author' post.author.author_slug %}">{{ post.author }}</a> | Categories:
         {% for category in post.categories.all %}
             <a href="{% url 'blog_category' category.name %}">
@@ -17,7 +17,7 @@
         <div class="center-contents">
           <div class="container mt-4">
     <div class="mx-3 px-3 py-3" style="font-size: 20px; text-align: left; background-color: #202E4E; border-radius: 15px;">
-    <p>{{ post.body | linebreaks }}</p>
+    <p>{{ post.body | safe }}</p>
 </div>
     <a class="btn btn-primary mt-4" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;" href="{% url 'blog_index' %}">Back to Blog Homepage</a>  
           </div>

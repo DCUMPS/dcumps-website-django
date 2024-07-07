@@ -18,6 +18,9 @@ COPY . /app/
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
+# Delete original static files after collectstatic
+RUN find . -path "./static/*" -not -path "./staticfiles/*" -exec rm -rf {} +
+
 # Expose port 8000 to the outside world
 EXPOSE 8000
 

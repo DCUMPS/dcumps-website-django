@@ -1,5 +1,4 @@
 .github/
-mps_site/static/
 .dockerignore
 Dockerfile
 README.md

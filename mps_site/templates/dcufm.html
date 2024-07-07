@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="title-text2">
-  <h1 style="font-size: 60px; margin-bottom: 50px; padding-top: 80px;"><b>DCUfm</b></h1>
+<div class="title-large">
+  <h1>DCUfm</h1>
+  <h3><i>At the heart of Dublin City University, we are DCUfm, the hub of student radio</i></h3>
 </div>
-<h3 style="font-size: 20px; padding: 20px;"><i>At the heart of Dublin City University, we are DCUfm, the hub of student radio</i></h3>
+
 <div id="carousel-title-page" class="carousel slide" data-ride="carousel" style="margin-left: 10%; margin-right: 10%; margin-top: 2%;">
   <div class="carousel-inner" style="border-radius: 25px;">
     <div class="carousel-item active">
@@ -37,7 +38,6 @@
 
 <div class="container">
   <h1>About DCUfm</h1>
-  <h5><i>An introduction from our FM Managers Caoimhe & Matthew</h5></i>
   <div class="row justify-content-center">
     
     <div class="col-md-8 custom-box">
@@ -58,7 +58,7 @@
   </div>
 </div>
 
-<div id="dcufm-12hour">
+<!--<div id="dcufm-12hour">
   <div class="container">
     <h1>The 12-Hour Broadcast</h1>
     <h5><i>DCUfm's biggest event of the year!</h5></i>
@@ -81,7 +81,7 @@
           </p>
         </div>
         <h2 style="padding-top: 20px;">Donation Progress: €{{ donation_amount}} / €{{ donation_goal }}</h2>
-        <div class="center-contents" > <!--style="padding-bottom: 500px;"-->
+        <div class="center-contents" >
           <div class="container mt-4">
             <div class="row">
               <div class="col-md-4">
@@ -117,34 +117,34 @@
 </div>
 </div>
 </div>
-</div>
+</div>-->
 <div class="container">
   <h1 class="text-center">Meet The FM Managers</h1>
   <h5 class="text-center"><i>The team behind everything radio!</i></h5>
   <div class="row justify-content-center">
     
     <div class="col-md-4 custom-box">
-      <div class="committee-manager text-center" style="background-color: #202E4E; border-radius: 15px;">
+      <div class="committee-manager text-center" style="background-color: #202E4E; border-radius: 12.5px;">
         <img src="static/assets/fm/CW.png" width="300px" height="300px" alt="FM Manager" style="border-radius: 50%; margin: 25px;">
         <h3>Caoimhe Woods</h3>
         <div class="social-icons" style="padding-bottom: 15px;">
           <ul>
-            <li><a href="https://www.instagram.com/caoimhewoodss/" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/caoimhe-woods-22ba9b262/" target="_blank"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-            <li><a href="mailto:fm@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.instagram.com/caoimhewoodss/" target="_blank"><i class="hvr-bounce-in fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/caoimhe-woods-22ba9b262/" target="_blank"><i class="hvr-bounce-in fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
+            <li><a href="mailto:fm@dcumps.ie" target="_blank"><i class="hvr-bounce-in fa fa-envelope" aria-hidden="true"></i></a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="col-md-4 custom-box">
-      <div class="committee-manager text-center" style="background-color: #202E4E; border-radius: 15px;">
+      <div class="committee-manager text-center" style="background-color: #202E4E; border-radius: 12.5px;">
         <img src="static/assets/fm/MW.png" width="300px" height="300px" alt="FM Manager" style="border-radius: 50%; margin: 25px;">
         <h3>Matthew Willis</h3>
         <div class="social-icons" style="padding-bottom: 15px;">
           <ul>
-            <li><a href="https://instagram.com/matt_double.u?igshid=MTI4MHhtcHVjcTkwbg==" target="_blank"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/matthew-willis-64a9712a1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-            <li><a href="mailto:fm@dcumps.ie" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+            <li><a href="https://instagram.com/matt_double.u?igshid=MTI4MHhtcHVjcTkwbg==" target="_blank"><i class="hvr-bounce-in fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/matthew-willis-64a9712a1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="hvr-bounce-in fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
+            <li><a href="mailto:fm@dcumps.ie" target="_blank"><i class="hvr-bounce-in fa fa-envelope" aria-hidden="true"></i></a></li>
           </ul>
         </div>
       </div>
@@ -162,19 +162,19 @@
         <div class="center-contents" > <!--style="padding-bottom: 500px;"-->
           <div class="container mt-4">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-4 hvr-grow">
                 <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
                   <p><strong>Previous Show</strong></p>
                   <p id="fm-time-previous">{{ previous_show }}</p>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4 hvr-grow">
                 <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
                   <p></strong>Live Now</strong></p>
                   <p id="fm-time-current">{{ current_show }}</p>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4 hvr-grow">
                 <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
                   <p></strong>Next Show</strong></p>
                   <p id="fm-time-next">{{ next_show }}</p>
@@ -265,7 +265,7 @@
     <div class="col-md-12 custom-box">
     <div class="row gy-3 row-cols-1 row-cols-md-3"  style="color: white;">
       
-      <div class="col my-2">
+      <div class="col my-2 hvr-grow">
         <div class="text-center d-flex flex-column justify-content-center align-items-center py-3" style="background-color: #202E4E; border-radius: 25px;">
           <div class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon lg">
             <i class="fa-solid fa-hand-holding-heart" style="font-size: 70px;"></i>
@@ -276,7 +276,7 @@
           </div>
         </div>
       </div>
-      <div class="col my-2">
+      <div class="col my-2 hvr-grow">
         <div class="text-center d-flex flex-column justify-content-center align-items-center py-3" style="background-color: #202E4E; border-radius: 25px;">
           <div class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon lg">
             <i class="fa-brands fa-twitch" style="font-size: 70px;"></i>
@@ -287,7 +287,7 @@
           </div>
         </div>
       </div>
-      <div class="col my-2">
+      <div class="col my-2 hvr-grow">
         <div class="text-center d-flex flex-column justify-content-center align-items-center py-3" style="background-color: #202E4E; border-radius: 25px;">
           <div class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon lg">
             <i class="fa-solid fa-hand-holding-heart" style="font-size: 70px;"></i>
@@ -343,40 +343,40 @@
         <div class="container mt-4">
           <div class="row">
             <div class="col-md-4">
-              <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding-top: 20px;">
+              <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
                 <img src="static/assets/fm/flagships/AR.png" width="300px" height="300px" alt="DCUfm Flagship" style="border-radius: 50%;">
                 <h3>Action Replay</h3>
                 <h5 style="padding-left: 10px; padding-right: 10px;"><i>Sports Flagship</i></h5>
                 <h6 style="padding-left: 10px; padding-right: 10px;"><i>Thursdays @ 1PM</i></h6>
                 <div class="social-icons" style="padding-bottom: 15px;">
                   <ul>
-                    <li><a href="https://www.instagram.com/actionreplayfm/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://www.instagram.com/actionreplayfm/" target="_blank"><i class="hvr-bounce-in fa-brands fa-instagram"></i></a></li>
                   </ul>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding-top: 20px;">
+              <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
                 <img src="static/assets/fm/flagships/LL.png" width="300px" height="300px" alt="DCUfm Flagship" style="border-radius: 50%;">
                 <h3>Limelight</h3>
                 <h5 style="padding-left: 10px; padding-right: 10px;"><i>Pop-culture Flagship</i></h5>
                 <h6 style="padding-left: 10px; padding-right: 10px;"><i>Mondays @ 11AM</i></h6>
                 <div class="social-icons" style="padding-bottom: 15px;">
                   <ul>
-                    <li><a href="https://www.instagram.com/limelightdcu/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://www.instagram.com/limelightdcu/" target="_blank"><i class="hvr-bounce-in fa-brands fa-instagram"></i></a></li>
                   </ul>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding-top: 20px;">
+              <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
                 <img src="static/assets/fm/flagships/NW.png" width="300px" height="300px" alt="DCUfm Flagship" style="border-radius: 50%;">
                 <h3>Newswire</h3>
                 <h5 style="padding-left: 10px; padding-right: 10px;"><i>News Flagship</i></h5>
                 <h6 style="padding-left: 10px; padding-right: 10px;"><i>Fridays @ 2PM</i></h6>
                 <div class="social-icons" style="padding-bottom: 15px;">
                   <ul>
-                    <li><a href="https://www.instagram.com/newswiredcu/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://www.instagram.com/newswiredcu/" target="_blank"><i class="hvr-bounce-in fa-brands fa-instagram"></i></a></li>
                   </ul>
                 </div>
               </div>
@@ -397,7 +397,7 @@
           <div class="container mt-4">
             <div class="row">
               {% for member in family_tree %}
-              <div class="col-md-4 hvr-bounce-in">
+              <div class="col-md-4 hvr-grow">
                 <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:10px">
                   <p><strong>{{ member.year }}</strong></p>
                   <p></p>{{ member.name }}</p>

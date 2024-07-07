@@ -159,9 +159,8 @@ def memes(request):
 
 def dcufm(request):
     previous, current, next_show = get_date_time()
-    donation_amount, donation_goal = get_donation_count_fm()
     family_tree = DCUfmFamilyTree.objects.all()
-    return render(request, 'dcufm.html', {'page_name': 'DCUfm', 'previous_show': previous, 'current_show': current, 'next_show': next_show, 'family_tree': family_tree, 'donation_amount': donation_amount, 'donation_goal': donation_goal})
+    return render(request, 'dcufm.html', {'page_name': 'DCUfm', 'previous_show': previous, 'current_show': current, 'next_show': next_show, 'family_tree': family_tree})
 
 def page_not_found(request):
     return render(request, '404.html', {'page_name': '404'})

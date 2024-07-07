@@ -9,7 +9,6 @@ from django.conf import settings
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path("admin/", admin.site.urls),
     path('links', views.links, name="links"),
     path('linksdcutv', views.links_tv, name="links_tv"),
     path('linkstcv', views.links_tcv, name="links_tcv"),

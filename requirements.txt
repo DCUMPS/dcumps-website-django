@@ -10,3 +10,4 @@ whitenoise
 gunicorn
 slugify
 markdown
+python-dotenv

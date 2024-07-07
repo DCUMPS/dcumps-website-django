@@ -1,14 +1,6 @@
-*.pyc
-migrations/
-.git/
 .github/
-__pycache__/
-old/
+mps_site/static/
 .dockerignore
 Dockerfile
-setup_db.py
-run_prod.sh
-import_posts.py
-.env
 README.md
 .gitignore

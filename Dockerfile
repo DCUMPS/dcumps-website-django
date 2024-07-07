@@ -1,27 +1,25 @@
-# pull official base image
-FROM python:3.11.4-slim-buster
+# Use an official Python runtime as a parent image
+FROM python:3.9
 
-# set work directory
-WORKDIR /app
-
-# set environment variables
+# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# install dependencies
-RUN pip install --upgrade pip
+# Set work directory
+WORKDIR /app
+
+# Install dependencies
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# copy project
+# Copy project
 COPY . /app/
 
-# migrate database and collect static files
-RUN python manage.py migrate
-RUN python3 manage.py collectstatic --no-input
+# Collect static files
+RUN python manage.py collectstatic --noinput
 
-# expose port 8000 to the outside world
+# Expose port 8000 to the outside world
 EXPOSE 8000
 
-# run server
-CMD ["gunicorn", "mps.wsgi", "--bind", "0.0.0.0:8000"]
+# Run Django server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

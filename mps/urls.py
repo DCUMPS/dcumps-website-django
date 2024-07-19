@@ -19,11 +19,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
-from mps_site.sitemap import PostSitemap, StaticViewSitemap
+from mps_site.sitemap import *
 
 sitemaps = {
     'static': StaticViewSitemap,
     'posts': PostSitemap,
+    'authors': AuthorSitemap,
+    'categories': CategorySitemap,
 }
 
 urlpatterns = [

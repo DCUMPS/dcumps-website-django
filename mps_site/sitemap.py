@@ -1,5 +1,5 @@
 from django.contrib.sitemaps import Sitemap
-from .models import Post
+from .models import *
 from django.urls import reverse
 import datetime
 
@@ -14,13 +14,35 @@ class PostSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.last_modified
     
+class AuthorSitemap(Sitemap):
+    changefreq = 'weekly'
+    priority = 0.8
+    protocol = 'https'
+
+    def items(self):
+        return Author.objects.all().order_by("-name")
+
+    def lastmod(self, obj):
+        return datetime.datetime.now()
+
+class CategorySitemap(Sitemap):
+    changefreq = 'weekly'
+    priority = 0.8
+    protocol = 'https'
+
+    def items(self):
+        return Category.objects.all().order_by("-name")
+
+    def lastmod(self, obj):
+        return datetime.datetime.now()
+    
 class StaticViewSitemap(Sitemap):
-    priority = 0.5
+    priority = 1.0
     changefreq = 'daily'
     protocol = 'https'
 
     def items(self):
-        return ['index', 'links', 'links_tv', 'links_tcv', 'links_fm', 'committee', 'contact', 'dcutv', 'gallery', 'swapweek', 'memes', 'dcufm']
+        return ['index', 'links', 'links_tv', 'links_tcv', 'links_fm', 'committee', 'contact', 'dcutv', 'gallery', 'swapweek', 'memes', 'dcufm', 'blog_index']
 
     def location(self, item):
         return reverse(item)

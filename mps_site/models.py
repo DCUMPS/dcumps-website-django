@@ -48,6 +48,9 @@ class Author(models.Model):
     def __str__(self):
         return self.name
     
+    def get_absolute_url(self):
+        return "/blog/author/%s/" % self.author_slug
+    
 @receiver(pre_save, sender=Author)
 def create_author_slug(sender, instance, **kwargs):
     if not instance.author_slug:

@@ -20,7 +20,6 @@ urlpatterns = [
     path("swapweek", views.swapweek, name="swapweek"),
     path("memes", views.memes, name="memes"),
     path("dcufm", views.dcufm, name="dcufm"),
-    path('sitemap.xml', TemplateView.as_view(template_name="sitemap.xml", content_type="application/xml"), ),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'assets/img/other/favicon.ico')),
     path('donate', RedirectView.as_view(url="https://www.idonate.ie/fundraiser/MediaProductionSociety11"), name="donate"),

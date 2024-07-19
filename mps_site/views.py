@@ -8,8 +8,7 @@ from datetime import datetime
 import markdown
 from .utils import *
 
-def blog_index(request):
-    posts = Post.objects.all().order_by("-created_on")
+def render_blog_preview(posts):
     md = markdown.Markdown(extensions=["fenced_code"])
     for post in posts:
         post.body = md.convert(post.body)
@@ -18,13 +17,16 @@ def blog_index(request):
         final = ""
         for p_tag in all_p_tags:
             final += str(p_tag.text) + " "
-
         final = final.replace("> ", "")
-            
         post.body = final
-
-        
         post.title = md.convert(post.title)
+    return posts
+    
+
+def blog_index(request):
+    posts = Post.objects.all().order_by("-created_on")
+    posts = render_blog_preview(posts)
+    
     context = {
         "posts": posts,
         "page_name": "Blog"
@@ -33,26 +35,16 @@ def blog_index(request):
     return render(request, "blog/index.html", context)
 
 def blog_category(request, category):
-
-    posts = Post.objects.filter(
-
-        categories__name__contains=category
-
-    ).order_by("-created_on")
+    posts = Post.objects.filter(categories__name__contains=category).order_by("-created_on")
+    posts = render_blog_preview(posts)
 
     context = {
-
         "category": category,
         "page_name": category,
         "posts": posts,
-
     }
 
     return render(request, "blog/category.html", context)
-
-# blog/views.py
-
-# ...
 
 def blog_detail(request, slug):
     post = get_object_or_404(Post, post_slug=slug)
@@ -60,9 +52,10 @@ def blog_detail(request, slug):
     post.body = render_markdown(post.body)
     post.title = render_markdown(post.title)  # If necessary, render Markdown for title
     comments = Comment.objects.filter(post=post)
+    post_title_text = post.title.replace("<p>", "").replace("</p>", "")
     context = {
         "post": post,
-        "page_name": post.title,
+        "page_name": post_title_text,
         "comments": comments,
         'link': request.build_absolute_uri(post.get_absolute_url()),
     }
@@ -74,11 +67,14 @@ def blog_author(request, author):
         author__author_slug__contains=author
 
     ).order_by("-created_on")
+    posts = render_blog_preview(posts)
+
+    author_name = Author.objects.get(author_slug=author)
 
     context = {
 
         "author": author,
-        "page_name": posts,
+        "page_name": author_name,
         "posts": posts,
 
     }

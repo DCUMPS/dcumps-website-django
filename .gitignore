@@ -4,3 +4,5 @@ old
 posts
 staticfiles
 *.env
+import_posts.py
+setup_db.py

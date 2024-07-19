@@ -37,6 +37,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('blog_category', kwargs={'category': self.name})
 
 class Author(models.Model):
     name = models.CharField(max_length=255)

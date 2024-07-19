@@ -17,7 +17,7 @@
         <div class="col-md-4">
             <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px;">
               
-              <a href="{% url 'blog_detail' post.post_slug %}"><img class="my-4" src="{% static post.preview_image %}" width="300px" height="300px" alt="MPS Sub-Group" style="aspect-ratio: 1 / 1; overflow: hidden;"></a>
+              <a href="{% url 'blog_detail' post.post_slug %}"><img class="my-4" src="{% static post.preview_image %}" width="300px" height="300px" alt="MPS Blog Image" style="aspect-ratio: 1 / 1; object-fit: cover;"></a>
               <h3 class="mx-2"><a href="{% url 'blog_detail' post.post_slug %}">{{ post.title | safe }}</a></h3>
               <ul class="mx-2" style="text-align: left; list-style: none;">
                 <li>📅 Posted: {{ post.created_on.date }}</li>
@@ -29,7 +29,7 @@
                 {% endfor %}</li>
                   </ul>
               <h5 class="mx-4" style="text-align: left;">{{ post.body | slice:":85" }}...</h5>
-              <button class="btn btn-primary" style="margin-top: 10px; margin-bottom: 10px;"><a href="{% url 'blog_detail' post.post_slug %}" style="color: white;">Read More</a></button>
+              <a class="btn btn-primary" href="{% url 'blog_detail' post.post_slug %}" style="margin-top: 10px; margin-bottom: 10px; color: white";>Read More</a>
             </div>
            
           </div>

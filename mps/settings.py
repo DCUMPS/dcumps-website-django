@@ -34,6 +34,8 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'dcumps.ie', 'test.dcumps.ie', 'www.d
 
 # Application definition
 
+SITE_ID = 1
+
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mps_site',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 if ADMIN_ENABLED is True:

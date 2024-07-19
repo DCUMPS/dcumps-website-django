@@ -106,6 +106,15 @@ a:hover {
   margin-top: 20px;
 }
 
+.blog-image-format img {
+  width: 60% !important;
+  margin-left: 40px !important;
+  margin-top: 25px !important;
+  margin-bottom: 25px !important;
+  height: auto !important;
+  border-radius: 15px !important;
+}
+
 .title-large h3 {
   font-size: 20px;
   margin-bottom: 20px;

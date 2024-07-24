@@ -117,3 +117,20 @@ class GalleryPage(models.Model):
 
     def __str__(self):
         return "Gallery Page Information"
+    
+
+class CommitteeHistoryMember(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name + " - " + self.position
+    
+class CommitteeHistory(models.Model):
+    id = models.AutoField(primary_key=True)
+    year = models.CharField(max_length=100)
+    committee_members = models.ManyToManyField(CommitteeHistoryMember)
+
+    def __str__(self):
+        return self.year

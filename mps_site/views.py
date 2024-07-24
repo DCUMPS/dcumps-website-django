@@ -114,6 +114,10 @@ def committee(request):
     committee_page_info = CommitteePage.objects.all().first()
     return render(request, 'committee.html', {'page_name': 'Committee', 'committee_members': committee_members, 'committee_page_info': committee_page_info})
 
+def committee_history(request):
+    committee_history = CommitteeHistory.objects.all()
+    return render(request, 'committee_history.html', {'page_name': 'Committee History', 'committee_history': committee_history})
+
 def contact(request):
     return render(request, 'contact.html', {'page_name': 'Contact'})
 

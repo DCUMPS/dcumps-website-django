@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  
+<div class="title-small">
+  <h1>Committee History</h1>
+  <h5><i>Meet everyone who has contributed to MPS over the years!</i></h5>
+</div>
+{% for year in committee_history %}
+<h1>{{ year.year }}</h1>
+<div class="container">
+<div class="row justify-content-center">
+  <div class="col-md-8 custom-box shadow-lg bg-body">
+    <div class="awards">
+      <div class="center-contents shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px; padding-top: 10px; padding-bottom: 10px;"> 
+        <ul style="padding-left: 10px; padding-right: 10px; list-style: none; text-align: left;">
+          {% for member in year.committee_members.all %}
+          <li><b>{{ member.position }}</b> - {{ member.name }}</li>
+          {% endfor %}
+          <ul></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endfor %}
+
+{% endblock %}
+{% block footer %}
+{% endblock %}
+</body>
+</html>

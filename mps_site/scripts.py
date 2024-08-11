@@ -15,6 +15,8 @@ def tcv_posts(tcv_url):
 
             first_image = soup.find('img')
             post['first_image'] = first_image['src'] if first_image else None
+            
+            #post['first_image'] = post['featured_media']
 
             post['formatted_date'] = datetime.strptime(post['date'], '%Y-%m-%dT%H:%M:%S').strftime('%B %d, %Y')
 
@@ -301,3 +303,22 @@ def get_event_data():
   with open(json_file_path, 'w') as json_file:
       json.dump(data, json_file, indent=4)
   
+  
+
+FOLDER_ID = ''
+API_KEY = ''
+
+def list_images():
+    url = f'https://www.googleapis.com/drive/v3/files?q="{FOLDER_ID}" in parents&key={API_KEY}'
+    response = requests.get(url)
+    data = response.json()
+    
+    image_urls = []
+    if 'files' in data:
+        for item in data['files']:
+            file_id = item['id']
+            file_name = item['name']
+            file_url = f'https://drive.usercontent.google.com/download?id={file_id}'
+            image_urls.append({'name': file_name, 'url': file_url})
+            
+    return image_urls

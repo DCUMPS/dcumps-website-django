@@ -1,0 +1,38 @@
+{# templates/components/dcufm_twitch.html #}
+<div id="dcufm">
+    <div class="container">
+        <h1>DCUfm</h1>
+        <h5><i>The Hub of Student Radio!</i></h5>
+        <div class="row justify-content-center" style="text-align: center;">
+            <div class="col-md-12 custom-box shadow-lg bg-body">
+                <h3 style="padding-bottom: 10px;">Check out our Twitch stream weekdays from 9AM - 8PM!</h3>
+                <div id="twitch-embed"></div>
+                <div class="center-contents">
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="hvr-grow col-md-4">
+                                <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
+                                    <p><strong>Previous Show</strong></p>
+                                    <p id="fm-time-previous">{{ previous_show }}</p>
+                                </div>
+                            </div>
+                            <div class="hvr-grow col-md-4">
+                                <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
+                                    <p><strong>Live Now</strong></p>
+                                    <p id="fm-time-current">{{ current_show }}</p>
+                                </div>
+                            </div>
+                            <div class="hvr-grow col-md-4">
+                                <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
+                                    <p><strong>Next Show</strong></p>
+                                    <p id="fm-time-next">{{ next_show }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#fmtimetable" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;" href="http://instagram.com/dcufm">View FM Timetable</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

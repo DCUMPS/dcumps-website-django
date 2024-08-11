@@ -286,12 +286,7 @@ a:link{
 }
 
 .footer p {
-  margin-top: 20px; 
   font-size: 20px;
-}
-
-.container img:hover {
-  /* transform: scale(1.1, 1.1); */
 }
 
 .container img {
@@ -460,14 +455,16 @@ a:link{
 
 .content p {
   font-size: 20px;
+  font-weight: bold;
   font-family: 'Roboto', sans-serif;
   color: var(--text-color);
 }
 
 .content textarea, input {
   border: none;
-  border: 3px solid var(--main-color);
-  background-color: var(--hover-color);
+  border: 4px solid var(--text-color);
+  background-color: var(--main-color);
+  color: var(--text-color);
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;

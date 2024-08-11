@@ -7,6 +7,7 @@ from django.utils.safestring import mark_safe
 from datetime import datetime
 import markdown
 from .utils import *
+from .content import *
 
 def render_blog_preview(posts):
     md = markdown.Markdown(extensions=["fenced_code"])
@@ -83,29 +84,23 @@ def blog_author(request, author):
 
 def index(request):
         video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
-        posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date")
+        posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
         awards = Award.objects.all()
         previous, current, next_show = get_date_time()
-        #get_event_data()
-        #donation_amount, donation_goal = get_donation_count_fm()
-        about = About.objects.all().first()
-        row_1_display = "display: none;"
-        row_2_display = "display: none;"
-        row_3_display = "display: none;"
-        event_status = "No events at the moment, check back later!"
 
             
-        return render(request, 'index.html', {'row_1_display': row_1_display, 
-                                            'row_2_display': row_2_display,
-                                            'row_3_display': row_3_display,
+        return render(request, 'index.html', {'stats_data': index_stats_data,
+                                              'subgroups_data': index_subgroups,
+            'row_1_display': "display: none;", 
+                                            'row_2_display': "display: none;",
+                                            'row_3_display': "display: none;",
                                           'page_name': 'Home', 
                                           'latest_video_id' : video, 
                                           'previous_show': previous, 
                                           'current_show': current, 
                                           'next_show': next_show,
-                                            'event_status': event_status,
+                                            'event_status': "No events at the moment, check back later!",
                                             'awards': awards,
-                                            'about': about,
                                             'posts': posts
                                           })
 
@@ -125,11 +120,13 @@ def dcutv(request):
     channel_url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw"
     video = get_latest_video_id(channel_url)
     most_recent_videos = get_latest_video_ids(channel_url)
-    return render(request, 'dcutv.html', {'page_name': 'DCUtv', 'tv_thursday' : 'RON9_ByY190', 'latest_video_id' : video, 'most_recent_videos': most_recent_videos})
+    tv_managers = CommitteeMember.objects.filter(position="TV Manager")
+    return render(request, 'dcutv.html', {'page_name': 'DCUtv', 'tv_thursday' : 'RON9_ByY190', 'latest_video_id' : video, 'most_recent_videos': most_recent_videos, 'tv_managers': tv_managers})
 
 def gallery(request):
     gallery_page_info = GalleryPage.objects.all().first()
-    return render(request, 'gallery.html', {'page_name': 'Gallery', 'gallery_page_info': gallery_page_info})
+    image_urls = list_images()
+    return render(request, 'gallery.html', {'page_name': 'Gallery', 'gallery_page_info': gallery_page_info, 'images': image_urls})
 
 def links(request):
     sheet_url = "https://docs.google.com/spreadsheets/d/1FdtqA7a0sJcs24NIYWQnOOxrUiNLf1YvwUsWhZ1feLw/edit?usp=sharing"
@@ -160,7 +157,8 @@ def memes(request):
 def dcufm(request):
     previous, current, next_show = get_date_time()
     family_tree = DCUfmFamilyTree.objects.all()
-    return render(request, 'dcufm.html', {'page_name': 'DCUfm', 'previous_show': previous, 'current_show': current, 'next_show': next_show, 'family_tree': family_tree})
+    fm_managers = CommitteeMember.objects.filter(position="FM Manager")
+    return render(request, 'dcufm.html', {'page_name': 'DCUfm', 'previous_show': previous, 'current_show': current, 'next_show': next_show, 'family_tree': family_tree, 'fm_managers': fm_managers, 'stats_data': dcufm_stats_data, 'subgroups_data': dcufm_subgroups})
 
 def page_not_found(request):
     return render(request, '404.html', {'page_name': '404'})

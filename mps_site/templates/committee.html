@@ -7,25 +7,8 @@
   <h1>{{ committee_page_info.page_title }}</h1>
   <h5><i>{{ committee_page_info.page_subtitle }}</i></h5>
 </div>
+{% include 'components/youtube_video.html' with title="MPS Meet The Committee Video" latest_video_id=committee_page_info.committee_video_link %}
 <div class="container">
-  <div class="row justify-content-center" style="padding-top: 20px; padding-bottom: 20px;">
-    <div class="col-md-12">
-      <div class="center-contents">
-        <div style="width: 100%; min-width: 200px; max-width: 800px; margin: 0 auto;">
-          <div style="position: relative; width: 100%; overflow: hidden; padding-top: 56.25%;">
-            <p><iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none; border-radius: 25px;"
-              loading="lazy"
-              src="{{ committee_page_info.committee_video_link }}" width="560" height="315" 
-              allowfullscreen="allowfullscreen" 
-              title="MPS Meet The Committee Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-            </iframe>
-          </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   
 <div class="row justify-content-center">
   <a class="btn btn-primary" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;" href="/committee/history">View Committee History</a>  

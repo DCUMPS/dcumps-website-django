@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <div class="title-large">
@@ -58,144 +59,33 @@
   </div>
 </div>
 
-<!--<div id="dcufm-12hour">
-  <div class="container">
-    <h1>The 12-Hour Broadcast</h1>
-    <h5><i>DCUfm's biggest event of the year!</h5></i>
-    <div class="row justify-content-center" style="text-align: center;">
-      
-      <div class="col-md-12 custom-box">
-        
-        <div id="12hour-description" style="background-color: #202E4E; border-radius: 15px; padding:20px;">
-          <p style="margin-bottom: 10px; margin-left: 5px; margin-right: 5px;">IT’S THE 12 HOUR BROADCAST!! 💛
-            <br>
-            Get your mics on, your headphones in and get ready to go live!!
-            <br>
-            This year DCUfm’s 12 hour broadcast is all in aid of @awareireland
-            <br>
-            Aware Ireland is a national organisation providing free support, education and information services to people impacted by anxiety, depression, bipolar disorder and related mood conditions.
-            <br>
-            Mental health and wellbeing is something that is so so important to everyone here at DCUfm, we really want to raise awareness and work on destigmatising the battles that so many people fight in their head every day as well as raise as much money as we can for such a great charity!! 🌅💛
-            <br>
-            See you all there on March 28th from 9am-9pm…
-          </p>
-        </div>
-        <h2 style="padding-top: 20px;">Donation Progress: €{{ donation_amount}} / €{{ donation_goal }}</h2>
-        <div class="center-contents" >
-          <div class="container mt-4">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="other-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
-                  <img src="static/assets/fm/12HR_1.jpeg" alt="12 Hour Broadcast" style="width: 100%;" />
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="other-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
-                  <img src="static/assets/fm/aware_logo.png" alt="12 Hour Broadcast" style="width: 100%;" />
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="other-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
-                  <img src="static/assets/fm/12HR_2.jpeg" alt="12 Hour Broadcast" style="width: 100%;" />
-                </div>
-                
-              </div>
-              
-            </div>
-            <a class="btn btn-primary" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: #FFE085;" href="/donate" target="_blank">Donate to Aware</a>
-            <br>
-            <br>
-            <a class="btn btn-primary" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: #FFE085;" href="https://docs.google.com/forms/d/e/1FAIpQLSdXKYyyhk-zhEBYjZwGLRU98BQi1zK6_wy_Hgf671xGUauwkg/viewform" target="_blank">Show Forms</a>    
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>-->
+
 <div class="container">
   <h1 class="text-center">Meet The FM Managers</h1>
   <h5 class="text-center"><i>The team behind everything radio!</i></h5>
   <div class="row justify-content-center">
-    
+    {% for member in fm_managers %}  
     <div class="col-md-4 custom-box">
-      <div class="committee-manager text-center" style="background-color: #202E4E; border-radius: 12.5px;">
-        <img src="static/assets/fm/CW.png" width="300px" height="300px" alt="FM Manager" style="border-radius: 50%; margin: 25px;">
-        <h3>Caoimhe Woods</h3>
+      <div class="committee-manager text-center" style="background-color: #9791FF; border-radius: 12.5px;">
+        <img src="{% static member.image %}" alt="{{ member.position }}" style="background-color: #202E4E; border-radius: 15px;">
+        <div class="mx-4 pt-2 hvr-bounce-in" style="background-color: #202E4E; border-radius: 15px;">
+        <h3>{{ member.name }}</h3>
         <div class="social-icons" style="padding-bottom: 15px;">
           <ul>
-            <li><a href="https://www.instagram.com/caoimhewoodss/" target="_blank"><i class="hvr-bounce-in fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/caoimhe-woods-22ba9b262/" target="_blank"><i class="hvr-bounce-in fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-            <li><a href="mailto:fm@dcumps.ie" target="_blank"><i class="hvr-bounce-in fa fa-envelope" aria-hidden="true"></i></a></li>
+            <li><a href="{{ member.social_link_1_url }}" target="_blank" aria-label="MPS Committee Member Social Link 1"><i class="{{ member.social_link_1_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
+            <li><a href="{{ member.social_link_2_url }}" target="_blank" aria-label="MPS Committee Member Social Link 2"><i class="{{ member.social_link_2_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
+            <li><a href="{{ member.social_link_3_url }}" target="_blank" aria-label="MPS Committee Member Social Link 3"><i class="{{ member.social_link_3_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
           </ul>
         </div>
+        </div> 
       </div>
     </div>
-    <div class="col-md-4 custom-box">
-      <div class="committee-manager text-center" style="background-color: #202E4E; border-radius: 12.5px;">
-        <img src="static/assets/fm/MW.png" width="300px" height="300px" alt="FM Manager" style="border-radius: 50%; margin: 25px;">
-        <h3>Matthew Willis</h3>
-        <div class="social-icons" style="padding-bottom: 15px;">
-          <ul>
-            <li><a href="https://instagram.com/matt_double.u?igshid=MTI4MHhtcHVjcTkwbg==" target="_blank"><i class="hvr-bounce-in fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/matthew-willis-64a9712a1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="hvr-bounce-in fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
-            <li><a href="mailto:fm@dcumps.ie" target="_blank"><i class="hvr-bounce-in fa fa-envelope" aria-hidden="true"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </div>
-<div id="dcufm">
-  <div class="container">
-    <h1>Tune In</h1>
-    <h5><i>Check out our Twitch stream weekdays from 9AM - 8PM!</h5></i>
-    <div class="row justify-content-center" style="text-align: center;">
-      
-      <div class="col-md-12 custom-box">
-        <div id="twitch-embed"></div>
-        <div class="center-contents" > <!--style="padding-bottom: 500px;"-->
-          <div class="container mt-4">
-            <div class="row">
-              <div class="col-md-4 hvr-grow">
-                <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
-                  <p><strong>Previous Show</strong></p>
-                  <p id="fm-time-previous">{{ previous_show }}</p>
-                </div>
-              </div>
-              <div class="col-md-4 hvr-grow">
-                <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
-                  <p></strong>Live Now</strong></p>
-                  <p id="fm-time-current">{{ current_show }}</p>
-                </div>
-              </div>
-              <div class="col-md-4 hvr-grow">
-                <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
-                  <p></strong>Next Show</strong></p>
-                  <p id="fm-time-next">{{ next_show }}</p>
-                </div>
-                
-              </div>
-              
-            </div>
-            <a class="btn btn-primary" data-toggle="modal" data-target="#fmtimetable" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;" href="http://instagram.com/dcufm">View FM Timetable</a>  
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- modal -->
+
+{% include 'components/dcufm_twitch.html' with previous_show=previous_show current_show=current_show next_show=next_show %}
+
 <div class="modal fade" id="fmtimetable" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" >
   <div class="modal-dialog modal-lg" >
     <div class="modal-content" style="background-color: #202E4E;">
@@ -256,52 +146,8 @@
 </div>
 </div>
 </div>
-  <h1>DCUfm Stats</h1>
-  <h5><i>See our progress over the years!</h5></i>
-<div class="container">
+{% include 'components/stats.html' with title="DCUfm Stats" subtitle="See our progress over the years!" animate_seconds=5 stats=stats_data %}
 
-    
-  <div class="row justify-content-center">
-    <div class="col-md-12 custom-box">
-    <div class="row gy-3 row-cols-1 row-cols-md-3"  style="color: white;">
-      
-      <div class="col my-2 hvr-grow">
-        <div class="text-center d-flex flex-column justify-content-center align-items-center py-3" style="background-color: #202E4E; border-radius: 25px;">
-          <div class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon lg">
-            <i class="fa-solid fa-hand-holding-heart" style="font-size: 70px;"></i>
-          </div>
-          <div class="px-3">
-            <h2 class="fw-bold tada animated mb-0">€1,570</h2>
-            <p class="mb-0">Raised for CRY Ireland during the 12 Hour Broadcast in 2023</p>
-          </div>
-        </div>
-      </div>
-      <div class="col my-2 hvr-grow">
-        <div class="text-center d-flex flex-column justify-content-center align-items-center py-3" style="background-color: #202E4E; border-radius: 25px;">
-          <div class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon lg">
-            <i class="fa-brands fa-twitch" style="font-size: 70px;"></i>
-          </div>
-          <div class="px-3">
-            <h2 class="fw-bold tada animated mb-0">1125</h2>
-            <p class="mb-0">Followers on the DCUfm <a href="https://twitch.tv/dcufm" target="_blank">Twitch Channel</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col my-2 hvr-grow">
-        <div class="text-center d-flex flex-column justify-content-center align-items-center py-3" style="background-color: #202E4E; border-radius: 25px;">
-          <div class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon lg">
-            <i class="fa-solid fa-hand-holding-heart" style="font-size: 70px;"></i>
-          </div>
-          <div class="px-3">
-            <h2 class="fw-bold tada animated mb-0">€2,658</h2>
-            <p class="mb-0">Raised for ALONE during the 12 Hour Broadcast in 2022</p>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</div>
 <div id="dcufm-subcommittee">
   <h1>Meet The FM Sub-Committee</h1>
   <div class="container">
@@ -309,7 +155,7 @@
     
     <div class="row justify-content-center">
       <div class="col-md-12 custom-box">
-        <div class="center-contents" > <!--style="padding-bottom: 500px;"-->
+        <div class="center-contents" >
           <div class="container mt-4">
             <div class="row">
               <div class="col-md-4">
@@ -333,85 +179,10 @@
     </div>
   </div>
 </div>
+{% include "components/subgroup.html" with subgroups_data=subgroups_data %}
 
-<div class="container">
-  <h1>Our Flagships</h1>
-  <h5><i>Get to know our flagship fm shows!</h5></i>
-  <div class="row justify-content-center">
-    <div class="col-md-12 custom-box">
-      <div class="center-contents">
-        <div class="container mt-4">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
-                <img src="static/assets/fm/flagships/AR.png" width="300px" height="300px" alt="DCUfm Flagship" style="border-radius: 50%;">
-                <h3>Action Replay</h3>
-                <h5 style="padding-left: 10px; padding-right: 10px;"><i>Sports Flagship</i></h5>
-                <h6 style="padding-left: 10px; padding-right: 10px;"><i>Thursdays @ 1PM</i></h6>
-                <div class="social-icons" style="padding-bottom: 15px;">
-                  <ul>
-                    <li><a href="https://www.instagram.com/actionreplayfm/" target="_blank"><i class="hvr-bounce-in fa-brands fa-instagram"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
-                <img src="static/assets/fm/flagships/LL.png" width="300px" height="300px" alt="DCUfm Flagship" style="border-radius: 50%;">
-                <h3>Limelight</h3>
-                <h5 style="padding-left: 10px; padding-right: 10px;"><i>Pop-culture Flagship</i></h5>
-                <h6 style="padding-left: 10px; padding-right: 10px;"><i>Mondays @ 11AM</i></h6>
-                <div class="social-icons" style="padding-bottom: 15px;">
-                  <ul>
-                    <li><a href="https://www.instagram.com/limelightdcu/" target="_blank"><i class="hvr-bounce-in fa-brands fa-instagram"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
-                <img src="static/assets/fm/flagships/NW.png" width="300px" height="300px" alt="DCUfm Flagship" style="border-radius: 50%;">
-                <h3>Newswire</h3>
-                <h5 style="padding-left: 10px; padding-right: 10px;"><i>News Flagship</i></h5>
-                <h6 style="padding-left: 10px; padding-right: 10px;"><i>Fridays @ 2PM</i></h6>
-                <div class="social-icons" style="padding-bottom: 15px;">
-                  <ul>
-                    <li><a href="https://www.instagram.com/newswiredcu/" target="_blank"><i class="hvr-bounce-in fa-brands fa-instagram"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="dcufm-history">
-  <div class="container">
-    <h1>DCUfm Station Family Tree</h1>
-    <h5><i>Check out all the members who have worked in DCUfm</h5></i>
-    <div class="row justify-content-center" style="text-align: center;">
-      <div class="col-md-12 custom-box">
-        <div class="center-contents" > <!--style="padding-bottom: 500px;"-->
-          <div class="container mt-4">
-            <div class="row">
-              {% for member in family_tree %}
-              <div class="col-md-4 hvr-grow">
-                <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:10px">
-                  <p><strong>{{ member.year }}</strong></p>
-                  <p></p>{{ member.name }}</p>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+{% include 'components/family_tree.html' with title="DCUfm Station Manager Family Tree" subtitle="Check out all the members who have worked in DCUfm" family_tree=family_tree %}
+
 {% endblock %}
 {% block footer %}
 

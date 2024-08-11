@@ -1,0 +1,13 @@
+
+    <div class="container">
+        <h1>Google Drive Images</h1>
+        <div class="row">
+            {% for image in images %}
+            <div class="col-md-4">
+                <div class="committee-member" style="background-color: #202E4E; border-radius: 15px; padding:20px">
+                    <img src="{{ image.url }}" alt="{{ image.name }}" style="width: 100%; height: auto;"/>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>

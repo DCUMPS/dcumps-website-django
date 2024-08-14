@@ -5,6 +5,18 @@
   --hover-color: #FFE085;
 }
 
+.outside-box {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border-radius: 24px;
+}
+
+.inside2-box {
+  background-color: var(--main-color);
+  color: var(--text-color);
+  border-radius: 16px;
+}
+
 .secondary-gradient {
   background-color: linear-gradient(135deg, #9791FF 0%, #6A60FF 100%);
 }

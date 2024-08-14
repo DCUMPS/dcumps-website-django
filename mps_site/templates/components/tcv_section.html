@@ -1,17 +1,19 @@
-{# templates/components/tcv_info.html #}
+{# templates/components/newspaper_info.html #}
 <div class="container">
-    <h1 class="my-4">The College View</h1>
-    <h5><i>The platform of student news and student views in DCU since 1999. View our most recent articles here, and visit our website to read them all!</i></h5>
+    <!-- Dynamic Title and Subtitle -->
+    <h1 class="my-4">{{ title }}</h1>
+    <h5><i>{{ subtitle }}</i></h5>
+
     <div class="row justify-content-center">
         <div class="col-md-12 custom-box shadow-lg bg-body">
             <div class="center-contents">
-                <div class="container mt-4">
+                <div class="container mt-3">
                     <div class="row">
-                        {% for post in posts %}
+                        {% for post in section %}
                         <div class="col-md-4">
                             <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px;">
                                 <a href="{{ post.link }}" target="_blank">
-                                    <img class="my-4" src="{{ post.first_image|default:'static/assets/img/other/blank_event.png' }}" width="300px" height="300px" alt="The College View Article Image" style="aspect-ratio: 1 / 1; object-fit: cover;">
+                                    <img class="my-4" src="{{ post.first_image|default:'static/assets/img/other/blank_event.png' }}" width="300px" height="300px" alt="Article Image" style="aspect-ratio: 1 / 1; object-fit: cover;">
                                 </a>
                                 <h3 class="mx-2">
                                     <a href="{{ post.link }}" target="_blank">{{ post.title.rendered }}</a>
@@ -29,7 +31,6 @@
                         {% endfor %}
                     </div>
                 </div>
-                <a class="btn btn-primary" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;" href="https://thecollegeview.ie" target="_blank">Visit The College View Website</a>  
             </div>
         </div>
     </div>

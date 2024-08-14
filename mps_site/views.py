@@ -91,6 +91,7 @@ def index(request):
             
         return render(request, 'index.html', {'stats_data': index_stats_data,
                                               'subgroups_data': index_subgroups,
+                                              'merch': merch,
             'row_1_display': "display: none;", 
                                             'row_2_display': "display: none;",
                                             'row_3_display': "display: none;",
@@ -103,6 +104,13 @@ def index(request):
                                             'awards': awards,
                                             'posts': posts
                                           })
+        
+def tcv(request):
+    posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=10&orderby=date&_fields=id,date,title,content,link,author,featured_media")
+    news = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&categories=4&_fields=id,date,title,content,link,author,featured_media")
+    sport = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&categories=7&_fields=id,date,title,content,link,author,featured_media")
+    editors = CommitteeMember.objects.filter(position="Editor in Chief")
+    return render(request, 'thecollegeview.html', {'page_name': 'The College View', 'posts': posts, 'news': news, 'sport': sport, 'family_tree' : tcv_family_tree, 'editors': editors})
 
 def committee(request):
     committee_members = CommitteeMember.objects.all()

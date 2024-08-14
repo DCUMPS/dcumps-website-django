@@ -40,4 +40,5 @@ urlpatterns = [
     path("blog/category/<category>/", views.blog_category, name="blog_category"),
     path("blog/author/<author>/", views.blog_author, name="blog_author"),
     path("committee/history", views.committee_history, name="committee_history"),
+    path("thecollegeview", views.tcv, name="tcv"),
 ]

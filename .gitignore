@@ -6,3 +6,4 @@ staticfiles
 *.env
 import_posts.py
 setup_db.py
+stuff.txt

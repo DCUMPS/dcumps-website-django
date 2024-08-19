@@ -12,3 +12,4 @@ import_posts.py
 .env
 README.md
 .gitignore
+add_committee_history.py

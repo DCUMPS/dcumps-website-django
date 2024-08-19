@@ -6,11 +6,14 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt && rm requirements.txt
 
 COPY . /app/
 
 RUN python manage.py collectstatic -v 3 --noinput
+
+RUN rm -rf /app/static
+RUN rm -rf /app/requirements.txt
 
 EXPOSE 8000
 

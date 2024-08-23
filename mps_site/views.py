@@ -8,6 +8,9 @@ from datetime import datetime
 import markdown
 from .utils import *
 from .content import *
+from .data.homepage import *
+from .data.dcufm import *
+from .data.dcutv import *
 
 def render_blog_preview(posts):
     md = markdown.Markdown(extensions=["fenced_code"])
@@ -102,14 +105,17 @@ def index(request):
                                           'next_show': next_show,
                                             'event_status': "No events at the moment, check back later!",
                                             'awards': awards,
-                                            'posts': posts
+                                            'posts': posts,
+                                            'homepage_carousel': homepage_carousel,
                                           })
         
 def tcv(request):
     posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=10&orderby=date&_fields=id,date,title,content,link,author,featured_media")
     news = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&categories=4&_fields=id,date,title,content,link,author,featured_media")
     sport = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&categories=7&_fields=id,date,title,content,link,author,featured_media")
-    editors = CommitteeMember.objects.filter(position="Editor in Chief")
+    editors1 = CommitteeMember.objects.filter(position="Editor in Chief")
+    editors2 = CommitteeMember.objects.filter(position="Webmaster")
+    editors = editors1 | editors2
     return render(request, 'thecollegeview.html', {'page_name': 'The College View', 'posts': posts, 'news': news, 'sport': sport, 'family_tree' : tcv_family_tree, 'editors': editors})
 
 def committee(request):
@@ -129,7 +135,7 @@ def dcutv(request):
     video = get_latest_video_id(channel_url)
     most_recent_videos = get_latest_video_ids(channel_url)
     tv_managers = CommitteeMember.objects.filter(position="TV Manager")
-    return render(request, 'dcutv.html', {'page_name': 'DCUtv', 'tv_thursday' : 'RON9_ByY190', 'latest_video_id' : video, 'most_recent_videos': most_recent_videos, 'tv_managers': tv_managers})
+    return render(request, 'dcutv.html', {'page_name': 'DCUtv', 'tv_thursday' : 'RON9_ByY190', 'latest_video_id' : video, 'most_recent_videos': most_recent_videos, 'tv_managers': tv_managers, 'dcutv_carousel': dcutv_carousel, 'stats_data': dcutv_stats_data})
 
 def gallery(request):
     gallery_page_info = GalleryPage.objects.all().first()

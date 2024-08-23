@@ -1,0 +1,105 @@
+<div class="container">
+  <h1>Upcoming Events</h1>
+  <h5><i>You won't want to miss them!</h5></i>
+  <div class="row justify-content-center">
+    <div class="col-md-7 custom-box shadow-lg p-3 mb-5 bg-body">
+      <h3 style="justify-content: center; padding-top: 10px;">{{ event_status }}</h3>
+      <div class="container mt-4">
+        
+        <div class="row">
+          <div class="col-md-4">
+            
+            <div class="committee-member" id="row_1_show" style="border-radius: 25px; padding-top: 20px; padding-bottom: 20px; background-color: #202E4E; {{row_1_display}}">
+              <img src="{{ event_1_image }}" alt="Event 1 Image" width="300px" height="300px">
+              <h3>{{ event_1_name }}</h3>
+              <h5><strong>Starts:</strong> {{ event_1_start }}</h5>
+              <h5><strong>Ends:</strong> {{ event_1_end }}</h5>
+              <h5><strong>Location:</strong> {{ event_1_location }}</h5>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#moreInfoModal1" style="background-color: #9791FF;">
+                More Info
+              </button>
+              <div class="modal fade" id="moreInfoModal1" tabindex="-1" role="dialog" aria-labelledby="moreInfoModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content" style="background-color: #202E4E;">
+                    <div class="modal-header" style="background-color: #9791FF;">
+                      <h5 class="modal-title" id="moreInfoModalLabel" style="color: white;"><strong>Event Description:</strong> </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p style="color: white;">{{ event_1_description }}</p>
+                    </div>
+                    <div class="modal-footer"  style="background-color: #9791FF;">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color: #ffffff; border-radius: 10px; background-color:  #202E4E;">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="committee-member" id="row_2_show" style="border-radius: 25px; padding-top: 20px; padding-bottom: 20px; background-color: #202E4E; {{row_2_display}}">
+              <img src="{{ event_2_image }}" alt="Event 2 Image" width="300px" height="300px">
+              <h3>{{ event_2_name }}</h3>
+              <h5><strong>Starts:</strong> {{ event_2_start }}</h5>
+              <h5><strong>Ends:</strong> {{ event_2_end }}</h5>
+              <h5><strong>Location:</strong> {{ event_2_location }}</h5>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#moreInfoModal2" style="background-color: #9791FF;">
+                More Info
+              </button>
+              <div class="modal fade" id="moreInfoModal2" tabindex="-1" role="dialog" aria-labelledby="moreInfoModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content" style="background-color: #202E4E;">
+                    <div class="modal-header" style="background-color: #9791FF;">
+                      <h5 class="modal-title" id="moreInfoModalLabel" style="color: white;"><strong>Event Description:</strong> </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p style="color: white;">{{ event_2_description }}</p>
+                    </div>
+                    <div class="modal-footer"  style="background-color: #9791FF;">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color: #ffffff; border-radius: 10px; background-color:  #202E4E;">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="committee-member" id="row_3_show" style="border-radius: 25px; padding-top: 20px; padding-bottom: 20px; background-color: #202E4E; {{row_3_display}}">
+              <img src="{{ event_3_image }}" alt="Event 3 Image" width="300px" height="300px">
+              <h3>{{ event_3_name }}</h3>
+              <h5><strong>Starts:</strong> {{ event_3_start }}</h5>
+              <h5><strong>Ends:</strong> {{ event_3_end }}</h5>
+              <h5><strong>Location:</strong> {{ event_3_location }}</h5>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#moreInfoModal3" style="background-color: #9791FF;">
+                More Info
+              </button>
+              <div class="modal fade" id="moreInfoModal3" tabindex="-1" role="dialog" aria-labelledby="moreInfoModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content" style="background-color: #202E4E;">
+                    <div class="modal-header" style="background-color: #9791FF;">
+                      <h5 class="modal-title" id="moreInfoModalLabel" style="color: white;"><strong>Event Description:</strong> </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p style="color: white;">{{ event_3_description }}</p>
+                    </div>
+                    <div class="modal-footer"  style="background-color: #9791FF;">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color: #ffffff; border-radius: 10px; background-color:  #202E4E;">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>

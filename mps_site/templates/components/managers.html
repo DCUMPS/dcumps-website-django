@@ -1,0 +1,25 @@
+{% load static %}
+
+<div class="container">
+  <h1>{{ title }}</h1>
+  <h5><i>{{ subtitle }}</i></h5>
+  <div class="row justify-content-center">
+    {% for member in managers %}  
+    <div class="col-md-4 custom-box">
+      <div class="committee-manager text-center" style="background-color: #9791FF; border-radius: 12.5px;">
+        <img src="{% static member.image %}" alt="{{ member.position }}" style="background-color: #202E4E; border-radius: 15px;">
+        <div class="mx-4 pt-2 hvr-bounce-in" style="background-color: #202E4E; border-radius: 15px;">
+        <h3>{{ member.name }}</h3>
+        <div class="social-icons" style="padding-bottom: 15px;">
+          <ul>
+            <li><a href="{{ member.social_link_1_url }}" target="_blank" aria-label="MPS Committee Member Social Link 1"><i class="{{ member.social_link_1_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
+            <li><a href="{{ member.social_link_2_url }}" target="_blank" aria-label="MPS Committee Member Social Link 2"><i class="{{ member.social_link_2_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
+            <li><a href="{{ member.social_link_3_url }}" target="_blank" aria-label="MPS Committee Member Social Link 3"><i class="{{ member.social_link_3_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+        </div> 
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

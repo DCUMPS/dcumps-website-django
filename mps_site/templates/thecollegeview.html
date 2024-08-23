@@ -51,7 +51,7 @@
         <br><br>
         The College View is published fortnightly on Wednesday, with six issues per semester and is circulated among 12,000 students as well as DCU lecturers and staff.
       </p>
-      <h4 style="text-align: center;"><i>The College View Editors: Leonor & Katie</i></h4>
+      <h4 style="text-align: center;"><i>The College View Editors: Katie & Leonor</i></h4>
       <div class="center-contents pt-3">
         <a class="btn btn-primary" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;" href="https://thecollegeview.ie" target="_blank">Visit The College View Website</a>  
       </div>  
@@ -60,30 +60,7 @@
   </div>
 </div>
 
-
-<div class="container">
-  <h1 class="text-center">Meet The College View Editors</h1>
-  <h5 class="text-center"><i>The team behind everything newspapers!</i></h5>
-  <div class="row justify-content-center">
-    {% for member in editors %}  
-    <div class="col-md-4 custom-box">
-      <div class="committee-manager text-center" style="background-color: #9791FF; border-radius: 12.5px;">
-        <img src="{% static member.image %}" alt="{{ member.position }}" style="background-color: #202E4E; border-radius: 15px;">
-        <div class="mx-4 pt-2 hvr-bounce-in" style="background-color: #202E4E; border-radius: 15px;">
-        <h3>{{ member.name }}</h3>
-        <div class="social-icons" style="padding-bottom: 15px;">
-          <ul>
-            <li><a href="{{ member.social_link_1_url }}" target="_blank" aria-label="MPS Committee Member Social Link 1"><i class="{{ member.social_link_1_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
-            <li><a href="{{ member.social_link_2_url }}" target="_blank" aria-label="MPS Committee Member Social Link 2"><i class="{{ member.social_link_2_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
-            <li><a href="{{ member.social_link_3_url }}" target="_blank" aria-label="MPS Committee Member Social Link 3"><i class="{{ member.social_link_3_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
-          </ul>
-        </div>
-        </div> 
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</div>
+{% include 'components/managers.html' with title="Meet The College View Editors" subtitle="The team behind everything newspapers!" managers=editors %}
 
 <div class="modal fade" id="fmtimetable" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" >
   <div class="modal-dialog modal-lg" >

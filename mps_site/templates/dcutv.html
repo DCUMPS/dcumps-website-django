@@ -7,34 +7,7 @@
   <h3><i>Home of the DCUtv 24 Hour Broadcast</i></h3>
 </div>
 
-<div id="carousel-title-page" class="carousel slide" data-ride="carousel" style="margin-left: 10%; margin-right: 10%; margin-top: 2%;">
-  <div class="carousel-inner" style="border-radius: 25px;">
-    <div class="carousel-item active">
-      <img src="static/assets/img/slideshow/tv/2.JPG" class="d-block w-100 " alt="..." style="aspect-ratio: 16 / 9">
-    </div>
-    <div class="carousel-item">
-      <img src="static/assets/img/slideshow/tv/1.JPG" class="d-block w-100 " alt="..." style="aspect-ratio: 16 / 9">
-    </div>
-    <div class="carousel-item">
-      <img src="static/assets/img/slideshow/tv/3.jpg" class="d-block w-100"  alt="..." style="aspect-ratio: 16 / 9">
-    </div>
-    <div class="carousel-item">
-      <img src="static/assets/img/slideshow/tv/4.JPG" class="d-block w-100" alt="..." style="aspect-ratio: 16 / 9">
-    </div>
-    <div class="carousel-item">
-      <img src="static/assets/img/slideshow/tv/5.jpg" class="d-block w-100" alt="..." style="aspect-ratio: 16 / 9">
-    </div>
-  </div>
-  <div style="text-align:center; margin-bottom: 50px; z-index: 300;">
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-title-page" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-title-page" data-slide-to="1"></li>
-      <li data-target="#carousel-title-page" data-slide-to="2"></li>
-      <li data-target="#carousel-title-page" data-slide-to="3"></li>
-      <li data-target="#carousel-title-page" data-slide-to="4"></li>
-    </ol>
-  </div>
-</div>
+{% include 'components/carousel.html' with images=dcutv_carousel %}
 
 
 <div class="container">
@@ -54,163 +27,24 @@
   </div>
 </div>
 
-<div class="container">
-  <h1>Meet The TV Managers</h1>
-  <h5><i>The team behind everything video!</i></h5>
-  <div class="row justify-content-center">
-    {% for member in tv_managers %}  
-    <div class="col-md-4 custom-box">
-      <div class="committee-manager text-center" style="background-color: #9791FF; border-radius: 12.5px;">
-        <img src="{% static member.image %}" alt="{{ member.position }}" style="background-color: #202E4E; border-radius: 15px;">
-        <div class="mx-4 pt-2 hvr-bounce-in" style="background-color: #202E4E; border-radius: 15px;">
-        <h3>{{ member.name }}</h3>
-        <div class="social-icons" style="padding-bottom: 15px;">
-          <ul>
-            <li><a href="{{ member.social_link_1_url }}" target="_blank" aria-label="MPS Committee Member Social Link 1"><i class="{{ member.social_link_1_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
-            <li><a href="{{ member.social_link_2_url }}" target="_blank" aria-label="MPS Committee Member Social Link 2"><i class="{{ member.social_link_2_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
-            <li><a href="{{ member.social_link_3_url }}" target="_blank" aria-label="MPS Committee Member Social Link 3"><i class="{{ member.social_link_3_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
-          </ul>
-        </div>
-        </div> 
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</div>
-<div class="container">
-  <h1>Check out the latest upload on the YouTube channel</h1>
-  <h5><i>You know you want to!</i></h5>
-  <div class="container">
-    <div class="row justify-content-center" style="padding-top: 20px; padding-bottom: 20px;">
-      <div class="col-md-12">
-        <div class="center-contents">
-          <div style="width: 100%; min-width: 200px; max-width: 800px; margin: 0 auto;">
-            <div style="position: relative; width: 100%; overflow: hidden; padding-top: 56.25%;">
-              <p><iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none; border-radius: 25px;" src="https://www.youtube.com/embed/{{ latest_video_id }}" width="560" height="315" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'components/managers.html' with title="Meet The TV Managers" subtitle="The team behind everything video!" managers=tv_managers %}
 
+{% include 'components/dcutv/recent_productions.html' with most_recent_videos=most_recent_videos %}
 
-<div class="container">
-  <h1>Check out our "Meet the Committee" video</h1>
-  <h5><i>Filmed by DCUtv!</h5></i>
-  <div class="container">
-    <div class="row justify-content-center" style="padding-top: 20px; padding-bottom: 20px;">
-      <div class="col-md-12">
-        <div class="center-contents">
-          <div style="width: 100%; min-width: 200px; max-width: 800px; margin: 0 auto;">
-            <div style="position: relative; width: 100%; overflow: hidden; padding-top: 56.25%;">
-              <p><iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none; border-radius: 25px;" src="https://www.youtube.com/embed/TqaiFaxgg0g" width="560" height="315" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
-            </div>
-          </div>
-          
-          
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'components/stats.html' with title="DCUtv Stats" subtitle="See our progress over the years!" animate_seconds=5 stats=stats_data %}
 
-<div class="container">
-  <h1>TV Thursdays</h1>
-  <h5><i>Weekly videos filmed on DCU!</h5></i>
-  <div class="container">
-    <div class="row justify-content-center" style="padding-top: 20px; padding-bottom: 20px;">
-      <div class="col-md-12">
-        <div class="center-contents">
-          <div style="width: 100%; min-width: 200px; max-width: 800px; margin: 0 auto;">
-            <div style="position: relative; width: 100%; overflow: hidden; padding-top: 56.25%;">
-              <p><iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none; border-radius: 25px;" src="https://www.youtube.com/embed/{{ tv_thursday }}" width="560" height="315" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
-            </div>
-          </div>
-          
-          
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<h1>Check out the latest upload on the YouTube channel</h1>
+<h5><i>You know you want to!</i></h5>
+{% include 'components/youtube_video.html' with title="Latest MPS Video" latest_video_id=latest_video_id %}
+  
+<h1>Check out our "Meet the Committee" video</h1>
+<h5><i>Filmed by DCUtv!</h5></i>
+{% include 'components/youtube_video.html' with title="Meet the Committee" latest_video_id=TqaiFaxgg0g %}
 
-  <h1>DCUtv Stats</h1>
-  <h5><i>See our progress over the years!</h5></i>
+<h1>TV Thursdays</h1>
+<h5><i>Weekly videos filmed on DCU!</h5></i>
+{% include 'components/youtube_video.html' with title="TV Thursday" latest_video_id=tv_thursday %}
 
-  <div class="container">
-
-    
-    <div class="row justify-content-center">
-      <div class="col-md-12 custom-box">
-    <div class="row gy-3 row-cols-1 row-cols-md-3"  style="color: white;">
-      
-      <div class="col my-2 hvr-grow">
-        <div class="text-center d-flex flex-column justify-content-center align-items-center py-3" style="background-color: #202E4E; border-radius: 25px;">
-          <div class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon lg">
-            <i class="fa-solid fa-hand-holding-heart" style="font-size: 70px;"></i>
-          </div>
-          <div class="px-3">
-            <h2 class="fw-bold tada animated mb-0">€12,820</h2>
-            <p class="mb-0">Raised for Jack & Jill Children’s Foundation during the 24 Hour Broadcast
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col my-2 hvr-grow">
-        <div class="text-center d-flex flex-column justify-content-center align-items-center py-3" style="background-color: #202E4E; border-radius: 25px;">
-          <div class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon lg">
-            <i class="fa-brands fa-youtube" style="font-size: 70px;"></i>
-          </div>
-          <div class="px-3">
-            <h2 class="fw-bold tada animated mb-0">2110</h2>
-            <p class="mb-0">YouTube Subscribers on the DCU MPS <a href="https://youtube.com/@dcumps" target="_blank">YouTube Channel!</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col my-2 hvr-grow">
-        <div class="text-center d-flex flex-column justify-content-center align-items-center py-3" style="background-color: #202E4E; border-radius: 25px;">
-          <div class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon lg">
-            <i class="fa-regular fa-eye" style="font-size: 70px;"></i>
-          </div>
-          <div class="px-3">
-            <h2 class="fw-bold mb-0" data-bss-hover-animate="tada">1,600,000</h2>
-            <p class="mb-0">Views on the DCU MPS <a href="https://youtube.com/@dcumps" target="_blank">YouTube Channel!</a></p>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-<div id="dcutv-recent">
-  <div class="container">
-    <h1>Most Recent DCUtv Productions</h1>
-    <h5><i>Check out the recent content DCUtv are creating!</h5></i>
-    <div class="row justify-content-center">
-      <div class="col-md-12 custom-box">
-        <div class="center-contents">
-          <div class="container mt-4">
-            <div class="row">
-              {% for id in most_recent_videos %}
-              <div class="col-md-4">
-                <div style="width: 100%; min-width: 200px; max-width: 800px; margin: 0 auto; padding-bottom: 25px;">
-                  <div style="position: relative; width: 100%; overflow: hidden; padding-top: 56.25%;">
-                    <p><iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none; border-radius: 25px;" src="https://www.youtube.com/embed/{{ id }}" width="560" height="315" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
-                  </div>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-          <a class="btn btn-primary custom-button" href="/youtube" target="_blank">YouTube Channel</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
 
 {% endblock %}
 {% block footer %}

@@ -1,0 +1,18 @@
+{% load static %}
+
+<div id="carousel-title-page" class="carousel slide" data-ride="carousel" style="margin-left: 10%; margin-right: 10%; margin-top: 2%;">
+  <div class="carousel-inner" style="border-radius: 25px;">
+    {% for image in images %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      <img src="{% static image.url %}" class="d-block w-100" alt="{{ image.alt }}" style="aspect-ratio: 16 / 9;">
+    </div>
+    {% endfor %}
+  </div>
+  <div style="text-align:center; margin-bottom: 50px; z-index: 300;">
+    <ol class="carousel-indicators">
+      {% for image in images %}
+      <li data-target="#carousel-title-page" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+      {% endfor %}
+    </ol>
+  </div>
+</div>

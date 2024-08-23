@@ -7,7 +7,9 @@
     {% for member in managers %}  
     <div class="col-md-4 custom-box">
       <div class="committee-manager text-center" style="background-color: #9791FF; border-radius: 12.5px;">
+        <div class="row justify-content-center">
         <img src="{% static member.image %}" alt="{{ member.position }}" style="background-color: #202E4E; border-radius: 15px;">
+        </div>
         <div class="mx-4 pt-2 hvr-bounce-in" style="background-color: #202E4E; border-radius: 15px;">
         <h3>{{ member.name }}</h3>
         <div class="social-icons" style="padding-bottom: 15px;">

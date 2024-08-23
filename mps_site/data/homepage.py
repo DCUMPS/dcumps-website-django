@@ -6,3 +6,113 @@ homepage_carousel = [
         {'url': 'assets/img/slideshow/DSC00472.JPG', 'alt': 'DCU MPS Slideshow Image 5'},
         {'url': 'assets/img/slideshow/DSC_0066.JPG', 'alt': 'DCU MPS Slideshow Image 6'},
     ]
+
+homepage_subgroups = {
+  "title": "MPS Sub-Groups",
+  "subtitle": "Explore the Pillars of MPS!",
+  "groups": [
+    {
+      "name": "DCUfm",
+      "link": "/dcufm",
+      "image": "assets/img/other/FM_Transparent.webp",
+      "alt_text": "MPS Sub-Group",
+      "description": "DCU's official radio station, live all day Monday to Friday!",
+      "social_links": [
+        {"url": "http://instagram.com/dcufm", "icon_class": "fa-brands fa-instagram", "aria_label": "DCUfm Instagram"},
+        {"url": "https://www.twitch.tv/dcufm", "icon_class": "fa-brands fa-twitch", "aria_label": "DCUfm Twitch"}
+      ]
+    },
+    {
+      "name": "DCUtv",
+      "link": "/dcutv",
+      "image": "assets/img/other/TV_Transparent.webp",
+      "alt_text": "MPS Sub-Group",
+      "description": "24 Hour Broadcast, Vlogs, Movies and more!",
+      "social_links": [
+        {"url": "http://instagram.com/dcutvmps", "icon_class": "fa-brands fa-instagram", "aria_label": "DCUtv Instagram"},
+        {"url": "https://www.youtube.com/@dcumps", "icon_class": "fa-brands fa-youtube", "aria_label": "DCU MPS YouTube Channel"}
+      ]
+    },
+    {
+      "name": "The College View",
+      "link": "https://thecollegeview.ie/",
+      "image": "assets/img/other/CV_Transparent.webp",
+      "alt_text": "MPS Sub-Group",
+      "description": "The platform of student news and student views in DCU since 1999!",
+      "social_links": [
+        {"url": "https://www.instagram.com/thecollegeview", "icon_class": "fa-brands fa-instagram", "aria_label": "The College View Instagram"},
+        {"url": "https://thecollegeview.ie/", "icon_class": "fa fa-link", "aria_label": "The College View Website"}
+      ]
+    }
+  ]
+}
+
+homepage_stats_data = [
+        {
+            'id': 'donation',
+            'icon_class': 'fa-solid fa-hand-holding-heart',
+            'number': '16560',
+            'description': 'Raised for charity during our broadcasts this year'
+        },
+        {
+            'id': 'members',
+            'icon_class': 'fa-solid fa-users',
+            'number': '280',
+            'description': 'Registered Members on DCU Clubs & Societies'
+        },
+        {
+            'id': 'years',
+            'icon_class': 'fa-solid fa-calendar-days',
+            'number': '39',
+            'description': 'Years of MPS<br>Since 1985'
+        },
+        {
+            'id': 'articles',
+            'icon_class': 'fa fa-newspaper',
+            'number': '6049',
+            'description': 'Articles Published on <a href="https://thecollegeview.ie" target="_blank">The College View</a>'
+        }
+    ]
+
+
+homepage_merch = {
+  "title": "Our Merch",
+  "subtitle": "Represent MPS in style with your very own merch!",
+  "products": [
+    {
+      "name": "MPS Hoodie",
+      "image": "images/merch/merch1.png",
+      "alt_text": "MPS Hoodie",
+      "price": "€30",
+      "description": "Stay warm and stylish with our MPS Hoodie!"
+    },
+    {
+      "name": "MPS T-Shirt",
+      "image": "images/merch/merch2.png",
+      "alt_text": "MPS T-Shirt",
+      "price": "€15",
+      "description": "Show off your MPS pride with our T-Shirt!"
+    },
+    {
+      "name": "MPS Mug",
+      "image": "images/merch/merch3.png",
+      "alt_text": "MPS Mug",
+      "price": "€10",
+      "description": "Start your day right with our MPS Mug!"
+    },
+    {
+      "name": "MPS Sticker",
+      "image": "images/merch/merch4.png",
+      "alt_text": "MPS Sticker",
+      "price": "€3",
+      "description": "Decorate your laptop or phone with our MPS Sticker!"
+    },
+    {
+      "name": "MPS Beanie",
+      "image": "images/merch/merch5.png",
+      "alt_text": "MPS Beanie",
+      "price": "€12",
+      "description": "Keep your head warm with our MPS Beanie!"
+    }
+  ]
+}

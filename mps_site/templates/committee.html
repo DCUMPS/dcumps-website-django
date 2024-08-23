@@ -4,39 +4,15 @@
   
   
 <div class="title-small">
-  <h1>{{ committee_page_info.page_title }}</h1>
-  <h5><i>{{ committee_page_info.page_subtitle }}</i></h5>
+  <h1>Meet the Committee</h1>
+  <h5><i>Meet the team who make the MPS magic possible!</i></h5>
 </div>
-{% include 'components/youtube_video.html' with title="MPS Meet The Committee Video" latest_video_id=committee_page_info.committee_video_link %}
+{% include 'components/youtube_video.html' with title="MPS Meet The Committee Video" latest_video_id=committee_video_id %}
 <div class="container">
   
 <div class="row justify-content-center">
   <a class="btn btn-primary" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;" href="/committee/history">View Committee History</a>  
-  <div class="col-md-12 custom-box">
-      <div class="center-contents">
-          <div class="container mt-4">
-              <div class="row">
-                  {% for member in committee_members %}
-                  <div class="col-md-4">
-                      <div class="committee-member">
-                          <img src="{% static member.image %}" alt="Committee Member">
-                          <div class="mx-4 pt-2 hvr-bounce-in" style="background-color: #202E4E; border-radius: 15px;">
-                              <h3>{{ member.name }}</h3>
-                              <h5><i>{{ member.position }}</i></h5>
-                              <div class="social-icons">
-                                <ul>
-                                  <li><a href="{{ member.social_link_1_url }}" target="_blank" aria-label="MPS Committee Member Social Link 1"><i class="{{ member.social_link_1_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
-                                  <li><a href="{{ member.social_link_2_url }}" target="_blank" aria-label="MPS Committee Member Social Link 2"><i class="{{ member.social_link_2_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
-                                  <li><a href="{{ member.social_link_3_url }}" target="_blank" aria-label="MPS Committee Member Social Link 3"><i class="{{ member.social_link_3_icon }} hvr-bounce-in" aria-hidden="true"></i></a></li>
-                                </ul>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  {% endfor %}
-              </div>
-          </div>
-      </div>
+  {% include 'components/committee_grid.html' with committee_members=committee_members %}
   </div>
 </div>
 </div>

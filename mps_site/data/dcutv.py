@@ -11,18 +11,24 @@ dcutv_stats_data = [
       "id": "donation",
       "icon_class": "fa-solid fa-hand-holding-heart",
       "number": "12820",
-      "description": "Raised for Jack & Jill Children’s Foundation during the 24 Hour Broadcast"
+      "description": "Raised for Jack & Jill Children’s Foundation during the 24 Hour Broadcast in December 2023"
     },
     {
       "id": "youtube",
       "icon_class": "fa-brands fa-youtube",
       "number": "2110",
-      "description": "YouTube Subscribers on the DCU MPS <a href=\"https://youtube.com/@dcumps\" target=\"_blank\">YouTube Channel!</a>"
+      "description": "YouTube Subscribers on the DCU MPS <a href=\"https://youtube.com/@dcumps\" target=\"_blank\">YouTube Channel</a>"
     },
     {
       "id": "views",
       "icon_class": "fa-regular fa-eye",
       "number": "1600000",
-      "description": "Views on the DCU MPS <a href=\"https://youtube.com/@dcumps\" target=\"_blank\">YouTube Channel!</a>"
+      "description": "Views on the DCU MPS <a href=\"https://youtube.com/@dcumps\" target=\"_blank\">YouTube Channel</a>"
+    },
+    {
+      "id": "videos",
+      "icon_class": "fa-solid fa-video",
+      "number": "1051",
+      "description": "Videos uploaded to the DCU MPS <a href=\"https://youtube.com/@dcumps\" target=\"_blank\">YouTube Channel</a>"
     }
   ]

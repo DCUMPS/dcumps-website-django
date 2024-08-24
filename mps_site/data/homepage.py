@@ -52,7 +52,7 @@ homepage_stats_data = [
             'id': 'donation',
             'icon_class': 'fa-solid fa-hand-holding-heart',
             'number': '16560',
-            'description': 'Raised for charity during our broadcasts this year'
+            'description': 'Euro raised for charity during our broadcasts this year'
         },
         {
             'id': 'members',
@@ -116,3 +116,131 @@ homepage_merch = {
     }
   ]
 }
+
+homepage_awards = [
+  {
+    "title": "Awards",
+    "subtitle": "Our Society has won many awards over the years!",
+    "awards": [
+      {
+        "award": "Best Society in a Cultural/Academic/Social Field",
+        "sponsor": "DCU Society Awards",
+        "year": "2024",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Society Personality - Shane O'Loughlin",
+        "sponsor": "DCU Society Awards",
+        "year": "2024",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Individual Contribution to Society Life - Shane O'Loughlin",
+        "sponsor": "DCU Society Awards",
+        "year": "2024",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Individual Contribution to Society Life - Sarah Ó Tuama",
+        "sponsor": "DCU Society Awards",
+        "year": "2024",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Best Society Promotional Video",
+        "sponsor": "Board of Irish College Society Awards",
+        "year": "2023",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Best Society Publicity Campaign - DCUtv 24hr Broadcast",
+        "sponsor": "DCU Society Awards",
+        "year": "2023",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Best Society Promotional Video - Welcome to MPS '22/23",
+        "sponsor": "DCU Society Awards",
+        "year": "2023",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Individual Contribution to Society Life - Jack Collier",
+        "sponsor": "DCU Society Awards",
+        "year": "2023",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Best Charitable Contribution - (society)",
+        "sponsor": "DCU Society Awards",
+        "year": "2021",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Best Society Poster - DCUfm 12hr Broadcast",
+        "sponsor": "DCU Society Awards",
+        "year": "2021",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Individual Contribution to Society Life - Ciara Breslin",
+        "sponsor": "DCU Society Awards",
+        "year": "2021",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Best Society in Ireland",
+        "sponsor": "Board of Irish College Society Awards",
+        "year": "2015",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Best Society Event - DCUtv 24hr Broadcast",
+        "sponsor": "DCU Society Awards",
+        "year": "2014",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Best Society",
+        "sponsor": "DCU Society Awards",
+        "year": "2013",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Best Online Presence",
+        "sponsor": "The Board of Irish College Society Awards",
+        "year": "2012",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Best Communication & Marketing",
+        "sponsor": "DCU Society Awards",
+        "year": "2012",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Best College Society in Ireland",
+        "sponsor": "The Board of Irish College Society Awards",
+        "year": "2011",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      }
+    ]
+  }
+]

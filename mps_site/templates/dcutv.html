@@ -33,18 +33,23 @@
 
 {% include 'components/stats.html' with title="DCUtv Stats" subtitle="See our progress over the years!" animate_seconds=5 stats=stats_data %}
 
-<h1>Check out the latest upload on the YouTube channel</h1>
+<div class="container">
+<h1>Check out our latest YouTube upload</h1>
 <h5><i>You know you want to!</i></h5>
 {% include 'components/youtube_video.html' with title="Latest MPS Video" latest_video_id=latest_video_id %}
-  
-<h1>Check out our "Meet the Committee" video</h1>
-<h5><i>Filmed by DCUtv!</h5></i>
-{% include 'components/youtube_video.html' with title="Meet the Committee" latest_video_id=committee_video_id %}
+</div>
 
+<div class="container">
+<h1>Check out our "Meet the Committee" video</h1>
+<h5><i>Filmed by DCUtv across the globe!</h5></i>
+{% include 'components/youtube_video.html' with title="Meet the Committee" latest_video_id=committee_video_id %}
+</div>
+
+<div class="container">
 <h1>TV Thursdays</h1>
 <h5><i>Weekly videos filmed on DCU!</h5></i>
 {% include 'components/youtube_video.html' with title="TV Thursday" latest_video_id=tv_thursday %}
-
+</div>
 
 {% endblock %}
 {% block footer %}

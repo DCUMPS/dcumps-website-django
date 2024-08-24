@@ -20,7 +20,7 @@ dcufm_stats_data = [
       "id": "store",
       "icon_class": "fa-solid fa-hand-holding-heart",
       "number": "1570",
-      "description": "Raised for CRY Ireland during the 12 Hour Broadcast in 2023"
+      "description": "Euro raised for CRY Ireland during the 12 Hour Broadcast in 2023"
     },
     {
       "id": "twitch",
@@ -32,7 +32,13 @@ dcufm_stats_data = [
       "id": "shows",
       "icon_class": "fa-solid fa-hand-holding-heart",
       "number": "2658",
-      "description": "Raised for ALONE during the 12 Hour Broadcast in 2022"
+      "description": "Euro raised for ALONE during the 12 Hour Broadcast in 2022"
+    },
+    {
+      "id": "radio",
+      "icon_class": "fa-solid fa-radio",
+      "number": "51",
+      "description": "Shows broadcasted weekly on DCUfm"
     }
   ]
 

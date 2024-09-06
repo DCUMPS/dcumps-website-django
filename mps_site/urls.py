@@ -9,6 +9,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('', views.index, name="index"),
+    path('link', views.links, name="links"),
     path('links', views.links, name="links"),
     path('linktree', views.links, name="links"),
     path('linksdcutv', views.links_tv, name="links_tv"),

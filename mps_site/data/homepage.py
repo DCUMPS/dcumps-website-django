@@ -117,8 +117,7 @@ homepage_merch = {
   ]
 }
 
-homepage_awards = [
-  {
+homepage_awards = {
     "title": "Awards",
     "subtitle": "Our Society has won many awards over the years!",
     "awards": [
@@ -243,4 +242,3 @@ homepage_awards = [
       }
     ]
   }
-]

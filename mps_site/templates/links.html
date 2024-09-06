@@ -8,9 +8,12 @@
     <div class="col-md-7 custom-box">
       <div class="social-description">
         {% for text, link in linktree %}
-        <div class="inside-box inside-box-space">
-          <a href="{{ link }}">{{ text }}</a>
-        </div>
+        <a href="{{ link }}" class="text-decoration-none">
+          <div class="inside-box inside-box-space py-4">
+            <i class="fa-solid fa-link"></i>
+            {{ text }}
+          </div>
+        </a>
         {% endfor %}
       </div>
     </div>

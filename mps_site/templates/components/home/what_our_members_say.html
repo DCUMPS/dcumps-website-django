@@ -3,54 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Member Testimonials</title>
-  <!-- Swiper.js CSS -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <!-- Custom Styles -->
   <style>
-    /* Swiper Container */
     .swiper-container {
-      width: 95%;
+      width: 98%;
       height: 100%;
-      margin: 20px auto;
+      margin: 0px auto;
       position: relative;
-      overflow: hidden; /* Ensure that the overflow is hidden */
+      overflow: hidden;
     }
 
-    /* Testimonial Box */
     .testimonial-box {
       background-color: #202E4E;
       color: white;
       border-radius: 15px;
-      padding: 20px;
+      padding: 25px;
       text-align: center;
     }
 
-    /* Swiper Navigation Arrows */
     .swiper-button-next, .swiper-button-prev {
       color: white;
     }
 
-    /* Swiper Pagination Dots */
     .swiper-pagination {
       position: relative;
-      margin-top: -15px;
+      margin-top: -22px;
       width: 100%;
       text-align: center;
     }
 
     .swiper-pagination-bullet {
-      background: rgba(255, 255, 255, 0.8); /* Lighter color for better contrast */
-      width: 12px; /* Slightly larger dots */
-      height: 12px; /* Slightly larger dots */
+      background: rgba(255, 255, 255, 0.8);
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      margin: 0 4px; /* Spacing between dots */
-      opacity: 0.7; /* Slightly transparent */
+      margin: 0 4px;
+      opacity: 0.7;
     }
 
     .swiper-pagination-bullet-active {
-      background: white; /* White color for active dot */
-      opacity: 1; /* Fully opaque */
+      background: white;
+      opacity: 1;
     }
   </style>
 </head>
@@ -58,42 +51,40 @@
   <div class="container">
     <h1>What Our Members Say</h1>
     <h5><i>Read why they love MPS so much!</i></h5>
+    <div class="row justify-content-center" style="padding: 20px;">
     <div class="col-md-12 custom-box shadow-lg bg-body">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <!-- Slide 1 -->
           <div class="swiper-slide">
             <div class="testimonial-box">
               <p>"MPS is love, MPS is life"</p>
               <h5>- Jake Farrell</h5>
-              <small>2nd Year Computer Science</small>
+              <small>3rd Year Computer Science</small>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="testimonial-box">
               <p>"MPS is love, MPS is life"</p>
               <h5>- Jake Farrell</h5>
-              <small>2nd Year Computer Science</small>
+              <small>3rd Year Computer Science</small>
             </div>
           </div>
           <div class="swiper-slide">
             <div class="testimonial-box">
               <p>"MPS is love, MPS is life"</p>
               <h5>- Jake Farrell</h5>
-              <small>2nd Year Computer Science</small>
+              <small>3rd Year Computer Science</small>
             </div>
           </div>
         </div>  
-        <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
-        <!-- Add Navigation -->
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </div>
     </div>
+    </div>
   </div>
 
-  <!-- Swiper.js JS -->
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
     var swiper = new Swiper('.swiper-container', {

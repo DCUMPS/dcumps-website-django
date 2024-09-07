@@ -122,7 +122,7 @@ homepage_awards = {
     "subtitle": "Our Society has won many awards over the years!",
     "awards": [
       {
-        "award": "Best Society in a Cultural/Academic/Social Field",
+        "award": "Best Society in a Cultural / Academic / Social Field",
         "sponsor": "DCU Society Awards",
         "year": "2024",
         "award_icon": "fa-solid fa-trophy",

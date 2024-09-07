@@ -13,3 +13,6 @@ admin.site.register(Comment)
 admin.site.register(CommitteeMember)
 admin.site.register(CommitteePage)
 admin.site.register(GalleryPage)
+
+admin.site.register(CommitteeHistory)
+admin.site.register(CommitteeHistoryMember)

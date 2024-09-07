@@ -5,26 +5,68 @@
 <div class="title-small">
   <h1>Committee History</h1>
   <h5><i>Meet everyone who has contributed to MPS over the years!</i></h5>
+  <h5><i>If you were on committee previously and are not listed, please let us know at <a href="mailto:webmaster@dcumps.ie">webmaster@dcumps.ie</a></i></h5>
 </div>
-{% for year in committee_history %}
-<h1>{{ year.year }}</h1>
+
 <div class="container">
-<div class="row justify-content-center">
-  <div class="col-md-8 custom-box shadow-lg bg-body">
-    <div class="awards">
-      <div class="center-contents shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px; padding-top: 10px; padding-bottom: 10px;"> 
-        <ul style="padding-left: 10px; padding-right: 10px; list-style: none; text-align: left;">
-          {% for member in year.committee_members.all %}
-          <li><b>{{ member.position }}</b> - {{ member.name }}</li>
-          {% endfor %}
-          <ul></ul>
+  <div class="row justify-content-center">
+    <div class="col-md-12 custom-box shadow-lg bg-body" id="stats">
+      <div class="row gy-4 row-cols-2 row-cols-md-4" style="color: white;">
+        {% for year in committee_history %}
+        <div class="col my-2 award-item {% if forloop.counter > 8 %}d-none{% endif %}">
+          <!-- Hide awards after the first 8 initially -->
+          <div class="hvr-grow text-center d-flex flex-column justify-content-center align-items-center py-3 shadow-lg bg-body"
+            style="background-color: #202E4E; border-radius: 25px;">
+            <div class="bs-icon-xl bs-icon-circle bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-2 bs-icon lg">
+              <i class="fa-solid fa-users" style="font-size: 70px;"></i>
+            </div>
+            <div class="px-3" id="{{ year.title | lower }}">
+              <h2 class="fw-bold tada animated mb-0">{{ year.year }}</h2>
+              <p class="mb-0">Committee</p>
+            </div>
+            <a class="btn btn-primary" href="{% url 'committee_history_detail' year %}" style="margin-top: 10px; margin-bottom: 10px; color: white";>View Members</a>
+          </div>
         </div>
+        {% endfor %}
+      </div>
+      <div class="text-center mt-3">
+        <button id="viewMoreButton" class="btn btn-primary" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;">View All Committee History</button>
+        <button id="hideButton" class="btn btn-secondary d-none" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;">Hide Committee History</button>
       </div>
     </div>
   </div>
 </div>
-</div>
-{% endfor %}
+
+<script>
+  const viewMoreButton = document.getElementById('viewMoreButton');
+  const hideButton = document.getElementById('hideButton');
+  const awardItems = document.querySelectorAll('.award-item');
+
+  viewMoreButton.addEventListener('click', function () {
+    // Show all hidden awards
+    awardItems.forEach((item, index) => {
+      if (index >= 8) {
+        item.classList.remove('d-none');
+      }
+    });
+    // Show the Hide button and hide the View More button
+    viewMoreButton.classList.add('d-none');
+    hideButton.classList.remove('d-none');
+  });
+
+  hideButton.addEventListener('click', function () {
+    // Hide awards after the first 8
+    awardItems.forEach((item, index) => {
+      if (index >= 8) {
+        item.classList.add('d-none');
+      }
+    });
+    // Show the View More button and hide the Hide button
+    hideButton.classList.add('d-none');
+    viewMoreButton.classList.remove('d-none');
+  });
+</script>
+
 
 {% endblock %}
 {% block footer %}

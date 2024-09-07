@@ -26,6 +26,7 @@ sitemaps = {
     'posts': PostSitemap,
     'authors': AuthorSitemap,
     'categories': CategorySitemap,
+    'committee_history': CommitteeHistorySitemap,
 }
 
 urlpatterns = [

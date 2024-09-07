@@ -1,10 +1,6 @@
 *.pyc
 migrations/
 old
-posts
 staticfiles
 *.env
-import_posts.py
-setup_db.py
-stuff.txt
-add_committee_history.py
+files

@@ -36,6 +36,17 @@ class CategorySitemap(Sitemap):
     def lastmod(self, obj):
         return datetime.datetime.now()
     
+class CommitteeHistorySitemap(Sitemap):
+    changefreq = 'monthly'
+    priority = 0.8
+    protocol = 'https'
+
+    def items(self):
+        return CommitteeHistory.objects.all().order_by("-year")
+
+    def lastmod(self, obj):
+        return datetime.datetime.now()
+    
 class StaticViewSitemap(Sitemap):
     priority = 1.0
     changefreq = 'daily'

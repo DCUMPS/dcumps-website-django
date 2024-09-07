@@ -56,6 +56,12 @@ def committee_history(request):
                   {'page_name': 'Committee History', 
                    'committee_history': committee_history})
 
+def committee_history_detail(request, year):
+    committee_history = CommitteeHistory.objects.get(year=year)
+    return render(request, 'committee_history_detail.html', 
+                  {'page_name': committee_history.title, 
+                   'committee_history': committee_history})
+
 def contact(request):
     return render(request, 'contact.html', 
                   {'page_name': 'Contact'})

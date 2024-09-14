@@ -16,20 +16,21 @@ def index(request):
         video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
         posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
         previous, current, next_show = get_date_time()
+        events = get_event_data()
+        print(events)
+        event_range = range(events['event_count'])
 
         return render(request, 'index.html', 
                        {'stats_data': homepage_stats_data,
                         'subgroups_data': homepage_subgroups,
                         'merch': homepage_merch,
-                        'row_1_display': "display: none;", 
-                        'row_2_display': "display: none;",
-                        'row_3_display': "display: none;",
+                        'events': events,
+                        'event_range': event_range,
                         'page_name': 'Home', 
                         'latest_video_id' : video, 
                         'previous_show': previous, 
                         'current_show': current, 
                         'next_show': next_show,
-                        'event_status': "No events at the moment, check back later!",
                         'homepage_awards': homepage_awards,
                         'posts': posts,
                         'homepage_carousel': homepage_carousel,})

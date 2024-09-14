@@ -13,7 +13,6 @@ COPY . /app/
 RUN python manage.py collectstatic -v 3 --noinput
 
 #RUN rm -rf /app/mps_site/static
-RUN rm -rf /app/requirements.txt
 
 EXPOSE 8000
 

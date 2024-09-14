@@ -16,13 +16,13 @@ def index(request):
         video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
         posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
         previous, current, next_show = get_date_time()
-        #events = get_event_data()
+        events = requests.get("https://clubsandsocs.jakefarrell.ie/dcuclubsandsocs.ie/society/media-production/events").json()
 
         return render(request, 'index.html', 
                        {'stats_data': homepage_stats_data,
                         'subgroups_data': homepage_subgroups,
                         'merch': homepage_merch,
-                        #'events': events,
+                        'events': events,
                         'page_name': 'Home', 
                         'latest_video_id' : video, 
                         'previous_show': previous, 

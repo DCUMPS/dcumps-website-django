@@ -42,18 +42,20 @@ dcufm_stats_data = [
     }
   ]
 
-dcufm_subcommittee = [
-  {
+dcufm_subcommittee = {
+  "members": [
+    {
     "name": "Sophie Alexander",
     "position": "Events Manager",
     "image": "assets/fm/SA.png",
-  },
-  {
-    "name": "Abbie Nolan",
+    },
+    {
+          "name": "Abbie Nolan",
     "position": "Flagship Captain",
     "image": "assets/fm/AN.png",
-  },
-]
+    }
+  ]
+}
 
 dcufm_subgroups = {
   "title": "Our Flagships",

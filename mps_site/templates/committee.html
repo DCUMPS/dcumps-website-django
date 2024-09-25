@@ -6,13 +6,14 @@
 <div class="title-small">
   <h1>Meet the Committee</h1>
   <h5><i>Meet the team who make the MPS magic possible!</i></h5>
+  <h5 class="contact-hover"><i>Want to get in contact? Send us an email at <a href="mailto:committee@dcumps.ie">committee@dcumps.ie</a></i></h5>
 </div>
 {% include 'components/youtube_video.html' with title="MPS Meet The Committee Video" latest_video_id=committee_video_id %}
 <div class="container">
   
 <div class="row justify-content-center">
   <a class="btn btn-primary" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;" href="/committee/history">View Committee History</a>  
-  {% include 'components/committee_grid.html' with committee_members=committee_members %}
+  {% include 'components/committee_grid.html' with committee_members=committee_list %}
   </div>
 </div>
 </div>

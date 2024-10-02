@@ -3,33 +3,41 @@
   <h5><i>You won't want to miss them!</i></h5>
   <div class="row justify-content-center">
     <div class="col-md-12 custom-box shadow-lg p-3 mb-5 bg-body">
-      {% if events.events.items|length == 0 %}
+      {% if events|length == 0 %}
       <h3 style="justify-content: center; padding-top: 10px;">No events at the
         moment, check back later!</h3>
       {% else %}
       <div class="container mt-4">
         <div class="row">
-
-          {% for event_key, event in events.events.items %}
+          {% for event in events %}
           <div class="col-md-4">
             <div class="committee-member"
               style="border-radius: 25px; padding-top: 20px; padding-bottom: 20px; background-color: #202E4E;">
-              <img src="{{ event.image }}" alt="Event Image" width="300px"
-                height="300px">
+              <img src="{{ event.image|default:'/static/assets/img/other/upcoming_event.png' }}" alt="Event Image" width="300px" height="300px">
+
               <h3>{{ event.name }}</h3>
-              <h5><strong>Starts:</strong> {{ event.start }}</h5>
-              <h5><strong>Ends:</strong> {{ event.end }}</h5>
-              <h5><strong>Location:</strong> <a href="{{ event.location }}"
-                  target="_blank">Join Here</a></h5>
+
+              <h5>
+                <strong>Starts:</strong> {{ event.formatted_start }}
+              </h5>
+              <h5>
+                <strong>Ends:</strong> {{ event.formatted_end }}
+              </h5>
+
+              <h5><strong>Location:</strong> {{ event.location }}</h5>
               <button type="button" class="btn btn-primary" data-toggle="modal"
                 data-target="#moreInfoModal_{{ forloop.counter }}"
                 style="background-color: #9791FF;">
                 Description
               </button>
-              <a href="https://dcuclubsandsocs.ie/society/media-production#events" target="_blank"><button type="button" class="btn btn-primary"
-              style="background-color: #9791FF;">
-              View Event
-            </button></a>
+              <a
+                href="https://dcuclubsandsocs.ie/society/media-production#events"
+                target="_blank">
+                <button type="button" class="btn btn-primary"
+                  style="background-color: #9791FF;">
+                  View Event
+                </button>
+              </a>
 
               <div class="modal fade" id="moreInfoModal_{{ forloop.counter }}"
                 tabindex="-1" role="dialog"
@@ -63,7 +71,6 @@
             </div>
           </div>
           {% endfor %}
-
         </div>
       </div>
       {% endif %}

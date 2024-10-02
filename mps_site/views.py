@@ -13,11 +13,27 @@ from .data.dcutv import *
 from .data.thecollegeview import *
 from .data.committee import *
 
+def ordinal(n):
+    if 10 <= n % 100 <= 20:
+        suffix = 'th'
+    else:
+        suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')
+    return f"{n}{suffix}"
+
+def format_event_date(date_str):
+    date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S")
+    day = ordinal(date_obj.day)
+    return date_obj.strftime(f"%a {day} %b at %H:%M")
+
 def index(request):
         video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
         posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
         previous, current, next_show = get_date_time()
         events = requests.get("https://clubsandsocs.jakefarrell.ie/dcuclubsandsocs.ie/society/media-production/events").json()
+
+        for event in events:
+            event['formatted_start'] = format_event_date(event['start'])
+            event['formatted_end'] = format_event_date(event['end'])
 
         return render(request, 'index.html', 
                        {'stats_data': homepage_stats_data,

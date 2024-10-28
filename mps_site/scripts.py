@@ -55,129 +55,89 @@ def process_linktree_data(sheet_url):
 
 def get_date_time():
     date = datetime.now()
-    day_of_week = date.weekday() + 1
+    day_name = date.strftime("%A")
     hour = date.hour
 
-    messages = {
-        1: {
-            9: "Politics Nerdly", 
-            10: "Out of the Woods", 
-            11: "Limelight",
-            12: "Is this it?",
-            13: "Balikbayan Unbox",
-            14: "The Football Show",
-            15: "Paddock to Pitch",
-            16: "Unqualified X Off Topic",
-            17: "Shitty in the City",
-            18: "Show X",
-            19: "The Lunch Table",
-        },
-        2: {
-            9: "The Dev Hour", 
-            10: "Gossip Girls", 
-            11: "Twang",
-            12: "The Private Story",
-            13: "Pop The Champagne",
-            14: "Are you even listening to me?",
-            15: "Ah here!",
-            16: "Lawless Podcast",
-            17: "Deep Dive",
-            18: "Intrusive Intruders",
+    timetable = {
+        "Monday": {
+            9: "The X-Philes: Sinead Keane",
+            10: "Tyler Murphy, Bethany Barrett, Zosia Kryszak",
+            11: "Ciara Stell, Emily Mullally, Clodagh Mahon",
+            12: "The Lunchtable: Aoife Hyland, Sé O’Reilly, Abbie Mahon Morrissey",
+            13: "Newswire: Daniel Hayden and Grace Collins",
+            14: "Action Replay: Eoin O'Sullivan and Mya Breen",
+            15: "Ode to Youth: Debby Ugoiwa",
+            16: "Perfecting perfection: Dearbhla McCormick, Aoibhín McEvoy",
+            17: "Headlines, headlines, headlines: Adam Van Eekeren, Ester Pyykko",
+            18: "Offside: Maxime Mancini",
             19: "No shows on at the moment",
-        
+            20: "Intrusive intruders: Angelina Zhao, Erin Reel",
         },
-        3: {
-            9: "The Practice Podcast", 
-            10: "The Dibs Boys", 
-            11: "The Rendezvous",
-            12: "My Next Guest with Sadhbh O'Grady", 
-            13: "RuhRoh FM", 
-            14: "Sound Waves",
-            15: "Assia + Leah", 
-            16: "We need therapy", 
-            17: "4 Girls 1 Brain",
-            18: "The Dining Table", 
-            19: "Tipsey Tuesdays",
+        "Tuesday": {
+            9: "For the Plot: Leonor Selas Amaral, Shane Patrick Meleady, Lily Quinn",
+            10: "Diabhal Scéal: Carla Reilly, Kate Rayel, Siobhra Behan",
+            11: "Tipsy Tuesday: Jack Reynolds, Ronan Casey",
+            12: "Kamil Kasza, Daire Canny, Anna Rzanek",
+            13: "Dylan Hand, Ruby McManus, Alex Rowley",
+            14: "Amelia O'Carroll, Essia Baouni, Leah Cahill",
+            15: "Limelight: Lauren Joyce and Holly O'Neill",
+            16: "The Dugout: Eoin O'Sullivan, Rian Lowry, Cian Mulligan, James Whittaker",
+            17: "HerCampus Podcast: Lauren Joyce",
+            18: "Eline Lund, Ceri Dunne, Marija Vasilonoka",
+            19: "Unfocused: Eoin Murphy, Shane Codd",
+            20: "Kle'epin it real: Gabby Klee",
         },
-        4: {
-            9: "For the Plot", 
-            10: "Neil Fitzgerald", 
-            11: "Morning Debrief with Cian and Lauren",
-            12: "Cinechat", 
-            13: "Action Replay", 
-            14: "Beating around the Bush",
-            15: "The Shane O'Loughlin Podcast", 
-            16: "The Killian Burke Podcast", 
-            17: "It's a Groovement",
-            18: "Windows Down", 
-            19: "The Original Sin",
+        "Wednesday": {
+            9: "Journalism Away Days: Ciaran Kirk, Liam Rigley, Adam Balmer",
+            10: "Dibs Boys: Matthew Willis, Finn McElwain, Luke Nolan",
+            11: "Jake Dalton, Beth O’Connor, Shaney McConnon",
+            12: "Tiarnán O’Kelly, Evan Dalton",
+            13: "Fly on the wall: Katie Walsh, Holly Smith",
+            14: "Cine Chat: Torna Mulconry, Dylan Hand",
+            15: "Soundwaves: Sophie King, Sarah Duff",
+            16: "Sabina Donnery, Emma Montalbani, Paddy Wanna",
+            17: "The Morning debrief: Aoife Loughrey, Ella Geary, Katie Keating",
+            18: "Football Fraudwatch: Matthew Joyce, Aaron Ingram",
+            19: "The Football Show: Dylan Clarkin, Robert Curran",
+            20: "Sound check",
         },
-        5: {
-            9: "Fed Up Fridays", 
-            10: "No shows on at the moment", 
-            11: "The Lore",
-            12: 'The "O" Show', 
-            13: "HerVoice", 
-            14: "Newswire",
-            15: "Lights Camera Action", 
-            16: "A Game of Two Halves", 
-            17: "The Dugout",
-            18: "No shows on at the moment", 
+        "Thursday": {
+            9: "Theme Machine: Daire Canny",
+            10: "The Lore: Jane O’Reilly, Shelby Brennan, Molly McGurrin, Allyson Lambe",
+            11: "Amy Caffrey, Shona Nugent, Kaitlyn Firmo",
+            12: "Iara Moreira, Louise Akpofure, Aria Kazi",
+            13: "PS talking BS: Sarah Murtagh, Patrycja Sykula",
+            14: "This and Yap: Mya Breen, Olivia Doyle",
+            15: "Crow talk: David Keyes, Rian Lowry, Rory Dalton, Sam Kennedy",
+            16: "CinePop Chronicles: Sophie Egan and guests",
+            17: "The SU Crew: Karl Ormsby, Aoife Butler, Brandon Perry, Alishaer Ahmed, Jamie Mangan",
+            18: "Is this it?",
+            19: "The Original Sin: Sam Murray, Douglas Murray",
+            20: "Huge Jazz: Al Power, Michael Murphy, Tyler Murphy",
+        },
+        "Friday": {
+            9: "Paddock to Pitch: Aimee Donnelly, Abby Whelan",
+            10: "Hear us out: Dylan Tierney, Aine Foy, Sarah O’Donnell",
+            11: "Ah Here!: Ava Shannon, Alyson Stewart, Georgia Ryan, Ella Verveen, Ellen McCahill",
+            12: "Gossip girls: Zöe Percival, Kacey Matthews, Mia Mulvaney, Erin Miller",
+            13: "Hot Girl Nonsense: Robyn Lawlor",
+            14: "Congitive Dissonance: Éanna Kavanagh",
+            15: "No shows on at the moment",
+            16: "DCYou want the news? : Ailish Connor, Aaron Casey",
+            17: "No shows on at the moment",
+            18: "No shows on at the moment",
             19: "No shows on at the moment",
-        },
+        }
     }
 
-    if 1 <= day_of_week <= 5 and 9 <= hour < 19:
-        previous_show = messages[day_of_week].get(hour - 1, "No shows on at the moment")
-        current_show = messages[day_of_week].get(hour, "No shows on at the moment")
-        next_show = messages[day_of_week].get(hour + 1, "No shows on at the moment")
+    if day_name in timetable and 9 <= hour <= 20:
+        current_show = timetable[day_name].get(hour, "No shows on at the moment")
+        previous_show = timetable[day_name].get(hour - 1, "No shows on at the moment")
+        next_show = timetable[day_name].get(hour + 1, "No shows on at the moment")
     else:
-        previous_show = current_show = next_show = "No shows on at the moment"
+        current_show = previous_show = next_show = "No shows on at the moment"
 
     return previous_show, current_show, next_show
-
-"""def get_date_time_12_hour():
-    date = datetime.datetime.now()
-    hour = date.hour
-    minute = date.minute
-    weekday = date.weekday()
-
-    messages = {
-        9: "Intro & Interview",
-        9.5: "The Smelly Show(nose plugs advised) X The UnOriginal Sin",
-        10: "Guess Who DCU",
-        10.5: "Is This It?",
-        11: "Unqualified X OffTopic",
-        11.5: "Carpool Karaoke FM Edition",
-        12: "What Not To Do In Prague",
-        12.5: "Sorting Out Your Lore",
-        13: "Action Replay X The Dugout",
-        13.5: "Newswire",
-        14: "Soundwaves: Blind Ranking",
-        14.5: "Sea Week",
-        15: "The Practice Pod X For The Plot",
-        15.5: "Shitty In The City",
-        16: "Pop The Champagne",
-        16.5: "Committea",
-        17: "The Lunch Table",
-        17.5: "Lawless Podcast",
-        18: "TV V FM",
-        18.5: "Deep Dive",
-        19: "Balikbayan Unbox: Pinoy Henyo",
-        19.5: "My Next Guest X Out Of The Woods X The Shane O'Loughlin Podcast",
-        20: "DIBS Boys Broadcast Special",
-        20.5: "Auction X Wax World"
-    }
-    if 9 <= hour < 21:
-        if minute >= 30:
-            hour += 0.5
-        current_show = messages.get(hour, "No shows on at the moment")
-        previous_show = messages.get(hour - 0.5, "No shows on at the moment")
-        next_show = messages.get(hour + 0.5, "No shows on at the moment")
-    else:
-        previous_show = current_show = next_show = "No shows on at the moment"
-
-    return previous_show, current_show, next_show"""
 
 def get_latest_video_id(channel_url):
     feed = feedparser.parse(channel_url)

@@ -110,6 +110,7 @@ def dcufm(request):
                    'fm_managers': fm_managers, 
                    'stats_data': dcufm_stats_data, 
                    'subgroups_data': dcufm_subgroups,
+                   'shows_data': dcufm_shows,
                    'dcufm_carousel': dcufm_carousel,
                    'dcufm_subcommittee': dcufm_subcommittee})
 

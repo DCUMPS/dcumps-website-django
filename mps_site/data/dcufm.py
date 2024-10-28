@@ -90,3 +90,43 @@ dcufm_subgroups = {
     }
   ]
 }
+
+dcufm_shows = {
+  "title": "Our Shows",
+  "subtitle": "Get to know all of our members' shows!",
+  "shows": [
+    {
+      "name": "The Lore Podcast",
+      "names": ["Jane O’Reilly", "Shelby Brennan", "Molly McGurrin", "Allyson Lambe"],
+      "image": "assets/fm/shows/thelore.png",
+      "alt_text": "DCUfm Show",
+      "description": "Where's your fob...<br>Thursdays @ 10AM",
+      "social_links": [
+        {"url": "https://www.instagram.com/thelore_dcufm/", "icon_class": "fa-brands fa-instagram"},
+        {"url": "https://www.twitch.tv/dcufm", "icon_class": "fa-brands fa-twitch"}
+      ]
+    },
+    {
+      "name": "The Dugout",
+      "names": ["Eoin O'Sullivan", "Rian Lowry", "Cian Mulligan", "James Whittaker"],
+      "image": "assets/fm/shows/thedugout.jpg",
+      "alt_text": "DCUfm Show",
+      "description": "Football radio show<br>Tuesdays @ 4PM",
+      "social_links": [
+        {"url": "https://www.instagram.com/thedugoutfm/", "icon_class": "fa-brands fa-instagram"},
+        {"url": "https://www.twitch.tv/dcufm", "icon_class": "fa-brands fa-twitch"}
+      ]
+    },
+    {
+      "name": "The Original Sin",
+      "names": ["Sam Murray", "Douglas Murray"],
+      "image": "assets/fm/shows/theoriginalsin.jpg",
+      "alt_text": "DCUfm Show",
+      "description": "The Original Sin DCU FM<br>Thursdays @ 7PM",
+      "social_links": [
+        {"url": "https://www.instagram.com/theoriginalsindcufm/", "icon_class": "fa-brands fa-instagram"},
+        {"url": "https://www.twitch.tv/dcufm", "icon_class": "fa-brands fa-twitch"}
+      ]
+    }
+  ]
+}

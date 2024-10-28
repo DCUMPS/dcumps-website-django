@@ -19,7 +19,7 @@
 
 {% include 'components/stats.html' with title="DCUfm Stats" subtitle="See our progress over the years!" animate_seconds=5 stats=stats_data %}
 
-<div id="dcufm-subcommittee">
+<!--<div id="dcufm-subcommittee">
   <h1>Meet The FM Sub-Committee</h1>
   <div class="container">
 
@@ -28,8 +28,10 @@
       {% include 'components/committee_grid.html' with committee_members=dcufm_subcommittee %}
     </div>
   </div>
-</div>
+</div>-->
 {% include "components/subgroup.html" with subgroups_data=subgroups_data %}
+
+{% include "components/dcufm/shows.html" with shows_data=shows_data %}
 
 {% include 'components/family_tree.html' with title="DCUfm Station Manager Family Tree" subtitle="Check out all the members who have worked in DCUfm" family_tree=family_tree %}
 

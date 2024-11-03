@@ -176,7 +176,7 @@ def get_most_popular_video_ids(channel_url, n=9):
         return video_ids
     
 def get_donation_count_fm():
-    URL = "https://www.idonate.ie/fundraiser/MediaProductionSociety11"
+    URL = "https://www.idonate.ie/fundraiser/MediaProductionSociety12"
     headers = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"} 
     r = requests.get(url=URL, headers=headers) 
     soup = BeautifulSoup(r.content, 'html5lib')

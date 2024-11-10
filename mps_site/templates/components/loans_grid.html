@@ -1,0 +1,29 @@
+{# templates/components/subgroup.html #}
+{% load static %}
+
+<div class="container mt-4">
+    <h1>{{ loans_data.title }}</h1>
+    <h5><i>{{ loans_data.subtitle }}</i></h5>
+    <div class="row justify-content-center">
+        <div class="col-md-12 custom-box shadow-lg bg-body">
+            <div class="center-contents">
+                <div class="container mt-4">
+                    <div class="row">
+                        {% for group in loans_data.groups %}
+                        <div class="col-md-4">
+                            <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px;">
+                                <a href="{{ group.link }}">
+                                    <img src="{% static group.image %}" width="250px" height="250px" alt="{{ group.alt_text }}" style="border-radius: 10%; margin-top: 20px;">
+                                </a>
+                                <h3>{{ group.name }}</h3>
+                                <h5 style="padding-left: 10px; padding-right: 10px; padding-bottom: 30px;"><i>{{ group.description|safe }}</i></h5>
+                              
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

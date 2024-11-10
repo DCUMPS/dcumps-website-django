@@ -6,41 +6,45 @@ from bs4 import BeautifulSoup
 import json
 import pandas as pd
 
-def tcv_posts(tcv_url):
-    posts = []
+def construct_tcv_url(per_page=3, category=None):
+    base_url = "https://thecollegeview.ie/wp-json/wp/v2/posts"
+    query_params = f"?per_page={per_page}&orderby=date&_fields=id,date,title,content,link,author,featured_media"
+    if category:
+        query_params += f"&categories={category}"
+    return base_url + query_params
+
+def fetch_data(url):
     try:
-        # Set a timeout for the request
-        response = requests.get(tcv_url, timeout=10)
-        response.raise_for_status()  # Raise an exception for HTTP errors
-        posts = response.json()
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        return response.json()
     except requests.exceptions.RequestException as e:
-        print(f"An error occurred while fetching posts: {e}")
-        return posts
+        print(f"An error occurred: {e}")
+        return None
+
+def get_featured_media(media_id):
+    media_data = fetch_data(f"https://thecollegeview.ie/wp-json/wp/v2/media/{media_id}")
+    return media_data['guid']['rendered'] if media_data else None
+
+def tcv_posts(url):
+    posts = fetch_data(url)
+    if not posts:
+        return []
 
     for post in posts:
-        try:
-            soup = BeautifulSoup(post['content']['rendered'], 'html.parser')
-            post['content_plain'] = soup.get_text()
+        soup = BeautifulSoup(post['content']['rendered'], 'html.parser')
+        post['content_plain'] = soup.get_text()
+        first_image = soup.find('img')
+        post['first_image'] = first_image['src'] if first_image else get_featured_media(post['featured_media'])
+        
+        post['formatted_date'] = datetime.strptime(post['date'], '%Y-%m-%dT%H:%M:%S').strftime('%B %d, %Y')
 
-            first_image = soup.find('img')
-            post['first_image'] = first_image['src'] if first_image else None
-
-            post['formatted_date'] = datetime.strptime(post['date'], '%Y-%m-%dT%H:%M:%S').strftime('%B %d, %Y')
-
-            author_url = f"https://thecollegeview.ie/wp-json/wp/v2/users/{post['author']}"
-            try:
-                author_response = requests.get(author_url, timeout=10)
-                author_response.raise_for_status()  # Raise an exception for HTTP errors
-                author_data = author_response.json()
-                post['author_name'] = author_data['name']
-                post['author_slug'] = author_data['slug']
-            except requests.exceptions.RequestException as e:
-                print(f"An error occurred while fetching author data: {e}")
-                post['author_name'] = None
-                post['author_slug'] = None
-        except Exception as e:
-            print(f"An error occurred while processing post data: {e}")
-            continue
+        author_data = fetch_data(f"https://thecollegeview.ie/wp-json/wp/v2/users/{post['author']}")
+        if author_data:
+            post['author_name'] = author_data.get('name')
+            post['author_slug'] = author_data.get('slug')
+        else:
+            post['author_name'] = post['author_slug'] = None
 
     return posts
 

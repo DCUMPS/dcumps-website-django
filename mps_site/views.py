@@ -12,6 +12,8 @@ from .data.dcufm import *
 from .data.dcutv import *
 from .data.thecollegeview import *
 from .data.committee import *
+from .data.loans import *
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def ordinal(n):
     if 10 <= n % 100 <= 20:
@@ -50,12 +52,30 @@ def index(request):
                         'homepage_carousel': homepage_carousel,})
         
 def tcv(request):
-    posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=10&orderby=date&_fields=id,date,title,content,link,author,featured_media")
-    news = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&categories=4&_fields=id,date,title,content,link,author,featured_media")
-    sport = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&categories=7&_fields=id,date,title,content,link,author,featured_media")
-    editors = [member for member in committee_list["members"] if member["position"] == "Editor in-Chief" or member["position"] == "Deputy Editor in-Chief"]
-    return render(request, 'thecollegeview.html', {'page_name': 'The College View', 'posts': posts, 'news': news, 'sport': sport, 'family_tree' : tcv_family_tree, 'editors': editors})
+    categories = {
+        'posts': construct_tcv_url(per_page=10),
+        'news': construct_tcv_url(category=4),
+        'sport': construct_tcv_url(category=7),
+        'feat': construct_tcv_url(category=5),
+        'opinion': construct_tcv_url(category=687),
+        'lifestyle': construct_tcv_url(category=220),
+        'satire': construct_tcv_url(category=9890),
+        'hype': construct_tcv_url(category=6),
+        'irish': construct_tcv_url(category=68),
+    }
 
+    with ThreadPoolExecutor() as executor:
+        future_to_category = {executor.submit(tcv_posts, url): category for category, url in categories.items()}
+        results = {category: future.result() for future, category in future_to_category.items()}
+
+    editors = [member for member in committee_list["members"] if member["position"] in ["Editor in-Chief", "Deputy Editor in-Chief"]]
+
+    return render(request, 'thecollegeview.html', {
+        'page_name': 'The College View',
+        **results,
+        'family_tree': tcv_family_tree,
+        'editors': editors
+    })
 def committee(request):
     committee_members = CommitteeMember.objects.all()
     return render(request, 'committee.html', 
@@ -96,6 +116,9 @@ def gallery(request):
     gallery_page_info = GalleryPage.objects.all().first()
     image_urls = list_images()
     return render(request, 'gallery.html', {'page_name': 'Gallery', 'gallery_page_info': gallery_page_info, 'images': image_urls})
+
+def loans(request):
+    return render(request, 'loans.html', {'page_name': 'DCUtv Loans', 'loans_data': loans_data})
 
 def dcufm(request):
     previous, current, next_show = get_date_time()

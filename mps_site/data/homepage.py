@@ -14,7 +14,7 @@ homepage_subgroups = {
     {
       "name": "DCUfm",
       "link": "/dcufm",
-      "image": "assets/img/other/FM_Transparent.webp",
+      "image": "assets/img/other/fm_logo.png",
       "alt_text": "MPS Sub-Group",
       "description": "DCU's official radio station, live all day Monday to Friday!",
       "social_links": [
@@ -36,7 +36,7 @@ homepage_subgroups = {
     {
       "name": "The College View",
       "link": "https://thecollegeview.ie/",
-      "image": "assets/img/other/CV_Transparent.webp",
+      "image": "assets/img/other/tcv_logo.png",
       "alt_text": "MPS Sub-Group",
       "description": "The platform of student news and student views in DCU since 1999!",
       "social_links": [

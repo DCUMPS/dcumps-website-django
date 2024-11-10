@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include "components/loans_grid.html" with loans_data=loans_data %}
+
+
+<div class="container">
+  <h1>Loans Information</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-7 custom-box shadow-lg bg-body">
+      <div class="center-contents">
+              <div class="p-3 px-4 text-left shadow-lg bg-body" style="background-color: #202E4E; border-radius: 25px;">
+                <div>
+                  <ul>
+                    <li>Equipment is to be used ONLY for DCUTV content purposes.</li>
+                    <li>Equipment is only to be loaned for the period of time that is necessary.</li>
+                    <li>Equipment is to be returned exactly as it was when loaned out.</li>
+                    <li>Equipment is expensive. DO NOT BREAK IT</li>
+                  </ul>
+                  <p class="text-center">Batteries and SD Cards are supplied where necessary<br>
+                    Miscellaneous equipment also available<br>
+                    (Tripods, additional audio equipment…)<br>
+                    Just ask!<br>
+                    </p>
+          </div>
+          
+        </div>
+        <div class="center-contents pt-3">
+          <a class="btn btn-primary" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;" href="https://forms.gle/y9hRnE7CRvC4qxCL6" target="_blank">Apply for a loan here!</a>  
+        </div>  
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+{% block footer %}
+
+{% endblock %}

@@ -119,10 +119,10 @@ committee_list = {
       "image": "images/committee/2024-2025/11.png",
       "social_link_1_url": "https://www.instagram.com/shelbyyybrennan?igsh=MXh1YzZlYjF5cXpmOQ%3D%3D&utm_source=qr",
       "social_link_1_icon": "fa-brands fa-instagram",
-      "social_link_2_url": "",
-      "social_link_2_icon": "",
-      "social_link_3_url": "mailto:events@dcumps.ie",
-      "social_link_3_icon": "fa-solid fa-envelope"
+      "social_link_2_url": "mailto:events@dcumps.ie",
+      "social_link_2_icon": "fa-solid fa-envelope",
+      "social_link_3_url": "",
+      "social_link_3_icon": ""
     },
       {
       "name": "Holly O’Neill",
@@ -163,10 +163,10 @@ committee_list = {
       "image": "images/committee/2024-2025/15.png",
       "social_link_1_url": "https://www.instagram.com/katieoshaughnessyy?igsh=djRpdnFmaDBibHZr&utm_source=qr",
       "social_link_1_icon": "fa-brands fa-instagram",
-      "social_link_2_url": "",
-      "social_link_2_icon": "",
-      "social_link_3_url": "mailto:editor@thecollegeview.ie",
-      "social_link_3_icon": "fa-solid fa-envelope"
+      "social_link_2_url": "mailto:editor@thecollegeview.ie",
+      "social_link_2_icon": "fa-solid fa-envelope",
+      "social_link_3_url": "",
+      "social_link_3_icon": ""
     },
     {
       "name": "Leonor Selas Amaral",
@@ -174,10 +174,21 @@ committee_list = {
       "image": "images/committee/2024-2025/16.png",
       "social_link_1_url": "http://linkedin.com/in/leonor-selas-do-amaral-188a0a304e",
       "social_link_1_icon": "fa-brands fa-linkedin",
+      "social_link_2_url": "mailto:deputyeditor@thecollegeview.ie",
+      "social_link_2_icon": "fa-solid fa-envelope",
+      "social_link_3_url": "",
+      "social_link_3_icon": ""
+    },
+    {
+      "name": "Daniel O'Shea",
+      "position": "First Year Rep",
+      "image": "assets/img/other/blank_event.png",
+      "social_link_1_url": "mailto:fyr@dcumps.ie",
+      "social_link_1_icon": "fa-solid fa-envelope",
       "social_link_2_url": "",
       "social_link_2_icon": "",
-      "social_link_3_url": "mailto:deputyeditor@thecollegeview.ie",
-      "social_link_3_icon": "fa-solid fa-envelope"
+      "social_link_3_url": "",
+      "social_link_3_icon": ""
     }
   ]
 }

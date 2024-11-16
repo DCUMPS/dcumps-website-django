@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+  <h1 class="pt-4">Ad Package Randomiser</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-7 custom-box shadow-lg bg-body">
+      <div class="center-contents">
+        <div class="p-3 px-4 text-left shadow-lg bg-body" style="background-color: #202E4E; border-radius: 25px;">
+          <p id="random-number-display" class="text-center" style="font-size: 250px; font-weight: bold; margin: 20px 0;">1</p>
+        </div>
+        <div class="center-contents pt-3">
+          <button onclick="generateRandomNumber()" class="btn btn-primary" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;">
+            Next Ad Package To Play
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function generateRandomNumber() {
+    const randomNumber = Math.floor(Math.random() * 10) + 1;
+    const displayElement = document.getElementById("random-number-display");
+    displayElement.innerHTML = `${randomNumber}`;
+  }
+</script>
+
+{% endblock %}
+{% block footer %}
+
+{% endblock %}

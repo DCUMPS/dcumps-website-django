@@ -23,6 +23,7 @@ urlpatterns = [
     path("memes", views.memes, name="memes"),
     path("dcufm", views.dcufm, name="dcufm"),
     path("loans", views.loans, name="loans"),
+    path("ads", views.ads, name="ads"),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'assets/img/other/favicon.ico')),
     path('donate', RedirectView.as_view(url="https://www.idonate.ie/fundraiser/MediaProductionSociety12"), name="donate"),

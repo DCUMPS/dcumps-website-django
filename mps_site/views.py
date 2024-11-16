@@ -76,6 +76,10 @@ def tcv(request):
         'family_tree': tcv_family_tree,
         'editors': editors
     })
+    
+def ads(request):
+    return render(request, 'ads.html', {'page_name': 'Ad Package Randomiser'})
+
 def committee(request):
     committee_members = CommitteeMember.objects.all()
     return render(request, 'committee.html', 

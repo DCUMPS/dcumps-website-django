@@ -32,6 +32,7 @@ def index(request):
         posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
         previous, current, next_show = get_date_time()
         events = requests.get("https://clubsandsocs.jakefarrell.ie/dcuclubsandsocs.ie/society/media-production/events").json()
+        current_donation_amount, goal_amount = get_donation_count_fm()
 
         for event in events:
             event['formatted_start'] = format_event_date(event['start'])
@@ -49,7 +50,9 @@ def index(request):
                         'next_show': next_show,
                         'homepage_awards': homepage_awards,
                         'posts': posts,
-                        'homepage_carousel': homepage_carousel,})
+                        'homepage_carousel': homepage_carousel,
+                        'current_donation_amount': current_donation_amount,
+                        'goal_amount': goal_amount})
         
 def tcv(request):
     categories = {
@@ -106,6 +109,7 @@ def contact(request):
 
 def dcutv(request):
     tv_managers = [member for member in committee_list["members"] if member["position"] == "TV Manager"]
+    current_donation_amount, goal_amount = get_donation_count_fm()
     return render(request, 'dcutv.html', 
                   {'page_name': 'DCUtv', 
                    'tv_thursday' : 'RON9_ByY190', 
@@ -114,7 +118,9 @@ def dcutv(request):
                    'tv_managers': tv_managers,
                    'dcutv_carousel': dcutv_carousel, 
                    'stats_data': dcutv_stats_data,
-                   'committee_video_id': '1wiscXP9nw0',})
+                   'committee_video_id': '1wiscXP9nw0',
+                   'current_donation_amount': current_donation_amount,
+                   'goal_amount': goal_amount})
 
 def gallery(request):
     gallery_page_info = GalleryPage.objects.all().first()

@@ -32,7 +32,9 @@ def index(request):
         posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
         previous, current, next_show = get_date_time()
         events = requests.get("https://clubsandsocs.jakefarrell.ie/dcuclubsandsocs.ie/society/media-production/events").json()
-        current_donation_amount, goal_amount = get_donation_count_fm()
+        donation_data = get_donation_count_fm()
+        current_donation_amount = donation_data["totalRaised"]
+        goal_amount = donation_data["targetAmount"]
 
         for event in events:
             event['formatted_start'] = format_event_date(event['start'])
@@ -109,7 +111,9 @@ def contact(request):
 
 def dcutv(request):
     tv_managers = [member for member in committee_list["members"] if member["position"] == "TV Manager"]
-    current_donation_amount, goal_amount = get_donation_count_fm()
+    donation_data = get_donation_count_fm()
+    current_donation_amount = donation_data["totalRaised"]
+    goal_amount = donation_data["targetAmount"]
     return render(request, 'dcutv.html', 
                   {'page_name': 'DCUtv', 
                    'tv_thursday' : 'RON9_ByY190', 

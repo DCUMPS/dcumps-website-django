@@ -182,13 +182,26 @@ def get_most_popular_video_ids(channel_url, n=9):
 def get_donation_count_fm():
     URL = "https://www.idonate.ie/fundraiser/MediaProductionSociety12"
     headers = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"} 
-    r = requests.get(url=URL, headers=headers) 
-    soup = BeautifulSoup(r.content, 'html5lib')
-    current_donation = soup.find('div', attrs = {'class':'ifs-right-fundraisers-head'}) 
-    donation_target = soup.find('div', attrs = {'class':'support-cause'}) 
-    current_donation_amount = int(str(current_donation).split()[3].split("€")[1].split("<")[0].replace(",",""))
-    goal_amount = int(str(donation_target).split("€")[1].split("<")[0].replace(",",""))
-    return current_donation_amount, goal_amount
+    
+    try:
+        r = requests.get(url=URL, headers=headers, timeout=10)
+        r.raise_for_status()
+        
+        soup = BeautifulSoup(r.content, 'html5lib')
+        
+        current_donation = soup.find('div', attrs={'class': 'ifs-right-fundraisers-head'})
+        donation_target = soup.find('div', attrs={'class': 'support-cause'})
+        
+        if current_donation is None or donation_target is None:
+            raise ValueError("Necessary data not found on the page.")
+        
+        current_donation_amount = int(str(current_donation).split()[3].split("€")[1].split("<")[0].replace(",", ""))
+        goal_amount = int(str(donation_target).split("€")[1].split("<")[0].replace(",", ""))
+        
+        return current_donation_amount, goal_amount
+    
+    except (requests.RequestException, ValueError, IndexError, AttributeError) as e:
+        return 0, 0
 
 def get_event_data():
   data = {}

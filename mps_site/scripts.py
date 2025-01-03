@@ -1,11 +1,12 @@
 from datetime import datetime
 import feedparser
 import yt_dlp as youtube_dl
-import requests 
+import requests
 from bs4 import BeautifulSoup
 import json
 import pandas as pd
 import re
+
 
 def construct_tcv_url(per_page=3, category=None):
     base_url = "https://thecollegeview.ie/wp-json/wp/v2/posts"
@@ -13,6 +14,7 @@ def construct_tcv_url(per_page=3, category=None):
     if category:
         query_params += f"&categories={category}"
     return base_url + query_params
+
 
 def fetch_data(url):
     try:
@@ -23,9 +25,12 @@ def fetch_data(url):
         print(f"An error occurred: {e}")
         return None
 
+
 def get_featured_media(media_id):
-    media_data = fetch_data(f"https://thecollegeview.ie/wp-json/wp/v2/media/{media_id}")
+    media_data = fetch_data(
+        f"https://thecollegeview.ie/wp-json/wp/v2/media/{media_id}")
     return media_data['guid']['rendered'] if media_data else None
+
 
 def tcv_posts(url):
     posts = fetch_data(url)
@@ -36,11 +41,14 @@ def tcv_posts(url):
         soup = BeautifulSoup(post['content']['rendered'], 'html.parser')
         post['content_plain'] = soup.get_text()
         first_image = soup.find('img')
-        post['first_image'] = first_image['src'] if first_image else get_featured_media(post['featured_media'])
-        
-        post['formatted_date'] = datetime.strptime(post['date'], '%Y-%m-%dT%H:%M:%S').strftime('%B %d, %Y')
+        post['first_image'] = first_image['src'] if first_image else get_featured_media(
+            post['featured_media'])
 
-        author_data = fetch_data(f"https://thecollegeview.ie/wp-json/wp/v2/users/{post['author']}")
+        post['formatted_date'] = datetime.strptime(
+            post['date'], '%Y-%m-%dT%H:%M:%S').strftime('%B %d, %Y')
+
+        author_data = fetch_data(
+            f"https://thecollegeview.ie/wp-json/wp/v2/users/{post['author']}")
         if author_data:
             post['author_name'] = author_data.get('name')
             post['author_slug'] = author_data.get('slug')
@@ -49,14 +57,16 @@ def tcv_posts(url):
 
     return posts
 
+
 def process_linktree_data(sheet_url):
     url_1 = sheet_url.replace('/edit', '/export?format=csv&')
-    texts = pd.read_csv(url_1, usecols= ['TEXT'])
-    links = pd.read_csv(url_1, usecols= ['LINK'])
+    texts = pd.read_csv(url_1, usecols=['TEXT'])
+    links = pd.read_csv(url_1, usecols=['LINK'])
     text = [i[0] for i in texts.values]
     link = [i[0] for i in links.values]
     linktree = zip(text, link)
     return linktree
+
 
 def get_date_time():
     date = datetime.now()
@@ -136,13 +146,17 @@ def get_date_time():
     }
 
     if day_name in timetable and 9 <= hour <= 20:
-        current_show = timetable[day_name].get(hour, "No shows on at the moment")
-        previous_show = timetable[day_name].get(hour - 1, "No shows on at the moment")
-        next_show = timetable[day_name].get(hour + 1, "No shows on at the moment")
+        current_show = timetable[day_name].get(
+            hour, "No shows on at the moment")
+        previous_show = timetable[day_name].get(
+            hour - 1, "No shows on at the moment")
+        next_show = timetable[day_name].get(
+            hour + 1, "No shows on at the moment")
     else:
         current_show = previous_show = next_show = "No shows on at the moment"
 
     return previous_show, current_show, next_show
+
 
 def get_latest_video_id(channel_url):
     feed = feedparser.parse(channel_url)
@@ -153,7 +167,8 @@ def get_latest_video_id(channel_url):
         return video_id
     else:
         return None
-    
+
+
 def get_latest_video_ids(channel_url):
     feed = feedparser.parse(channel_url)
     video_ids = []
@@ -164,6 +179,7 @@ def get_latest_video_ids(channel_url):
         video_ids.append(video_id)
 
     return video_ids
+
 
 def get_most_popular_video_ids(channel_url, n=9):
     ydl_opts = {
@@ -179,17 +195,18 @@ def get_most_popular_video_ids(channel_url, n=9):
         info = ydl.extract_info(channel_url, download=False)
         video_ids = [entry['id'] for entry in info['entries']]
         return video_ids
-    
-def get_donation_count_fm():
+
+
+def get_donation_count():
     URL = "https://www.idonate.ie/fundraiser/MediaProductionSociety12"
     headers = {
-    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"}
-    
+        'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"}
+
     data = {
         'totalRaised': 0,
         'targetAmount': 0
     }
-    
+
     try:
         r = requests.get(url=URL, headers=headers, timeout=10)
         r.raise_for_status()
@@ -201,79 +218,102 @@ def get_donation_count_fm():
 
         total_raised_match = js_content.replace('\\', '').split(',')
 
-
-
         for item in total_raised_match:
             if '"totalRaised":' in item:
-                data['totalRaised'] = int(float(item.split(':')[1].replace('"', '')))
+                data['totalRaised'] = int(
+                    float(item.split(':')[1].replace('"', '')))
             if '"targetAmount":' in item:
-                data['targetAmount'] = int(float(item.split(':')[1].replace('"', '')))
-        
+                data['targetAmount'] = int(
+                    float(item.split(':')[1].replace('"', '')))
+
         return data
-    
+
     except (requests.RequestException, ValueError, IndexError, AttributeError) as e:
         return data
 
-def get_event_data():
-  data = {}
-  events = {}
-  URL = f"https://dcuclubsandsocs.ie/society/media-production"
-  headers = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"} 
-  r = requests.get(url=URL, headers=headers) 
-  soup = BeautifulSoup(r.content, 'html5lib')
-  events_data = soup.find('div', attrs = {'id':'events'})
-  try:
-    event_count = int(events_data.find('span', attrs = {'class':'float-right badge badge-light'}).text)
-  except:
-    event_count = 0
-  if event_count == 0:
-    data['event_count'] = event_count
-    data['events'] = None
-    return data
-  event_table = events_data.find('div', attrs = {'class':'table-responsive'})
-  events_info_list = event_table.find_all('tr', attrs={'class':'show_info pointer'})
-  events_info_hidden = event_table.find_all('tr', attrs={'class':'d-none'})
 
-  for i in range(0, len(events_info_list) - 1, 2):
-    event_info = events_info_list[i]
-    try:
-      event_image = event_info.find('img')['src']
-    except:
-      event_image = "static/assets/img/other/upcoming_event.png"
-    event_name = event_info.find('th', attrs={'class': 'h5 align-middle'}).text.strip()
-    events["event_" + str(i // 2)] = {'name': event_name, 'image': event_image}
+def get_live_broadcast_shows():
+    date = datetime.now()
+    day_name = date.strftime("%A")
+    current_time = date.strftime("%H:%M")
+    current_hour = date.hour
+    current_minute = date.minute
 
-  for i in range(1, len(events_info_list), 2):
-    event_info = events_info_list[i]
-    event_data = event_info.find_all('td', attrs={'class': 'text-center align-middle'})
-    events["event_" + str(i // 2)]['start'] = event_data[1].find('b').text
-    events["event_" + str(i // 2)]['end'] = event_data[2].find('b').text
-    events["event_" + str(i // 2)]['cost'] = event_data[3].find('b').text
-    events["event_" + str(i // 2)]['capacity'] = event_data[4].find('b').text
-    events["event_" + str(i // 2)]['type'] = event_data[5].find('b').text
-    events["event_" + str(i // 2)]['location'] = events_info_hidden[i].find('b').text
-    events["event_" + str(i // 2)]['description'] = events_info_hidden[i].find('p')
-    
-  data['event_count'] = event_count
-  data['events'] = events                                                                                           
-  return data
-  
-  
+    timetable = {
+        "Wednesday": {
+            "20:00": "Broadcast Introduction",
+            "20:30": "Lip Sync Battle",
+            "21:00": "The Oscars",
+            "21:30": "Focus Interview",
+            "22:00": "Hot Wans",
+            "22:30": "Sa(m)tas Corner",
+            "23:00": "DCeUrovision",
+            "23:30": "Freshers on Air",
+        },
+        "Friday": {
+            "00:00": "Storytime with Holly",
+            "00:20": "Doghouse",
+            "00:40": "Inkmaster",
+            "01:00": "Crowtalk",
+            "01:30": "CommiTEA",
+            "02:00": "Game Changer",
+            "02:20": "Undercover boss",
+            "02:40": "Weird Films & Queer Men in music",
+            "03:00": "Bird Brains III: Bait Masters",
+            "03:30": "Carpool Kareoke",
+            "04:00": "Sexy Calendar",
+            "04:30": "The Lore",
+            "05:00": "Competitive Yapping",
+            "05:20": "What did they just say?",
+            "05:40": "The Wheel",
+            "06:00": "The Thing is...",
+            "06:30": "Are you smarter than a Comms Student?",
+            "07:00": "Infuriating Guessing Game",
+            "07:30": "Committee Bake off",
+            "08:00": "Get Flexy!",
+            "08:30": "The Voice DCU",
+            "09:00": "This & Yap",
+            "09:30": "Family Feud",
+            "10:00": "Unlikely Things to Hear / Would I lie to you?",
+            "10:30": "Spill your Guts or Fill your Guts",
+            "11:00": "Battle of the FM Flagships",
+            "11:30": "The DIBS Boys",
+            "12:00": "Drama",
+            "12:30": "Comms Dine with me",
+            "13:00": "Her Campus",
+            "13:30": "DCUtv Guesses",
+            "14:00": "Action Replay vs The Dugout",
+            "14:30": "Taskmaster",
+            "15:00": "Price is Right: Londis Edition",
+            "15:30": "Expectations Vs Reality",
+            "16:00": "Franks Butcher Shop",
+            "16:30": "Breaking News",
+            "17:00": "DCU Seagulls",
+            "17:30": "Six One",
+            "18:00": "Lip Sync Battle 2",
+            "18:30": "GoldenCards",
+            "19:00": "Early Early Product Placement",
+            "19:30": "Thursday Night Live",
+            "20:00": "Farewells",
+        }
+    }
 
-FOLDER_ID = ''
-API_KEY = ''
+    if day_name in timetable:
+        sorted_times = sorted(timetable[day_name].keys())
 
-def list_images():
-    url = f'https://www.googleapis.com/drive/v3/files?q="{FOLDER_ID}" in parents&key={API_KEY}'
-    response = requests.get(url)
-    data = response.json()
-    
-    image_urls = []
-    if 'files' in data:
-        for item in data['files']:
-            file_id = item['id']
-            file_name = item['name']
-            file_url = f'https://drive.usercontent.google.com/download?id={file_id}'
-            image_urls.append({'name': file_name, 'url': file_url})
-            
-    return image_urls
+        current_show_b = "No shows on at the moment"
+        previous_show_b = "No shows on at the moment"
+        next_show_b = "No shows on at the moment"
+
+        for i, show_time in enumerate(sorted_times):
+            if current_time >= show_time:
+                current_show_b = timetable[day_name][show_time]
+                if i > 0:
+                    previous_show_b = timetable[day_name][sorted_times[i - 1]]
+                if i + 1 < len(sorted_times):
+                    next_show_b = timetable[day_name][sorted_times[i + 1]]
+                break
+    else:
+        current_show_b = previous_show_b = next_show_b = "No shows on at the moment"
+
+    return previous_show_b, current_show_b, next_show_b

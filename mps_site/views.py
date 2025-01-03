@@ -32,7 +32,7 @@ def index(request):
         posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
         previous, current, next_show = get_date_time()
         events = requests.get("https://clubsandsocs.jakefarrell.ie/dcuclubsandsocs.ie/society/media-production/events").json()
-        donation_data = get_donation_count_fm()
+        donation_data = get_donation_count()
         current_donation_amount = donation_data["totalRaised"]
         goal_amount = donation_data["targetAmount"]
 
@@ -111,7 +111,7 @@ def contact(request):
 
 def dcutv(request):
     tv_managers = [member for member in committee_list["members"] if member["position"] == "TV Manager"]
-    donation_data = get_donation_count_fm()
+    donation_data = get_donation_count()
     current_donation_amount = donation_data["totalRaised"]
     goal_amount = donation_data["targetAmount"]
     return render(request, 'dcutv.html', 
@@ -128,8 +128,7 @@ def dcutv(request):
 
 def gallery(request):
     gallery_page_info = GalleryPage.objects.all().first()
-    image_urls = list_images()
-    return render(request, 'gallery.html', {'page_name': 'Gallery', 'gallery_page_info': gallery_page_info, 'images': image_urls})
+    return render(request, 'gallery.html', {'page_name': 'Gallery', 'gallery_page_info': gallery_page_info})
 
 def loans(request):
     return render(request, 'loans.html', {'page_name': 'DCUtv Loans', 'loans_data': loans_data})

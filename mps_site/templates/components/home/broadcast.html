@@ -10,7 +10,7 @@
                 <!-- Purple box with countdown at the top -->
                 <div class="col-md-12" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
                     <!-- Countdown timer centered at the top of the purple box -->
-                    <div id="countdown" style="font-size: 24px; font-weight: bold; color: white; text-align: center; margin-bottom: 15px;"></div>
+                    <!--<div id="countdown" style="font-size: 24px; font-weight: bold; color: white; text-align: center; margin-bottom: 15px;"></div>-->
                     
                     <!-- Main content of the purple box -->
                     <p style="color: white; text-align: left; font-size: 20px;">
@@ -55,28 +55,28 @@
                 </div>
             </div>
             <div class="center-contents">
-                <div class="container">
+                <div class="container" id="broadcast-live" style="display: block;">
                     <!--<div class="row">
                         <div class="hvr-grow col-md-4">
                             <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
                                 <p><strong>Previous Show</strong></p>
-                                <p id="fm-time-previous">{{ previous_show }}</p>
+                                <p id="fm-time-previous">{{ previous_show_b }}</p>
                             </div>
                         </div>
                         <div class="hvr-grow col-md-4">
                             <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
                                 <p><strong>Live Now</strong></p>
-                                <p id="fm-time-current">{{ current_show }}</p>
+                                <p id="fm-time-current">{{ current_show_b }}</p>
                             </div>
                         </div>
                         <div class="hvr-grow col-md-4">
                             <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px; padding: 20px;">
                                 <p><strong>Next Show</strong></p>
-                                <p id="fm-time-next">{{ next_show }}</p>
+                                <p id="fm-time-next">{{ next_show_b }}</p>
                             </div>
                         </div>
-                    </div>
-                    <a class="btn btn-primary mt-2" data-toggle="modal" data-target="#fmtimetable" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;">View Broadcast Timetable</a>-->
+                    </div>-->
+                    <!--<a class="btn btn-primary mt-2" data-toggle="modal" data-target="#fmtimetable" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;">View Broadcast Timetable</a>-->
                     <a class="btn btn-primary mt-2" href="/donate" target="_blank" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;">Donate to Focus Ireland</a>
                     <!--<a class="btn btn-primary mt-2" data-toggle="modal" data-target="#fmtimetable" style="background-color: #202E4E; border-radius: 25px; border-width: 4px; border-color: white;">Watch on YouTube</a>-->
                 </div>
@@ -85,9 +85,8 @@
     </div>
 </div>
 
-<script>
-// Countdown timer script
-const countdownDate = new Date("Dec 4, 2024 20:00:00").getTime(); // Set the target date here
+<!--<script>
+const countdownDate = new Date("Dec 4, 2024 20:00:00").getTime();
 
 const countdownFunction = setInterval(function() {
     const now = new Date().getTime();
@@ -104,6 +103,7 @@ const countdownFunction = setInterval(function() {
     if (distance < 0) {
         clearInterval(countdownFunction);
         document.getElementById("countdown").innerHTML = "We're live! Watch on the DCUtv YouTube channel!";
+        document.getElementById("broadcast-live").style.display = "block";
     }
 }, 1000);
-</script>
+</script>-->

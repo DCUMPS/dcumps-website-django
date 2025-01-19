@@ -14,7 +14,7 @@ homepage_subgroups = {
     {
       "name": "DCUfm",
       "link": "/dcufm",
-      "image": "assets/img/other/fm_logo.png",
+      "image": "images/logos/fm_512.png",
       "alt_text": "MPS Sub-Group",
       "description": "DCU's official radio station, live all day Monday to Friday!",
       "social_links": [
@@ -25,7 +25,7 @@ homepage_subgroups = {
     {
       "name": "DCUtv",
       "link": "/dcutv",
-      "image": "assets/img/other/TV_Transparent.webp",
+      "image": "images/logos/tv_512.png",
       "alt_text": "MPS Sub-Group",
       "description": "24 Hour Broadcast, Vlogs, Movies and more!",
       "social_links": [

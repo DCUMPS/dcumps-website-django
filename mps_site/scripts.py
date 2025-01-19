@@ -68,6 +68,8 @@ def process_linktree_data(sheet_url):
     return linktree
 
 
+from datetime import datetime
+
 def get_date_time():
     date = datetime.now()
     day_name = date.strftime("%A")
@@ -75,87 +77,76 @@ def get_date_time():
 
     timetable = {
         "Monday": {
-            9: "The X-Philes: Sinead Keane",
-            10: "Tyler Murphy, Bethany Barrett, Zosia Kryszak",
-            11: "Ciara Stell, Emily Mullally, Clodagh Mahon",
-            12: "The Lunchtable: Aoife Hyland, Sé O’Reilly, Abbie Mahon Morrissey",
-            13: "Newswire: Daniel Hayden and Grace Collins",
-            14: "Action Replay: Eoin O'Sullivan and Mya Breen",
-            15: "Ode to Youth: Debby Ugoiwa",
-            16: "Perfecting perfection: Dearbhla McCormick, Aoibhín McEvoy",
-            17: "Headlines, headlines, headlines: Adam Van Eekeren, Ester Pyykko",
-            18: "Offside: Maxime Mancini",
-            19: "No shows on at the moment",
-            20: "Intrusive intruders: Angelina Zhao, Erin Reel",
+            9: "The Football Show: Dylan Clarkin, Robert Curran",
+            10: "Action Replay: Eoin O'Sullivan, Mya Breen",
+            11: "No shows on at the moment",
+            12: "Fresh Princes on Air: Jake Dalton, Paul Farrell, Beth o Connor, Shaney McConnon",
+            13: "OnlySports: Oisin O Brien and Ryan Mulvaney",
+            14: "Gossip Girls: Zöe Percival, Erin Miller, Mia Mulvaney, Kacey Matthews",
+            15: "This & Yap: Olivia Doyle & Mya Breen",
+            16: "CrowTalk: Sam Kennedy, Rory Dalton, David Keyes, Rian Lowry",
+            17: "The Theme Machine!: Daire Canny",
+            18: "Crucial Media for a Internet Generation: Daniel Salmon",
         },
         "Tuesday": {
-            9: "For the Plot: Leonor Selas Amaral, Shane Patrick Meleady, Lily Quinn",
-            10: "Diabhal Scéal: Carla Reilly, Kate Rayel, Siobhra Behan",
-            11: "Tipsy Tuesday: Jack Reynolds, Ronan Casey",
-            12: "Kamil Kasza, Daire Canny, Anna Rzanek",
-            13: "Dylan Hand, Ruby McManus, Alex Rowley",
-            14: "Amelia O'Carroll, Essia Baouni, Leah Cahill",
-            15: "Limelight: Lauren Joyce and Holly O'Neill",
-            16: "The Dugout: Eoin O'Sullivan, Rian Lowry, Cian Mulligan, James Whittaker",
-            17: "HerCampus Podcast: Lauren Joyce",
-            18: "Eline Lund, Ceri Dunne, Marija Vasilonoka",
-            19: "Unfocused: Eoin Murphy, Shane Codd",
-            20: "Kle'epin it real: Gabby Klee",
+            9: "The Dibs Boys: Matthew Willis, Finn McElwain, Luke Nolan",
+            10: "Track Talk: Sabina Donnery, Paddy Wanna, Emma Montalbani",
+            11: "Impreviews: Shane Codd",
+            12: "Alex, Dylan and Ruby on DCUFM: Alex Rowley, Dylan Hand, Ruby McManus",
+            13: "Send Help: Erin Reel, Saoirse MacCarthy",
+            14: "CineChat: Torna Mulconry",
+            15: "Tipsy Tuesdays: Jack Reynolds, Ronan Casey",
+            16: "Newswire: Daniel Hayden, Grace Collins",
+            17: "Perfecting Perfection: Aoibhín McEvoy and Dearbhla McCormack",
+            18: "Screen Queens: Roisin McManus, Beatriz Antunes, Sophie Finn, Zuzana Palenikova",
         },
         "Wednesday": {
-            9: "Journalism Away Days: Ciaran Kirk, Liam Rigley, Adam Balmer",
-            10: "Dibs Boys: Matthew Willis, Finn McElwain, Luke Nolan",
-            11: "Jake Dalton, Beth O’Connor, Shaney McConnon",
-            12: "Tiarnán O’Kelly, Evan Dalton",
-            13: "Fly on the wall: Katie Walsh, Holly Smith",
-            14: "Cine Chat: Torna Mulconry, Dylan Hand",
-            15: "Soundwaves: Sophie King, Sarah Duff",
-            16: "Sabina Donnery, Emma Montalbani, Paddy Wanna",
-            17: "The Morning debrief: Aoife Loughrey, Ella Geary, Katie Keating",
-            18: "Football Fraudwatch: Matthew Joyce, Aaron Ingram",
-            19: "The Football Show: Dylan Clarkin, Robert Curran",
-            20: "Sound check",
+            9: "Evan’s Double Entendre: Evan Dalton",
+            10: "Show Ate: Kaitlyn Firmo",
+            11: "Scene-It!: Iara Moreira, Aria Kazi",
+            12: "The Grandstand Sports Show: Tiarnán O’Kelly and Evan Dalton",
+            13: "Ah Here!: Alyson Stewart, Ava Shannon, Ellen McCahil, Ella Verveen and Georgia Ryan",
+            14: "Fly on the wall: Katie Walsh, Holly Smith",
+            15: "DCYouWantTheNews: Aaron Casey and Ailish Connor",
+            16: "Five Stars from Comms: Lauren Joyce, Shona Kiely, Eanna Kavanagh, Sophie Egan, Eabha Kelly",
+            17: "Is this it?: Helen Jenkins, Darragh Hallissy, Jack Dempsey, Max Daly, Daniel O’ Shea",
+            18: "No shows on at the moment",
         },
         "Thursday": {
-            9: "Theme Machine: Daire Canny",
-            10: "The Lore: Jane O’Reilly, Shelby Brennan, Molly McGurrin, Allyson Lambe",
-            11: "Amy Caffrey, Shona Nugent, Kaitlyn Firmo",
-            12: "Iara Moreira, Louise Akpofure, Aria Kazi",
-            13: "PS talking BS: Sarah Murtagh, Patrycja Sykula",
-            14: "This and Yap: Mya Breen, Olivia Doyle",
-            15: "Crow talk: David Keyes, Rian Lowry, Rory Dalton, Sam Kennedy",
-            16: "CinePop Chronicles: Sophie Egan and guests",
-            17: "The SU Crew: Karl Ormsby, Aoife Butler, Brandon Perry, Alishaer Ahmed, Jamie Mangan",
-            18: "Is this it?",
-            19: "The Original Sin: Sam Murray, Douglas Murray",
-            20: "Huge Jazz: Al Power, Michael Murphy, Tyler Murphy",
+            9: "Serial Thrillas: Sam Cummins agus Eoghan Murphy",
+            10: "The Morning Debrief: Aoife Loughrey, Katie Keating, Ella Geary",
+            11: "The Original Sin: Sam Murray - Douglas Murray",
+            12: "Journalism Away Days: Patrick Walsh, Adam Balmer, Liam Rigley",
+            13: "The Dugout: Eoin O'Sullivan, Rian Lowry, Cian Mulligan, James Whittaker",
+            14: "The Lore: Molly McGurrin, Allyson Lambe, Shelby Brennan, Jane O’Reilly",
+            15: "Show Y: Alex Lyons, Jack Mc Avinue",
+            16: "Limelight: Lauren Joyce, Holly O'Neill",
+            17: "Her Voice: Lauren Joyce",
+            18: "Wellness Check with VP for Wellbeing: Jamie Mangan",
         },
         "Friday": {
-            9: "Paddock to Pitch: Aimee Donnelly, Abby Whelan",
-            10: "Hear us out: Dylan Tierney, Aine Foy, Sarah O’Donnell",
-            11: "Ah Here!: Ava Shannon, Alyson Stewart, Georgia Ryan, Ella Verveen, Ellen McCahill",
-            12: "Gossip girls: Zöe Percival, Kacey Matthews, Mia Mulvaney, Erin Miller",
-            13: "Hot Girl Nonsense: Robyn Lawlor",
-            14: "Congitive Dissonance: Éanna Kavanagh",
-            15: "No shows on at the moment",
-            16: "DCYou want the news? : Ailish Connor, Aaron Casey",
+            9: "Diabhal scéal: Siobhra Behan, Carla Reilly, Kate Rayel",
+            10: "Sound Check: Lauren textor, Adam Van ekereen, Katie monks",
+            11: "Subway Wednesdays: Sean Baker, Aaron Conway",
+            12: "For The Plot: Leonor Selas Amaral, Lily Quinn & Shane Meleady",
+            13: "Soundwaves: Sarah Duff, Sophie King",
+            14: "ChitChatFM: Emily Mullally, Clodagh Mahon, Ciara Stell",
+            15: "Ode to Youth: Debby Ugoiwa",
+            16: "No shows on at the moment",
             17: "No shows on at the moment",
             18: "No shows on at the moment",
-            19: "No shows on at the moment",
         }
     }
 
-    if day_name in timetable and 9 <= hour <= 20:
-        current_show = timetable[day_name].get(
-            hour, "No shows on at the moment")
-        previous_show = timetable[day_name].get(
-            hour - 1, "No shows on at the moment")
-        next_show = timetable[day_name].get(
-            hour + 1, "No shows on at the moment")
+    if day_name in timetable and 9 <= hour <= 18:
+        current_show = timetable[day_name].get(hour, "No shows on at the moment")
+        previous_show = timetable[day_name].get(hour - 1, "No shows on at the moment")
+        next_show = timetable[day_name].get(hour + 1, "No shows on at the moment")
     else:
         current_show = previous_show = next_show = "No shows on at the moment"
 
     return previous_show, current_show, next_show
+
 
 
 def get_latest_video_id(channel_url):

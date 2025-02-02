@@ -52,7 +52,7 @@ homepage_stats_data = [
             'id': 'donation',
             'icon_class': 'fa-solid fa-hand-holding-heart',
             'number': '16560',
-            'description': 'Euro raised for charity during our broadcasts this year'
+            'description': 'Euro raised for charity during our broadcasts last year'
         },
         {
             'id': 'members',
@@ -63,13 +63,13 @@ homepage_stats_data = [
         {
             'id': 'years',
             'icon_class': 'fa-solid fa-calendar-days',
-            'number': '39',
+            'number': '40',
             'description': 'Years of MPS<br>Since 1985'
         },
         {
             'id': 'articles',
             'icon_class': 'fa fa-newspaper',
-            'number': '6049',
+            'number': '6539',
             'description': 'Articles Published on <a href="https://thecollegeview.ie" target="_blank">The College View</a>'
         }
     ]

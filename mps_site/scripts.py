@@ -39,7 +39,8 @@ def tcv_posts(url):
 
     for post in posts:
         soup = BeautifulSoup(post['content']['rendered'], 'html.parser')
-        post['content_plain'] = soup.get_text()
+        post['content_plain'] = soup.get_text().replace('&#8217;', "'").replace("&amp;", "&").replace("&#8216;", "'").replace("&#8211;", "-").strip()
+        post['title']['rendered'] = post['title']['rendered'].replace('&#8217;', "'").replace("&amp;", "&").replace("&#8216;", "'").replace("&#8211;", "-").strip()
         first_image = soup.find('img')
         post['first_image'] = first_image['src'] if first_image else get_featured_media(
             post['featured_media'])

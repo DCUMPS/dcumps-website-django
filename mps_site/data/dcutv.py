@@ -10,8 +10,8 @@ dcutv_stats_data = [
     {
       "id": "donation",
       "icon_class": "fa-solid fa-hand-holding-heart",
-      "number": "12820",
-      "description": "Raised for Jack & Jill Children’s Foundation during the 24 Hour Broadcast in December 2023"
+      "number": "10164",
+      "description": "Raised for Focus Ireland during the 24 Hour Broadcast in December 2024"
     },
     {
       "id": "youtube",

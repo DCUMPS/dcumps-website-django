@@ -8,8 +8,8 @@ homepage_carousel = [
     ]
 
 homepage_subgroups = {
-  "title": "MPS Sub-Groups",
-  "subtitle": "Explore the Pillars of MPS!",
+  "title": "The MPS Family Tree",
+  "subtitle": "Explore all the branches of MPS!",
   "groups": [
     {
       "name": "DCUfm",
@@ -42,6 +42,17 @@ homepage_subgroups = {
       "social_links": [
         {"url": "https://www.instagram.com/thecollegeview", "icon_class": "fa-brands fa-instagram", "aria_label": "The College View Instagram"},
         {"url": "https://thecollegeview.ie/", "icon_class": "fa fa-link", "aria_label": "The College View Website"}
+      ]
+    },
+    {
+      "name": "The Dev",
+      "link": "/thedev",
+      "image": "images/logos/dev_512.png",
+      "alt_text": "MPS Sub-Group",
+      "description": "Championing Sustainable Development, Made by students, for students!",
+      "social_links": [
+        {"url": "https://www.instagram.com/thedev.dcu/", "icon_class": "fa-brands fa-instagram", "aria_label": "The Dev Instagram"},
+        {"url": "https://thecollegeview.ie/category/thedev/", "icon_class": "fa fa-link", "aria_label": "The College View Website"}
       ]
     }
   ]

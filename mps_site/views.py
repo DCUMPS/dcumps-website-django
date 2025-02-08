@@ -125,6 +125,20 @@ def dcutv(request):
                    'committee_video_id': '1wiscXP9nw0',
                    'current_donation_amount': current_donation_amount,
                    'goal_amount': goal_amount})
+    
+def thedev(request):
+    managers = [member for member in committee_list["members"] if member["position"] == "Brand Design Officer"]
+    categories = {
+        'thedev': construct_tcv_url(category=10473),
+    }
+
+    with ThreadPoolExecutor() as executor:
+        future_to_category = {executor.submit(tcv_posts, url): category for category, url in categories.items()}
+        results = {category: future.result() for future, category in future_to_category.items()}
+        
+    return render(request, 'thedev.html', {'page_name': 'The Dev',
+                                           'managers': managers,
+                                           **results})
 
 def gallery(request):
     gallery_page_info = GalleryPage.objects.all().first()
@@ -172,6 +186,11 @@ def links_tcv(request):
     sheet_url = "https://docs.google.com/spreadsheets/d/1ssVVGWg9nvUxxmLXQwC_-T2XWxuqGfYDSLp5T4S-e9I/edit?usp=sharing"
     linktree = process_linktree_data(sheet_url)
     return render(request, 'links.html', {'page_name': 'The College View Links', 'linktree': linktree})
+
+def links_dev(request):
+    sheet_url = "https://docs.google.com/spreadsheets/d/1DhR09FjdZL2sNkYrPAm18dZOL6hhmmGtBrwbWWD0swQ/edit?usp=sharing"
+    linktree = process_linktree_data(sheet_url)
+    return render(request, 'links.html', {'page_name': 'The Dev Links', 'linktree': linktree})
 
 def swapweek(request):
     return render(request, 'swapweek.html', {'page_name': 'Swap Week'})

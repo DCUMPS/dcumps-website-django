@@ -1,22 +1,32 @@
 {# templates/components/subgroup.html #}
 {% load static %}
 
-<div class="container">
-    <h1>{{ subgroups_data.title }}</h1>
-    <h5><i>{{ subgroups_data.subtitle }}</i></h5>
-    <div class="row justify-content-center">
-        <div class="col-md-12 custom-box shadow-lg bg-body">
+<div class="container-fluid"> {# Full width to remove the big gaps #}
+    <h1 class="text-center">{{ subgroups_data.title }}</h1>
+    <h5 class="text-center"><i>{{ subgroups_data.subtitle }}</i></h5>
+    
+    {% with subgroups_data.groups|length as total_groups %}
+    <div class="row justify-content-center box-box">
+        <div class="col-12 custom-box shadow-lg bg-body" style="max-width: 98%; padding: 30px;"> 
+            {# Added padding to make the outer box larger and well-spaced #}
             <div class="center-contents">
-                <div class="container mt-4">
-                    <div class="row">
+                <div class="container-fluid mt-4"> 
+                    {# Changed to container-fluid to allow full expansion #}
+                    <div class="row justify-content-center">
                         {% for group in subgroups_data.groups %}
-                        <div class="col-md-4">
-                            <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px;">
+                        <div class="{% if total_groups == 3 %}col-md-4 col-lg-4{% else %}col-md-3 col-lg-3{% endif %}">  
+                            {# Adjusts size dynamically: col-md-4 for 3 items, col-md-3 for 4+ items #}
+                            <div class="committee-member shadow-lg bg-body" 
+                                 style="background-color: #202E4E; border-radius: 15px; padding: 25px;">
                                 <a href="{{ group.link }}">
-                                    <img src="{% static group.image %}" width="250px" height="250px" alt="{{ group.alt_text }}" style="border-radius: 50%; margin-top: 20px;">
+                                    <img src="{% static group.image %}" width="300px" height="300px" 
+                                         alt="{{ group.alt_text }}" class="hover-image"
+                                         style="border-radius: 50%; margin-top: 20px;">
                                 </a>
                                 <h3>{{ group.name }}</h3>
-                                <h5 style="padding-left: 10px; padding-right: 10px;"><i>{{ group.description|safe }}</i></h5>
+                                <h5 style="padding-left: 10px; padding-right: 10px;">
+                                    <i>{{ group.description|safe }}</i>
+                                </h5>
                                 <div class="social-icons" style="padding-bottom: 15px;">
                                     <ul>
                                         {% for social in group.social_links %}
@@ -36,4 +46,27 @@
             </div>
         </div>
     </div>
+    {% endwith %}
 </div>
+
+<style>
+/* Image Hover Effect */
+.hover-image {
+    transition: transform 0.3s ease-in-out;
+}
+.hover-image:hover {
+    transform: scale(1.1);  /* Increases image size on hover */
+}
+
+/* Adjust padding for better spacing */
+.custom-box {
+    padding: 40px;
+}
+
+@media screen and (max-width: 768px) {
+    .box-box {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+</style>

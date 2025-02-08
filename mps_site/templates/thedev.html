@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="title-large">
+  <h1>The Dev @ DCU</h1>
+  <h3><i>Powered by DCU's Media Production Society, Championing Sustainable Development, Made by students, for students</i></h3>
+</div>
+
+
+
+<div class="container">
+  <div class="row d-flex align-items-start flex-nowrap">
+    <!-- Left Column: Text Section -->
+    <div class="col-md-6 custom-box">
+      <h1>About The Dev</h1>
+      <p>
+        INTRODUCING: THE DEV
+<br><br>
+Launched by DCU’s Media Production Society as part of the university’s “Shout Out for Sustainable Development” Initiative, THE DEV is an all-new digital service dedicated to championing student-produced ESG content and sustainability initiatives across DCU!
+<br><br>
+THE DEV aims to promote real and relevant Sustainable Development news, increasing accessibility for students and the wider DCU community, while combating misinformation.
+<br><br>
+On Instagram, @thedev.dcu will serve as a centralised hub for all things ESG and Sustainable Development as we increase output across @dcufm 💚, @dcutvmps 💙, and @thecollegeview ❤
+<br><br>
+This will be supported by cross-platform content opportunities with @dcumps on Tik Tok, and our dedicated LinkedIn page 💜
+<br><br>
+I am so excited to be leading this new project and hope to see it thrive through shared collaboration with our members across each of the society’s existing branches!
+      </p>
+      <h4 style="text-align: center;"><i>The Dev Manager: Liam O'Keeffe</i></h4>
+    </div>
+    
+    <!-- Right Column: Subgroup -->
+    <div class="col-md-6 custom-box shadow-lg bg-body">
+          <div class="col-md-12">
+            <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px;">
+              <a href="/thedev">
+                <img src="{% static 'images/logos/dev_512.png' %}" width="250px" height="250px" alt="MPS Sub-Group" style="border-radius: 50%; margin-top: 20px;">
+              </a>
+              <h3>The Dev</h3>
+              <div class="social-icons" style="padding-bottom: 15px;">
+                <ul>
+                  <li>
+                    <a href="https://www.instagram.com/thedev.dcu/" target="_blank" aria-label="The Dev Instagram">
+                      <i class="fa-brands fa-instagram hvr-bounce-in"></i>
+                    </a>
+                    <a href="https://thecollegeview.ie/category/thedev/" target="_blank" aria-label="The College View">
+                      <i class="fa fa-link hvr-bounce-in"></i>
+                    </a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% include 'components/managers.html' with title="Meet The Dev Managers" subtitle="The team behind MPS's latest initiative!" managers=managers %}
+
+
+{% include 'components/tcv_section.html' with title="The College View | The Dev" subtitle="Check out the latest sustainable development articles!" section=thedev %}
+
+
+
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
+</body>
+</html>

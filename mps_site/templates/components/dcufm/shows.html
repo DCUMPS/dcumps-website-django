@@ -1,27 +1,37 @@
 {% load static %}
 
-<div class="container">
-    <h1>{{ shows_data.title }}</h1>
-    <h5><i>{{ shows_data.subtitle }}</i></h5>
-    <div class="row justify-content-center">
-        <div class="col-md-12 custom-box shadow-lg bg-body">
+<div class="container-fluid"> {# Full width to remove the big gaps #}
+    <h1 class="text-center">{{ shows_data.title }}</h1>
+    <h5 class="text-center"><i>{{ shows_data.subtitle }}</i></h5>
+    
+    {% with shows_data.shows|length as total_shows %}
+    <div class="row justify-content-center box-box">
+        <div class="col-12 custom-box shadow-lg bg-body" style="max-width: 98%; padding: 30px;"> 
+            {# Added padding to make the outer box larger and well-spaced #}
             <div class="center-contents">
-                <div class="container mt-4">
-                    <div class="row">
+                <div class="container-fluid mt-4"> 
+                    {# Changed to container-fluid to allow full expansion #}
+                    <div class="row justify-content-center">
                         {% for show in shows_data.shows %}
-                        <div class="col-md-4">
-                            <div class="committee-member shadow-lg bg-body" style="background-color: #202E4E; border-radius: 15px;">
+                        <div class="{% if total_shows == 3 %}col-md-4 col-lg-4{% else %}col-md-3 col-lg-3{% endif %}">  
+                            {# Adjusts size dynamically: col-md-4 for 3 items, col-md-3 for 4+ items #}
+                            <div class="committee-member shadow-lg bg-body" 
+                                 style="background-color: #202E4E; border-radius: 15px; padding: 25px;">
                                 <a href="{{ show.link }}">
-                                    <img src="{% static show.image %}" width="300px" height="300px" alt="{{ show.alt_text }}" style="border-radius: 50%; margin-top: 20px;">
+                                    <img src="{% static show.image %}" width="300px" height="300px" 
+                                         alt="{{ show.alt_text }}" class="hover-image"
+                                         style="border-radius: 50%; margin-top: 20px;">
                                 </a>
                                 <h3>{{ show.name }}</h3>
-                                <h5 style="padding-left: 10px; padding-right: 10px;"><i>{{ show.description|safe }}</i></h5>
+                                <h5 style="padding-left: 10px; padding-right: 10px;">
+                                    <i>{{ show.description|safe }}</i>
+                                </h5>
                                 <ul style="padding-left: 10px; padding-right: 10px; list-style-type: none;">
                                     {% for name in show.names %}
                                     <li><i>{{ name }}</i></li>
                                     {% endfor %}
                                 </ul>
-                                <div class="social-icons" style="padding-bottom: 15px; padding-top: -20px;">
+                                <div class="social-icons" style="padding-bottom: 15px;">
                                     <ul>
                                         {% for social in show.social_links %}
                                         <li>
@@ -40,4 +50,27 @@
             </div>
         </div>
     </div>
+    {% endwith %}
 </div>
+
+<style>
+/* Image Hover Effect */
+.hover-image {
+    transition: transform 0.3s ease-in-out;
+}
+.hover-image:hover {
+    transform: scale(1.1);  /* Increases image size on hover */
+}
+
+/* Adjust padding for better spacing */
+.custom-box {
+    padding: 40px;
+}
+
+@media screen and (max-width: 768px) {
+    .box-box {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+</style>

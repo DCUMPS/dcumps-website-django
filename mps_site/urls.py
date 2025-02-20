@@ -28,7 +28,7 @@ urlpatterns = [
     path("ads", views.ads, name="ads"),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'assets/img/other/favicon.ico')),
-    path('donate', RedirectView.as_view(url="https://www.idonate.ie/fundraiser/MediaProductionSociety12"), name="donate"),
+    path('donate', RedirectView.as_view(url="https://www.idonate.ie/fundraiser/MediaProductionSociety13"), name="donate"),
     path('lounge', RedirectView.as_view(url="https://lounge.live/lounges/kr53i9b6"), name="lounge"),
     path('join', RedirectView.as_view(url="https://dcuclubsandsocs.ie/society/media-production"), name="join"),
     path('thinktank', RedirectView.as_view(url="https://chat.whatsapp.com/EBupVbTpWX01uJvBp5r24D"), name="thinktank"),

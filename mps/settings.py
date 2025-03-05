@@ -143,4 +143,4 @@ STORAGES = {
     },
 }
 
-CSRF_TRUSTED_ORIGINS = ['dcumps.ie', 'test.dcumps.ie', 'www.dcumps.ie', 'www.dcumps.com', 'dcumps.com', 'mps.rb.dcu.ie']
+CSRF_TRUSTED_ORIGINS = ['https://dcumps.ie', 'https://test.dcumps.ie', 'https://www.dcumps.ie', 'https://www.dcumps.com', 'https://dcumps.com', 'https://mps.rb.dcu.ie']

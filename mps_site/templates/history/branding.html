@@ -1,0 +1,32 @@
+{% load static %}
+{% block content %}
+
+
+<div>
+  <h1>{{ branding.title }}</h1>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12 custom-box">
+      <div class="center-contents row">
+        {% for brand in branding.branding %}
+        <div class="col-md-4">
+          <div class="committee-member mt-4"
+          id="{{ scrapbook.name|slugify }}">
+          <a href="" target="_blank">
+              <img src="{% static brand.image %}" alt="{{ brand.name }}"
+                   style="background-color: #202E4E; border-radius: 25px;">
+          </a>
+              <div class="mx-4 py-2 px-2 hvr-grow" style="background-color: #202E4E; border-radius: 15px;">
+                  <h3>{{ brand.name }}</h3>
+                  <a class="btn btn-primary" href="" target="_blank" style="margin-top: 10px; margin-bottom: 10px; color: white";>View More</a>
+              </div>
+          </div>
+      </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

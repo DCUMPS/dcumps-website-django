@@ -1,0 +1,32 @@
+{% load static %}
+{% block content %}
+
+
+<div>
+  <h1>{{ scrapbooks.title }}</h1>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12 custom-box">
+      <div class="center-contents row">
+        {% for scrapbook in scrapbooks.scrapbooks %}
+        <div class="col-md-4">
+          <div class="committee-member mt-4"
+          id="{{ scrapbook.name|slugify }}">
+          <a href="{{ scrapbook.file }}" target="_blank">
+              <img src="{% static scrapbook.image %}" alt="{{ scrapbook.name }}"
+                   style="background-color: #202E4E; border-radius: 25px;">
+          </a>
+              <div class="mx-4 py-2 px-2 hvr-grow" style="background-color: #202E4E; border-radius: 15px;">
+                  <h3>{{ scrapbook.name }}</h3>
+                  <a class="btn btn-primary" href="{{ scrapbook.file }}" target="_blank" style="margin-top: 10px; margin-bottom: 10px; color: white";>Open Scrapbook</a>
+              </div>
+          </div>
+      </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

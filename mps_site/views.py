@@ -13,6 +13,7 @@ from .data.dcutv import *
 from .data.thecollegeview import *
 from .data.committee import *
 from .data.loans import *
+from .data.history import *
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def ordinal(n):
@@ -55,6 +56,10 @@ def index(request):
                         'homepage_carousel': homepage_carousel,
                         'current_donation_amount': current_donation_amount,
                         'goal_amount': goal_amount})
+        
+def history(request):
+    committee_history = CommitteeHistory.objects.all()
+    return render(request, 'history.html', {'page_name': 'History', 'committee_history': committee_history, 'scrapbooks': scrapbooks, 'branding': branding})
         
 def tcv(request):
     categories = {

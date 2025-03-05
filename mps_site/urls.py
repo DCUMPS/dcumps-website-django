@@ -48,4 +48,5 @@ urlpatterns = [
     path("committee/history", views.committee_history, name="committee_history"),
     path("committee/<slug:year>/", views.committee_history_detail, name="committee_history_detail"),
     path("thecollegeview", views.tcv, name="tcv"),
+    path("history", views.history, name="history"),
 ]

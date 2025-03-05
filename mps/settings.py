@@ -142,3 +142,5 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+CSRF_TRUSTED_ORIGINS = ['dcumps.ie', 'test.dcumps.ie', 'www.dcumps.ie', 'www.dcumps.com', 'dcumps.com', 'mps.rb.dcu.ie']

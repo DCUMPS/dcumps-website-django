@@ -1,5 +1,5 @@
 homepage_carousel = [
-        {'url': 'assets/img/slideshow/ClubsAndSocs-36.jpg', 'alt': 'DCU MPS Slideshow Image 1'},
+        {'url': 'assets/img/slideshow/DSC07021.JPG', 'alt': 'DCU MPS Slideshow Image 1'},
         {'url': 'assets/img/slideshow/DSC_0004.JPG', 'alt': 'DCU MPS Slideshow Image 2'},
         {'url': 'assets/img/slideshow/IMG_8407.jpg', 'alt': 'DCU MPS Slideshow Image 3'},
         {'url': 'assets/img/slideshow/DSC02140.JPG', 'alt': 'DCU MPS Slideshow Image 4'},
@@ -132,6 +132,20 @@ homepage_awards = {
     "title": "Awards",
     "subtitle": "Our Society has won many awards over the years!",
     "awards": [
+      {
+        "award": "Best Society Promotional Video - This is DCU TV",
+        "sponsor": "DCU Society Awards",
+        "year": "2025",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
+      {
+        "award": "Individual Contribution to Society Life - Jake Farrell",
+        "sponsor": "DCU Society Awards",
+        "year": "2025",
+        "award_icon": "fa-solid fa-trophy",
+        "award_image": "assets/images/awards/clubsandsocs.jpg"
+      },
       {
         "award": "Best Society in a Cultural / Academic / Social Field",
         "sponsor": "DCU Society Awards",

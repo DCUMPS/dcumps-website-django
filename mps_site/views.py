@@ -32,7 +32,11 @@ def index(request):
         video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
         posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
         previous, current, next_show = get_date_time()
-        events = requests.get("https://clubsandsocs.jakefarrell.ie/dcuclubsandsocs.ie/society/media-production/events").json()
+        try:
+            events = requests.get("https://clubsandsocs.jakefarrell.ie/dcuclubsandsocs.ie/society/media-production/events").json()
+        except requests.exceptions.RequestException as e:
+            events = []
+            print(f"Error fetching events: {e}")
         donation_data = get_donation_count()
         current_donation_amount = donation_data["totalRaised"]
         goal_amount = donation_data["targetAmount"]

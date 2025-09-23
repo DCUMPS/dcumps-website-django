@@ -213,7 +213,7 @@ def memes(request):
 
 # BLOG STUFF
 
-def render_blog_preview(posts):
+"""def render_blog_preview(posts):
     md = markdown.Markdown(extensions=["fenced_code"])
     for post in posts:
         post.body = md.convert(post.body)
@@ -284,4 +284,4 @@ def blog_author(request, author):
 
     }
 
-    return render(request, "blog/author.html", context)
+    return render(request, "blog/author.html", context)"""

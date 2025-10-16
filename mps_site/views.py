@@ -2,10 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import *
 from .scripts import *
-import json
 from django.utils.safestring import mark_safe
-from datetime import datetime
-import markdown
+from datetime import datetime, timezone
 from .utils import *
 from .data.homepage import *
 from .data.dcufm import *
@@ -15,6 +13,10 @@ from .data.committee import *
 from .data.loans import *
 from .data.history import *
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import requests
+import pytz
+import markdown
+import json
 
 def ordinal(n):
     if 10 <= n % 100 <= 20:
@@ -24,42 +26,56 @@ def ordinal(n):
     return f"{n}{suffix}"
 
 def format_event_date(date_str):
-    date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S")
-    day = ordinal(date_obj.day)
-    return date_obj.strftime(f"%a {day} %b at %H:%M")
+    try:
+        date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%SZ")
+        date_obj = date_obj.replace(tzinfo=timezone.utc)
+    except ValueError:
+        date_obj = datetime.fromisoformat(date_str.replace('Z', '+00:00'))
+        if date_obj.tzinfo is None:
+            date_obj = date_obj.replace(tzinfo=timezone.utc)
+
+    dublin_tz = pytz.timezone("Europe/Dublin")
+    local_date = date_obj.astimezone(dublin_tz)
+
+    day = ordinal(local_date.day)
+    return local_date.strftime(f"%a {day} %b at %H:%M")
 
 def index(request):
-        video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
-        posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
-        previous, current, next_show = get_date_time()
-        try:
-            events = requests.get("https://clubsandsocs.jakefarrell.ie/dcuclubsandsocs.ie/society/media-production/events").json()
-        except requests.exceptions.RequestException as e:
-            events = []
-            print(f"Error fetching events: {e}")
-        donation_data = get_donation_count()
-        current_donation_amount = donation_data["totalRaised"]
-        goal_amount = donation_data["targetAmount"]
+    video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
+    posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
+    previous, current, next_show = get_date_time()
 
-        for event in events:
-            event['formatted_start'] = format_event_date(event['start'])
-            event['formatted_end'] = format_event_date(event['end'])
+    try:
+        events = requests.get("https://clubsandsocs.jakefarrell.ie/dcuclubsandsocs.ie/society/media-production/events").json()
+    except requests.exceptions.RequestException as e:
+        events = []
+        print(f"Error fetching events: {e}")
 
-        return render(request, 'index.html', 
-                       {'stats_data': homepage_stats_data,
-                        'subgroups_data': homepage_subgroups,
-                        'merch': homepage_merch,
-                        'events': events,
-                        'page_name': 'Home', 
-                        'latest_video_id' : video, 
-                        'previous_show': previous, 
-                        'current_show': current, 
-                        'next_show': next_show,
-                        'homepage_awards': homepage_awards,
-                        'posts': posts,
-                        'homepage_carousel': homepage_carousel,
-                        'current_donation_amount': current_donation_amount,
-                        'goal_amount': goal_amount})
+    donation_data = get_donation_count()
+    current_donation_amount = donation_data["totalRaised"]
+    goal_amount = donation_data["targetAmount"]
+
+    for event in events:
+        event['formatted_start'] = format_event_date(event['start'])
+        event['formatted_end'] = format_event_date(event['end'])
+
+    return render(request, 'index.html', {
+        'stats_data': homepage_stats_data,
+        'subgroups_data': homepage_subgroups,
+        'merch': homepage_merch,
+        'events': events,
+        'page_name': 'Home',
+        'latest_video_id': video,
+        'previous_show': previous,
+        'current_show': current,
+        'next_show': next_show,
+        'homepage_awards': homepage_awards,
+        'posts': posts,
+        'homepage_carousel': homepage_carousel,
+        'current_donation_amount': current_donation_amount,
+        'goal_amount': goal_amount
+    })
+
         
 def history(request):
     committee_history = CommitteeHistory.objects.all()

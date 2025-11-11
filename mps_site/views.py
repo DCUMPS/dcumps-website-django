@@ -116,7 +116,7 @@ def committee(request):
                   {'page_name': 'Committee', 
                    'committee_members': committee_members,
                    'committee_list': committee_list,
-                   'committee_video_id': '1wiscXP9nw0'})
+                   'committee_video_id': '6ZzztekNY1o'})
 
 def committee_history(request):
     committee_history = CommitteeHistory.objects.all()
@@ -147,7 +147,7 @@ def dcutv(request):
                    'tv_managers': tv_managers,
                    'dcutv_carousel': dcutv_carousel, 
                    'stats_data': dcutv_stats_data,
-                   'committee_video_id': '1wiscXP9nw0',
+                   'committee_video_id': '6ZzztekNY1o',
                    'current_donation_amount': current_donation_amount,
                    'goal_amount': goal_amount})
     

@@ -1,0 +1,9 @@
+services:
+  dcumps-website-django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dcumps-website-django
+    hostname: dcumps-website-django
+    ports:
+      - "8000:8000"

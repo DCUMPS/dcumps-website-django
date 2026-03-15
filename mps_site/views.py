@@ -42,7 +42,7 @@ def format_event_date(date_str):
 
 def index(request):
     video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
-    posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
+    #posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
     previous, current, next_show = get_date_time()
 
     try:
@@ -70,7 +70,7 @@ def index(request):
         'current_show': current,
         'next_show': next_show,
         'homepage_awards': homepage_awards,
-        'posts': posts,
+#        'posts': posts,
         'homepage_carousel': homepage_carousel,
         'current_donation_amount': current_donation_amount,
         'goal_amount': goal_amount
@@ -82,7 +82,7 @@ def history(request):
     return render(request, 'history.html', {'page_name': 'History', 'committee_history': committee_history, 'scrapbooks': scrapbooks, 'branding': branding})
         
 def tcv(request):
-    categories = {
+    """categories = {
         'posts': construct_tcv_url(per_page=10),
         'news': construct_tcv_url(category=4),
         'sport': construct_tcv_url(category=7),
@@ -96,13 +96,13 @@ def tcv(request):
 
     with ThreadPoolExecutor() as executor:
         future_to_category = {executor.submit(tcv_posts, url): category for category, url in categories.items()}
-        results = {category: future.result() for future, category in future_to_category.items()}
+        results = {category: future.result() for future, category in future_to_category.items()}"""
 
-    editors = [member for member in committee_list["members"] if member["position"] in ["Editor in-Chief", "Deputy Editor in-Chief"]]
+    editors = [member for member in committee_list["members"] if member["position"] in ["Editor-in-Chief of The College View", "Deputy Editor of The College View"]]
 
     return render(request, 'thecollegeview.html', {
         'page_name': 'The College View',
-        **results,
+        #**results,
         'family_tree': tcv_family_tree,
         'editors': editors
     })
@@ -153,17 +153,16 @@ def dcutv(request):
     
 def thedev(request):
     managers = [member for member in committee_list["members"] if member["position"] == "Brand Design Officer"]
-    categories = {
+    """categories = {
         'thedev': construct_tcv_url(category=10473),
     }
 
     with ThreadPoolExecutor() as executor:
         future_to_category = {executor.submit(tcv_posts, url): category for category, url in categories.items()}
-        results = {category: future.result() for future, category in future_to_category.items()}
+        results = {category: future.result() for future, category in future_to_category.items()}"""
         
     return render(request, 'thedev.html', {'page_name': 'The Dev',
-                                           'managers': managers,
-                                           **results})
+                                           'managers': managers})
 
 def gallery(request):
     gallery_page_info = GalleryPage.objects.all().first()

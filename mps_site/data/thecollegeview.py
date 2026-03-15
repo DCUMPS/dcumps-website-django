@@ -4,6 +4,14 @@ tcv_family_tree = {
   "subtitle": "Check out all the editors who have worked for The College View over the years",
   "members": [
     {
+      "year": "2025/2026",
+      "name": "Leonor Selas Amaral",
+    },
+    {
+      "year": "2025/2026",
+      "name": "Ruby Dolan",
+    },
+    {
       "year": "2024/2025",
       "name": "Katie O’Shaughnessy",
     },

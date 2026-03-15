@@ -147,15 +147,15 @@ committee_list = {
       "social_link_3_icon": "fa-solid fa-envelope"
     },
     {
-      "name": "Katie O’Shaughnessy",
-      "position": "Deputy Editor",
+      "name": "Ruby Dolan",
+      "position": "Deputy Editor of The College View",
       "image": "images/committee/2024-2025/14.png",
-      "social_link_1_url": "https://www.instagram.com/katieoshaughnessyy?igsh=djRpdnFmaDBibHZr&utm_source=qr",
-      "social_link_1_icon": "fa-brands fa-instagram",
-      "social_link_2_url": "https://www.linkedin.com/in/katie-o-shaughnessy-755a0a292?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-      "social_link_2_icon": "fa-brands fa-linkedin",
-      "social_link_3_url": "mailto:deputyeditor@thecollegeview.ie",
-      "social_link_3_icon": "fa-solid fa-envelope"
+      "social_link_1_url": "mailto:deputyeditor@thecollegeview.ie",
+      "social_link_1_icon": "fa-solid fa-envelope",
+      "social_link_2_url": "",
+      "social_link_2_icon": "",
+      "social_link_3_url": "",
+      "social_link_3_icon": ""
     },
     {
       "name": "Aibhe Devilly",

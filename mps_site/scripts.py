@@ -6,6 +6,17 @@ from bs4 import BeautifulSoup
 import json
 import pandas as pd
 import re
+from io import StringIO
+import logging
+import hashlib
+from django.core.cache import cache
+
+logger = logging.getLogger(__name__)
+
+
+def _cache_key(prefix, value):
+    key_hash = hashlib.md5(value.encode("utf-8")).hexdigest()
+    return f"{prefix}:{key_hash}"
 
 
 def construct_tcv_url(per_page=3, category=None):
@@ -22,7 +33,10 @@ def fetch_data(url):
         response.raise_for_status()
         return response.json()
     except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+        logger.warning("Error fetching JSON from %s: %s", url, e)
+        return None
+    except ValueError as e:
+        logger.warning("Invalid JSON response from %s: %s", url, e)
         return None
 
 
@@ -60,13 +74,25 @@ def tcv_posts(url):
 
 
 def process_linktree_data(sheet_url):
+    cache_key = _cache_key("linktree", sheet_url)
+    cached_data = cache.get(cache_key)
+    if cached_data is not None:
+        return cached_data
+
     url_1 = sheet_url.replace('/edit', '/export?format=csv&')
-    texts = pd.read_csv(url_1, usecols=['TEXT'])
-    links = pd.read_csv(url_1, usecols=['LINK'])
-    text = [i[0] for i in texts.values]
-    link = [i[0] for i in links.values]
-    linktree = zip(text, link)
-    return linktree
+    try:
+        response = requests.get(url_1, timeout=10)
+        response.raise_for_status()
+        csv_data = StringIO(response.text)
+        df = pd.read_csv(csv_data, usecols=['TEXT', 'LINK'])
+        text = df['TEXT'].fillna('').tolist()
+        link = df['LINK'].fillna('').tolist()
+        linktree_data = list(zip(text, link))
+        cache.set(cache_key, linktree_data, 300)
+        return linktree_data
+    except (requests.RequestException, pd.errors.EmptyDataError, pd.errors.ParserError, ValueError, KeyError) as e:
+        logger.warning("Error processing linktree data from %s: %s", sheet_url, e)
+        return cached_data or []
 
 
 from datetime import datetime
@@ -151,18 +177,42 @@ def get_date_time():
 
 
 def get_latest_video_id(channel_url):
-    feed = feedparser.parse(channel_url)
+    cache_key = _cache_key("latest_video_id", channel_url)
+    cached_video_id = cache.get(cache_key)
+    if cached_video_id is not None:
+        return cached_video_id
+
+    try:
+        response = requests.get(channel_url, timeout=10)
+        response.raise_for_status()
+        feed = feedparser.parse(response.content)
+    except requests.RequestException as e:
+        logger.warning("Error fetching feed from %s: %s", channel_url, e)
+        return None
 
     if len(feed.entries) > 0:
         latest_video_url = feed.entries[0].link
         video_id = latest_video_url.split('=')[-1]
+        cache.set(cache_key, video_id, 120)
         return video_id
     else:
         return None
 
 
 def get_latest_video_ids(channel_url):
-    feed = feedparser.parse(channel_url)
+    cache_key = _cache_key("latest_video_ids", channel_url)
+    cached_video_ids = cache.get(cache_key)
+    if cached_video_ids is not None:
+        return cached_video_ids
+
+    try:
+        response = requests.get(channel_url, timeout=10)
+        response.raise_for_status()
+        feed = feedparser.parse(response.content)
+    except requests.RequestException as e:
+        logger.warning("Error fetching feed list from %s: %s", channel_url, e)
+        return []
+
     video_ids = []
 
     for entry in feed.entries[:9]:
@@ -170,6 +220,7 @@ def get_latest_video_ids(channel_url):
         video_id = video_url.split('=')[-1]
         video_ids.append(video_id)
 
+    cache.set(cache_key, video_ids, 120)
     return video_ids
 
 
@@ -190,6 +241,11 @@ def get_most_popular_video_ids(channel_url, n=9):
 
 
 def get_donation_count():
+    cache_key = "donation_count_v1"
+    cached_data = cache.get(cache_key)
+    if cached_data is not None:
+        return cached_data
+
     URL = "https://www.idonate.ie/fundraiser/MediaProductionSociety12"
     headers = {
         'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"}
@@ -218,10 +274,12 @@ def get_donation_count():
                 data['targetAmount'] = int(
                     float(item.split(':')[1].replace('"', '')))
 
+        cache.set(cache_key, data, 300)
         return data
 
     except (requests.RequestException, ValueError, IndexError, AttributeError) as e:
-        return data
+        logger.warning("Error fetching donation data: %s", e)
+        return cached_data or data
 
 
 def get_live_broadcast_shows():

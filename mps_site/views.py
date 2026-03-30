@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import *
 from .scripts import *
+from django.core.cache import cache
 from django.utils.safestring import mark_safe
 from datetime import datetime, timezone
 from .utils import *
@@ -17,6 +18,9 @@ import requests
 import pytz
 import markdown
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 def ordinal(n):
     if 10 <= n % 100 <= 20:
@@ -44,20 +48,32 @@ def index(request):
     video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
     #posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
     previous, current, next_show = get_date_time()
+    events_cache_key = "homepage_events_v1"
+    cached_events = cache.get(events_cache_key, [])
 
     try:
-        events = requests.get("https://clubsandsocs.jakefarrell.ie/dcuclubsandsocs.ie/society/media-production/events").json()
-    except requests.exceptions.RequestException as e:
-        events = []
-        print(f"Error fetching events: {e}")
+        response = requests.get(
+            "https://clubsandsocs.jakefarrell.ie/dcuclubsandsocs.ie/society/media-production/events",
+            timeout=10,
+        )
+        response.raise_for_status()
+        events = response.json()
+        if not isinstance(events, list):
+            events = []
+        cache.set(events_cache_key, events, 120)
+    except (requests.exceptions.RequestException, ValueError) as e:
+        events = cached_events
+        logger.warning("Error fetching events: %s", e)
 
     donation_data = get_donation_count()
     current_donation_amount = donation_data["totalRaised"]
     goal_amount = donation_data["targetAmount"]
 
     for event in events:
-        event['formatted_start'] = format_event_date(event['start'])
-        event['formatted_end'] = format_event_date(event['end'])
+        start = event.get('start')
+        end = event.get('end')
+        event['formatted_start'] = format_event_date(start) if start else "TBC"
+        event['formatted_end'] = format_event_date(end) if end else "TBC"
 
     return render(request, 'index.html', {
         'stats_data': homepage_stats_data,

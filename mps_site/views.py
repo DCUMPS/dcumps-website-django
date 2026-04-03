@@ -45,9 +45,22 @@ def format_event_date(date_str):
     return local_date.strftime(f"%a {day} %b at %H:%M")
 
 def index(request):
-    video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
+    # Fetch latest video with error handling
+    try:
+        video = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
+    except Exception as e:
+        video = None
+        logger.warning("Error fetching latest video: %s", e)
+    
     #posts = tcv_posts("https://thecollegeview.ie/wp-json/wp/v2/posts?per_page=3&orderby=date&_fields=id,date,title,content,link,author,featured_media")
-    previous, current, next_show = get_date_time()
+    
+    # Fetch date/time info with error handling
+    try:
+        previous, current, next_show = get_date_time()
+    except Exception as e:
+        previous, current, next_show = None, None, None
+        logger.warning("Error fetching date/time info: %s", e)
+    
     events_cache_key = "homepage_events_v1"
     cached_events = cache.get(events_cache_key, [])
 
@@ -61,13 +74,21 @@ def index(request):
         if not isinstance(events, list):
             events = []
         cache.set(events_cache_key, events, 120)
-    except (requests.exceptions.RequestException, ValueError) as e:
+    except (requests.exceptions.RequestException, ValueError, requests.exceptions.Timeout) as e:
         events = cached_events
+        if not events:
+            events = []
         logger.warning("Error fetching events: %s", e)
 
-    donation_data = get_donation_count()
-    current_donation_amount = donation_data["totalRaised"]
-    goal_amount = donation_data["targetAmount"]
+    # Fetch donation data with error handling
+    try:
+        donation_data = get_donation_count()
+        current_donation_amount = donation_data.get("totalRaised", 0)
+        goal_amount = donation_data.get("targetAmount", 0)
+    except Exception as e:
+        current_donation_amount = 0
+        goal_amount = 0
+        logger.warning("Error fetching donation data: %s", e)
 
     for event in events:
         start = event.get('start')
@@ -152,14 +173,33 @@ def contact(request):
 
 def dcutv(request):
     tv_managers = [member for member in committee_list["members"] if member["position"] == "TV Manager"]
-    donation_data = get_donation_count()
-    current_donation_amount = donation_data["totalRaised"]
-    goal_amount = donation_data["targetAmount"]
+    
+    try:
+        donation_data = get_donation_count()
+        current_donation_amount = donation_data.get("totalRaised", 0)
+        goal_amount = donation_data.get("targetAmount", 0)
+    except Exception as e:
+        current_donation_amount = 0
+        goal_amount = 0
+        logger.warning("Error fetching donation data in dcutv: %s", e)
+    
+    try:
+        latest_video_id = get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
+    except Exception as e:
+        latest_video_id = None
+        logger.warning("Error fetching latest video in dcutv: %s", e)
+    
+    try:
+        most_recent_videos = get_latest_video_ids("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw")
+    except Exception as e:
+        most_recent_videos = []
+        logger.warning("Error fetching recent videos in dcutv: %s", e)
+    
     return render(request, 'dcutv.html', 
                   {'page_name': 'DCUtv', 
                    'tv_thursday' : 'RON9_ByY190', 
-                   'latest_video_id' : get_latest_video_id("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw"), 
-                   'most_recent_videos': get_latest_video_ids("https://www.youtube.com/feeds/videos.xml?channel_id=UCEnLsvcq1eFkSFFAIqBDgUw"), 
+                   'latest_video_id' : latest_video_id, 
+                   'most_recent_videos': most_recent_videos, 
                    'tv_managers': tv_managers,
                    'dcutv_carousel': dcutv_carousel, 
                    'stats_data': dcutv_stats_data,
@@ -188,7 +228,12 @@ def loans(request):
     return render(request, 'loans.html', {'page_name': 'DCUtv Loans', 'loans_data': loans_data})
 
 def dcufm(request):
-    previous, current, next_show = get_date_time()
+    try:
+        previous, current, next_show = get_date_time()
+    except Exception as e:
+        previous, current, next_show = None, None, None
+        logger.warning("Error fetching date/time info in dcufm: %s", e)
+    
     family_tree = DCUfmFamilyTree.objects.all()
     fm_managers = [member for member in committee_list["members"] if member["position"] == "FM Manager"]
     return render(request, 'dcufm.html', 
@@ -209,27 +254,47 @@ def page_not_found(request):
 
 def links(request):
     sheet_url = "https://docs.google.com/spreadsheets/d/1FdtqA7a0sJcs24NIYWQnOOxrUiNLf1YvwUsWhZ1feLw/edit?usp=sharing"
-    linktree = process_linktree_data(sheet_url)
+    try:
+        linktree = process_linktree_data(sheet_url)
+    except Exception as e:
+        linktree = {}
+        logger.warning("Error processing linktree data: %s", e)
     return render(request, 'links.html', {'page_name': 'Links', 'linktree': linktree})
 
 def links_tv(request):
     sheet_url = "https://docs.google.com/spreadsheets/d/1VP371L8_fwkd1CUE-1L-j01mVwlZaCqcmAZKfGTvZaY/edit?usp=sharing"
-    linktree = process_linktree_data(sheet_url)
+    try:
+        linktree = process_linktree_data(sheet_url)
+    except Exception as e:
+        linktree = {}
+        logger.warning("Error processing DCUtv linktree data: %s", e)
     return render(request, 'links.html', {'page_name': 'DCUtv Links', 'linktree': linktree})
 
 def links_fm(request):
     sheet_url = "https://docs.google.com/spreadsheets/d/1LnPc8wIwyFr09Wiko6myMCbq-9sTApt9URh-nqw2i0A/edit?usp=sharing"
-    linktree = process_linktree_data(sheet_url)
+    try:
+        linktree = process_linktree_data(sheet_url)
+    except Exception as e:
+        linktree = {}
+        logger.warning("Error processing DCUfm linktree data: %s", e)
     return render(request, 'links.html', {'page_name': 'DCUfm Links', 'linktree': linktree})
 
 def links_tcv(request):
     sheet_url = "https://docs.google.com/spreadsheets/d/1ssVVGWg9nvUxxmLXQwC_-T2XWxuqGfYDSLp5T4S-e9I/edit?usp=sharing"
-    linktree = process_linktree_data(sheet_url)
+    try:
+        linktree = process_linktree_data(sheet_url)
+    except Exception as e:
+        linktree = {}
+        logger.warning("Error processing The College View linktree data: %s", e)
     return render(request, 'links.html', {'page_name': 'The College View Links', 'linktree': linktree})
 
 def links_dev(request):
     sheet_url = "https://docs.google.com/spreadsheets/d/1DhR09FjdZL2sNkYrPAm18dZOL6hhmmGtBrwbWWD0swQ/edit?usp=sharing"
-    linktree = process_linktree_data(sheet_url)
+    try:
+        linktree = process_linktree_data(sheet_url)
+    except Exception as e:
+        linktree = {}
+        logger.warning("Error processing The Dev linktree data: %s", e)
     return render(request, 'links.html', {'page_name': 'The Dev Links', 'linktree': linktree})
 
 def swapweek(request):
